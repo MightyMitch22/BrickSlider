@@ -1,4 +1,4 @@
-package week07.handout;
+package finalproject;
 
 import processing.core.PApplet;
 
@@ -9,30 +9,6 @@ import processing.core.PApplet;
  */
 public class LinearInterpolationFace implements ApplicationConstants
 {
-	public static final float FACE_DIAMETER = 5;
-	public static final float EAR_DIAMETER = FACE_DIAMETER/2;
-	public static final float EYE_OUTER_DIAMETER = FACE_DIAMETER/4;
-	public static final float EYE_INNER_DIAMETER = FACE_DIAMETER/6;
-	public static final float MOUTH_V_DIAMETER = FACE_DIAMETER/4;
-	public static final float MOUTH_H_DIAMETER = FACE_DIAMETER/2.5f;
-	//
-	public static final float EAR_V_OFFSET = 0.3f*FACE_DIAMETER;
-	public static final float EAR_H_OFFSET = 0.45f*FACE_DIAMETER;
-	public static final float EYE_V_OFFSET = 0.2f*FACE_DIAMETER;
-	public static final float EYE_H_OFFSET = 0.2f*FACE_DIAMETER;
-	//
-	private static final float LEFT_EAR_X = -EAR_H_OFFSET;
-	private static final float LEFT_EAR_Y = EAR_V_OFFSET;
-	private static final float RIGHT_EAR_X = EAR_H_OFFSET;
-	private static final float RIGHT_EAR_Y = EAR_V_OFFSET;
-	//
-	private static final float LEFT_EYE_X = -EYE_H_OFFSET;
-	private static final float LEFT_EYE_Y = EYE_V_OFFSET;
-	private static final float RIGHT_EYE_X = EYE_H_OFFSET;
-	private static final float RIGHT_EYE_Y = EYE_V_OFFSET;
-
-	private static final float MOUTH_H_OFFSET = 0.f;
-	private static final float MOUTH_V_OFFSET = -FACE_DIAMETER*0.1f;
 
 	private static final int TIME_IDX = 0, X_IDX = 1, Y_IDX = 2, A_IDX = 3, S_IDX = 4;
 
@@ -66,12 +42,6 @@ public class LinearInterpolationFace implements ApplicationConstants
 
 		keyFrame_ = keyFrames;
 
-		// Here, since we have a reference to the app (as a static variable),
-		//	we can use directly its simpler random() method.
-		r_ = app_.random(255);
-		g_ = app_.random(255);
-		b_ = app_.random(255);
-
 		t_ = 0;
 		// initial state: first keyFrame
 		x_ = keyFrame_[0][X_IDX];
@@ -92,53 +62,13 @@ public class LinearInterpolationFace implements ApplicationConstants
 		// we use this object's instance variable to access the application's instance methods and variables
 		app_.pushMatrix();
 
-		//		boolean drawRelative = app_.keyPressed && app_.key == 'r';
-		//		boolean drawAbsolute = app_.keyPressed && app_.key == 'a';
-
-		app_.translate(x_,  y_);
-		app_.rotate(angle_);
-		app_.scale(scale_);
-		app_.noStroke();
-		app_.fill(r_, g_, b_);
-		app_.ellipse(0, 0, FACE_DIAMETER, FACE_DIAMETER);
-
-		//	draw the left ear
-		app_.pushMatrix();
-		app_.noStroke();
-		app_.fill(r_, g_, b_);
-		app_.translate(LEFT_EAR_X, LEFT_EAR_Y);
-		app_.ellipse(0, 0, EAR_DIAMETER, EAR_DIAMETER);
-		app_.popMatrix();
-
-		//	draw the right ear
-		app_.pushMatrix();
-		app_.noStroke();
-		app_.fill(r_, g_, b_);
-		app_.translate(RIGHT_EAR_X, RIGHT_EAR_Y);
-		app_.ellipse(0, 0, EAR_DIAMETER, EAR_DIAMETER);
-		app_.popMatrix();
-
-		//	draw the left and right eyes (I could have gone the Push&pop way here as
-		//	well, and would if the eyes were more complex, but here they are simply
-		//	ellipses, so no need to make it over-complex.
-		app_.fill(255);
-		app_.ellipse(LEFT_EYE_X, LEFT_EYE_Y, EYE_OUTER_DIAMETER, EYE_OUTER_DIAMETER);
-		app_.ellipse(RIGHT_EYE_X, RIGHT_EYE_Y, EYE_OUTER_DIAMETER, EYE_OUTER_DIAMETER);
-		app_.fill(0);
-		app_.ellipse(LEFT_EYE_X, LEFT_EYE_Y, EYE_INNER_DIAMETER, EYE_INNER_DIAMETER);
-		app_.ellipse(RIGHT_EYE_X, RIGHT_EYE_Y, EYE_INNER_DIAMETER, EYE_INNER_DIAMETER);
-
-		// draw the mouth
-		app_.stroke(0);
-		app_.noFill();
-		app_.strokeWeight(2*PIXEL_TO_WORLD);
-		app_.arc(MOUTH_H_OFFSET, MOUTH_V_OFFSET,
-				MOUTH_H_DIAMETER, MOUTH_H_DIAMETER, -7*PApplet.PI/8, -PApplet.PI/8);
 
 		app_.popMatrix();
 	}
 
-	//	dt: time (in seconds) since the last update
+	/**
+	*
+	*/
 	public void update(float dt)
 	{
 		t_ += dt;
