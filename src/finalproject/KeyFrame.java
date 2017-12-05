@@ -1,5 +1,5 @@
 package finalproject;
-
+//We only have Master
 
 import java.util.ArrayList;
 
