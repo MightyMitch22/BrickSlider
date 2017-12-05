@@ -2,7 +2,7 @@ package finalproject;
 
 import processing.core.PApplet;
 
-/** Graphic class to draw a face
+/** Graphic class to draw a monster and a Brick
  *
  * @author jyh
  *
