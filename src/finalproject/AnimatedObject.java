@@ -7,3 +7,4 @@ public interface AnimatedObject {
 
 	void update(float dt);
 }
+//Edit after initial commit
