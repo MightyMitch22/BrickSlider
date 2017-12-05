@@ -1,7 +1,6 @@
 package finalproject;
 
 /**
- * What if I add this
  * The Monster jumps, dies, updates animation.
  * Physics Image processing will be used to move the monster.
  * When the Monster hits the block, the block stops. If the
