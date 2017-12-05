@@ -66,3 +66,5 @@ local.properties
 # STS (Spring Tool Suite)
 .springBeans
 # End Eclipse files to ignore #
+*.xml
+*.xml

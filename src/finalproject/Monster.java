@@ -11,6 +11,7 @@ package finalproject;
 public class Monster extends GraphicObject implements ApplicationConstants, AnimatedObject {
 
     /**
+     * The Monster will need to keep track of its own location which the main will update.
      *
      */
     public Monster(){
