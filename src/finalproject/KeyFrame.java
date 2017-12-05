@@ -1,5 +1,10 @@
 package finalproject;
+<<<<<<< HEAD
 //master only
+=======
+//We only have Master
+
+>>>>>>> 6b53905572fa7f07fcfa684e3bbc05dae48c4f60
 import java.util.ArrayList;
 
 /**
