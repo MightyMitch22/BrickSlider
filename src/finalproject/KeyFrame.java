@@ -1,5 +1,5 @@
 package finalproject;
-//changing comments again
+
 import java.util.ArrayList;
 
 /**
@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by Mitch on 11/22/17.
  */
 
- //okay let me do it
+
 public class KeyFrame{
 
     //
