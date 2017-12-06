@@ -7,6 +7,8 @@ import java.util.ArrayList;
  * what should be done at a KeyFrame.
  * Created by Mitch on 11/22/17.
  */
+
+ //okay let me do it
 public class KeyFrame{
 
     //
