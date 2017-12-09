@@ -1,5 +1,7 @@
 package finalproject;
 
+import processing.core.PApplet;
+
 /**
  * The Monster jumps, dies, updates animation.
  * Physics Image processing will be used to move the monster.
@@ -8,14 +10,22 @@ package finalproject;
  * on top the
  * Created by Mitch on 11/29/17.
  */
-public class Monster extends GraphicObject implements ApplicationConstants, AnimatedObject {
+public class Monster extends PApplet implements ApplicationConstants, AnimatedObject {
 
   private float bx_ = -20, by_ = 0, bz_ = 30;
   private float Vx_ = 12, Vy_ = 0, Vz_ = 0;
   private float rad_ = 5;
   private float refl_ = 0.8f;
   private static final float ZERO_SPEED = 0.01f;
-  private float
+
+    /**
+     * private static PApplet app_;
+     * private static int appSetCounter_ = 0;
+     * used in PApplet setup
+     */
+    private static PApplet app_;
+    private static int appSetCounter_ = 0;
+
     /**
      * The Monster will need to keep track of its own location which the main will update.
      */
@@ -27,12 +37,12 @@ public class Monster extends GraphicObject implements ApplicationConstants, Anim
      * Hervé week07, use objects instance variable to access the application's
      * instance methods and variables
      */
-    public void draw(){
+    public void draw(PApplet app_){
         app_.pushMatrix();
 
-        app.translaate(bx_, by_, bz_);
-        app.noStroke();
-        app.sphere(rad_);
+        app_.translate(bx_, by_, bz_);
+        app_.noStroke();
+        app_.sphere(rad_);
 
         app_.popMatrix();
     }
@@ -98,4 +108,9 @@ public class Monster extends GraphicObject implements ApplicationConstants, Anim
   		return appSetCounter_;
 
   	}
+
+    public static void main(String[] argv)
+    {
+        PApplet.main("finalproject.BrickSlider");
+    }
 }

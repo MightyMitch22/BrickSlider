@@ -8,7 +8,7 @@ public interface ApplicationConstants {
 	float YMIN = -100;
 	float YMAX = 100;
 
-	float G = 9.81f;
+	//float G = 9.81f;
 
 	//	world that gets mapped into the window
 	float WORLD_X_MIN = -20;
