@@ -1,10 +1,12 @@
 package finalproject;
 
+import processing.core.PApplet;
+
 /**
  *3D
  * Created by Mitch Blier, Marissa Gagnier on 11/29/17.
  */
-public class Main {
+public class Main extends PApplet implements ApplicationConstants{
 
 /**
  * settings will create the window in which the
@@ -23,7 +25,7 @@ public class Main {
    */
   public void drawSurface(){
     beginShape(QUADS);
-    texture(backgroundImage_);
+    //texture(backgroundImage_);
 
     vertex(XMIN, YMAX, 0, 0, 0);
     vertex(XMIN, YMIN, 0, 0, 1);

@@ -10,9 +10,6 @@ public interface ApplicationConstants {
 
 	float G = 9.81f;
 
-	int WINDOW_WIDTH = 600;
-	int WINDOW_HEIGHT = 600;
-
 	//	world that gets mapped into the window
 	float WORLD_X_MIN = -20;
 	float WORLD_X_MAX = 40;
