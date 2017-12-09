@@ -68,3 +68,4 @@ local.properties
 # End Eclipse files to ignore #
 *.xml
 *.xml
+*.xml
