@@ -1,9 +1,5 @@
 package finalproject;
 
-import processing.core.PApplet;
-
-import java.applet.Applet;
-
 /**
  * The Monster jumps, dies, updates animation.
  * Physics Image processing will be used to move the monster.
@@ -12,14 +8,14 @@ import java.applet.Applet;
  * on top the
  * Created by Mitch on 11/29/17.
  */
-public class Monster extends PApplet implements ApplicationConstants, AnimatedObject {
+public class Monster extends GraphicObject implements ApplicationConstants, AnimatedObject {
 
   private float bx_ = -20, by_ = 0, bz_ = 30;
   private float Vx_ = 12, Vy_ = 0, Vz_ = 0;
   private float rad_ = 5;
   private float refl_ = 0.8f;
   private static final float ZERO_SPEED = 0.01f;
-
+  private float
     /**
      * The Monster will need to keep track of its own location which the main will update.
      */
@@ -31,8 +27,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * Hervé week07, use objects instance variable to access the application's
      * instance methods and variables
      */
-    public void draw(Applet app){
-
+    public void draw(){
         app_.pushMatrix();
 
         app.translaate(bx_, by_, bz_);
@@ -87,4 +82,20 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
         return false;
     }
 
+    //	After telling you that protected was barely any better than public, I use it here.  Why?
+  	//	Well, the limited additional protection is better than nothing.  And I use my static counter
+  	//	to let the variable be set only once.
+  	protected static int setup(PApplet theApp)
+  	{
+  		if (appSetCounter_ == 0)
+  		{
+  			app_ = theApp;
+  			appSetCounter_ = 1;
+  		}
+  		else
+  			appSetCounter_ = 2;
+
+  		return appSetCounter_;
+
+  	}
 }
