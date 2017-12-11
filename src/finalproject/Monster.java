@@ -11,19 +11,18 @@ import processing.core.PApplet;
  * Created by Mitch on 11/29/17.
  */
 public class Monster extends PApplet implements ApplicationConstants, AnimatedObject {
-
-  private float bx_ = -20, by_ = 0, bz_ = 30;
-  private float Vx_ = 12, Vy_ = 0, Vz_ = 0;
-  private float rad_ = 5;
-  private float refl_ = 0.8f;
-  private static final float ZERO_SPEED = 0.01f;
+    private float bx_ = -20, by_ = 0, bz_ = 30;
+    private float Vx_ = 12, Vy_ = 0, Vz_ = 0;
+    private float rad_ = 5;
+    private float refl_ = 0.8f;
+    private static final float ZERO_SPEED = 0.01f;
 
     /**
      * private static PApplet app_;
      * private static int appSetCounter_ = 0;
      * used in PApplet setup
      */
-    private static PApplet app_;
+
     private static int appSetCounter_ = 0;
 
     /**
@@ -109,8 +108,4 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
 
   	}
 
-    public static void main(String[] argv)
-    {
-        PApplet.main("finalproject.BrickSlider");
-    }
 }
