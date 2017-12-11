@@ -1,6 +1,10 @@
 package finalproject;
+<<<<<<< HEAD
 //make a change
 //change hereeee
+=======
+
+>>>>>>> 7598d8e0b56a4bbf1651734f108acc98b8c2c819
 import java.util.ArrayList;
 
 /**
@@ -8,6 +12,8 @@ import java.util.ArrayList;
  * what should be done at a KeyFrame.
  * Created by Mitch on 11/22/17.
  */
+
+
 public class KeyFrame{
 
     //
