@@ -9,6 +9,11 @@ import java.math.*;
  * Created by Mitch Blier, Marissa Gagnier on 11/29/17.
  */
 public class Main extends PApplet implements ApplicationConstants {
+	
+	
+  private static final long serialVersionUID = 1L;
+  
+  
   //-----------------------------
   //	graphical objects
   //-----------------------------
