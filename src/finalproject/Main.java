@@ -13,7 +13,6 @@ public class Main extends PApplet implements ApplicationConstants {
 	
   private static final long serialVersionUID = 1L;
   
-  
   //-----------------------------
   //	graphical objects
   //-----------------------------
