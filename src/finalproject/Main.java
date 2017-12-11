@@ -15,45 +15,45 @@ public class Main extends PApplet implements ApplicationConstants {
   private Brick brick;
   private TestBall ball;
 
-  
+
   //-----------------------------
-  //    CAMERA 
+  //    CAMERA
   //----------------------------
   //---
   //
   //---
    private float eyeX = 200;
    private float eyeY = -200;
-   private float eyeZ = 25;
+   private float eyeZ = 150;
    //---
    //always use negative z so it is upright
    //---
-   private float centerX = 0; 
-   private float centerY = 0; 
-   private float centerZ = -100; 
+   private float centerX = 0;
+   private float centerY = 0;
+   private float centerZ = -200;
    //---
    //always use negative z so it is upright
    //---
    private float upX = 0;
    private float upY = 0;
-   private float upZ = -2;
-  
-  
+   private float upZ = -5;
+
+
 /**
  * Camera Functionality
  * (setting the eye position, the center of the scene, and which axis is facing upward)
  */
  public void setup() {
 	textureMode(NORMAL);
-	
+
 	//this camera stuff tells where the camera is looking and may need to be changed
-	//the up vector for example. 
+	//the up vector for example.
 	//where is the camera in the world are the first three
 	//the second one...is the angle of the frame left and right
 	//the third is where the up is for the camera
 	//the last one is -1 because processing starts at negative
-	camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ); 
-	
+	camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
+
 	ball = new TestBall();
  }
 /**
@@ -67,7 +67,7 @@ public class Main extends PApplet implements ApplicationConstants {
     size(WINDOW_WIDTH, WINDOW_HEIGHT, P3D); //Eventually add P3D
 
   }
-  
+
   public void draw() {
 		background(100,0,0);
 		lights();
@@ -75,7 +75,7 @@ public class Main extends PApplet implements ApplicationConstants {
 		drawSurface();
 		ball.draw(this);
   }
-  
+
   /**
    * drawSurface will create the ground where the monster will stand
    *
@@ -91,8 +91,8 @@ public class Main extends PApplet implements ApplicationConstants {
 
     endShape(CLOSE);
   }
-  
-  
+
+
     public static void main(String[] argv)
     {
         PApplet.main("finalproject.Main");

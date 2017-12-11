@@ -1,10 +1,5 @@
 package finalproject;
-<<<<<<< HEAD
-//make a change
-//change hereeee
-=======
 
->>>>>>> 7598d8e0b56a4bbf1651734f108acc98b8c2c819
 import java.util.ArrayList;
 
 /**
