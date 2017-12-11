@@ -22,7 +22,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * private static int appSetCounter_ = 0;
      * used in PApplet setup
      */
-
+    private static PApplet app_;
     private static int appSetCounter_ = 0;
 
     /**

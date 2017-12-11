@@ -60,6 +60,7 @@ public class Main extends PApplet implements ApplicationConstants {
 	camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ); 
 	
 	ball = new TestBall();
+	brick = new Brick();
  }
 /**
  * settings will create the window in which the
@@ -79,6 +80,8 @@ public class Main extends PApplet implements ApplicationConstants {
 
 		drawSurface();
 		ball.draw(this);
+
+		brick.draw(this);
   }
   
   /**

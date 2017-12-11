@@ -17,6 +17,14 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     private static final float ZERO_SPEED = 0.01f;
 
     /**
+     * private static PApplet app_;
+     * private static int appSetCounter_ = 0;
+     * used in PApplet setup
+     */
+    private static PApplet app_;
+    private static int appSetCounter_ = 0;
+
+    /**
      * The constructor for brick needs to be passed a random velocity,
      * a predetermined keyframe path (right to left), x and y start value. Y will update
      * for each new object in the Main setup();
@@ -70,8 +78,6 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 
     }
 
-
-    }
 
     /**
      * We need to have a method that detects when the brick is touched
