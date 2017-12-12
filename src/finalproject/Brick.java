@@ -13,7 +13,6 @@ import processing.core.PApplet;
 public class Brick extends PApplet implements ApplicationConstants, AnimatedObject {
 
 
-    private float bx_ = -12, by_ = 0, bz_ = 30;
 	//-----------------------------
 	//	Various status variables
 	//-----------------------------
@@ -106,8 +105,9 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     /**
      * We need to have a method that detects when the brick is touched
      * by the monster. If the monster lands on top we should stop the brick
-     * and create and game continues. If the brick hits the monster from the side,
-     * the game should stop. This task will be handled by isInside()
+     * and create a new brick at an updated y value so it aligns with top of
+     * previous brick and game continues. If the brick hits the monster from the side,
+     * the game should stop and restart. This task will be handled by isInside()
      * @param thY
      * @param theX
      * @return

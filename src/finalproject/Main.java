@@ -80,7 +80,7 @@ public class Main extends PApplet implements ApplicationConstants {
 
 	//where i draw the new body and brick
 	ball = new TestBall();
-	brick = new Brick();
+	brick = new Brick(keyFrames);
  }
 /**
  * settings will create the window in which the
