@@ -11,10 +11,15 @@ import processing.core.PApplet;
  * Created by Mitch on 11/29/17.
  */
 public class Brick extends PApplet implements ApplicationConstants, AnimatedObject {
+
+    private float bx_ = -12, by_ = 0, bz_ = 30;
+
 	//-----------------------------
 	//	Various status variables
 	//-----------------------------
 	private float timeIndex = 0, xIndex = 1, yIndex = 2, aIndex = 3;
+
+
     private float bx_ = -20, by_ = 0, bz_ = 30;
     private float Vx_ = 12, Vy_ = 0, Vz_ = 0;
     private float rad_ = 5;
@@ -35,6 +40,8 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     private ArrayList<KeyFrame> keyFrames;
 
 
+
+
     /**
      * The constructor for brick needs to be passed a random velocity,
      * a predetermined keyframe path (right to left), x and y start value. Y will update
@@ -45,7 +52,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     	timeIndex = keyFrames.get(0).getTime();//the first keyFrames in our classes array list
     	                                       //of key frames that have the get methods
     	xIndex = keyFrames.get(0).getY();
-    	yIndex = keyFrames.get(0).getX();
+    	yIndex = keyFrames.get(0).getX();  
     	aIndex = keyFrames.get(0).getAngle();
     }
 
@@ -59,6 +66,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         app_.translate(bx_, by_, bz_);
         app_.color(0,250,0);
         app_.noStroke();
+        app_.fill(0,0,0);
         app_.box(40,20,50);
         app_.popMatrix();
     }
@@ -98,8 +106,9 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     /**
      * We need to have a method that detects when the brick is touched
      * by the monster. If the monster lands on top we should stop the brick
-     * and create and game continues. If the brick hits the monster from the side,
-     * the game should stop. This task will be handled by isInside()
+     * and create a new brick at an updated y value so it aligns with top of
+     * previous brick and game continues. If the brick hits the monster from the side,
+     * the game should stop and restart. This task will be handled by isInside()
      * @param thY
      * @param theX
      * @return

@@ -20,15 +20,14 @@ public class Main extends PApplet implements ApplicationConstants {
   //-----------------------------
   private ArrayList<KeyFrame> keyFrames;
   private Brick brick;
-  private TestBall ball;
+  private Monster ball;
 
   
   //-----------------------------
   //	Various status variables
   //-----------------------------
-  private long frame = 0L;
-  private boolean animate = false;
-  private float lastTime; 
+  private long frame_ = 0L;
+  
   
   
 
@@ -39,20 +38,20 @@ public class Main extends PApplet implements ApplicationConstants {
   //
   //---
    private float eyeX = 200;
-   private float eyeY = -200;
-   private float eyeZ = 150;
+   private float eyeY = 0;
+   private float eyeZ = 100;
    //---
    //always use negative z so it is upright
    //---
    private float centerX = 0;
    private float centerY = 0;
-   private float centerZ = -200;
+   private float centerZ = 0;
    //---
    //always use negative z so it is upright
    //---
    private float upX = 0;
    private float upY = 0;
-   private float upZ = -5;
+   private float upZ = -1;
 
 
 /**
@@ -80,7 +79,7 @@ public class Main extends PApplet implements ApplicationConstants {
 	camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
 
 	//where i draw the new body and brick
-	ball = new TestBall();
+	ball = new Monster();
 	brick = new Brick(keyFrames);
  }
 /**
@@ -96,13 +95,15 @@ public class Main extends PApplet implements ApplicationConstants {
   }
 
   public void draw() {
-	  	frame ++;
-	  	
-		background(100,0,0);
+		background(0,200,0);
 		lights();
+		fill(255,0,0);
 		drawSurface();
+
+		fill(0,0,255);
 		ball.draw(this);
 
+		fill(0,255,0);
 		brick.draw(this);
   }
 
