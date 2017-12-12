@@ -66,7 +66,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         app_.color(0,250,0);
         app_.noStroke();
         app_.fill(0,0,0);
-        app_.box(40,20,50);
+        app_.box(40,25,20);
         app_.popMatrix();
     }
 
