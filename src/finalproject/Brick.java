@@ -11,13 +11,10 @@ import processing.core.PApplet;
  * Created by Mitch on 11/29/17.
  */
 public class Brick extends PApplet implements ApplicationConstants, AnimatedObject {
-
 	//-----------------------------
 	//	Various status variables
 	//-----------------------------
 	private float timeIndex = 0, xIndex = 1, yIndex = 2, aIndex = 3;
-
-
     private float bx_ = -20, by_ = 0, bz_ = 30;
     private float Vx_ = 12, Vy_ = 0, Vz_ = 0;
     private float rad_ = 5;
@@ -38,8 +35,6 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     private ArrayList<KeyFrame> keyFrames;
 
 
-
-
     /**
      * The constructor for brick needs to be passed a random velocity,
      * a predetermined keyframe path (right to left), x and y start value. Y will update
@@ -50,7 +45,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     	timeIndex = keyFrames.get(0).getTime();//the first keyFrames in our classes array list
     	                                       //of key frames that have the get methods
     	xIndex = keyFrames.get(0).getY();
-    	yIndex = keyFrames.get(0).getX();  
+    	yIndex = keyFrames.get(0).getX();
     	aIndex = keyFrames.get(0).getAngle();
     }
 

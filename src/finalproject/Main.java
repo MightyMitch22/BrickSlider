@@ -26,8 +26,9 @@ public class Main extends PApplet implements ApplicationConstants {
   //-----------------------------
   //	Various status variables
   //-----------------------------
-  private long frame_ = 0L;
-  
+  private long frame = 0L;
+  private boolean animate = false;
+  private float lastTime; 
   
   
 
@@ -80,7 +81,7 @@ public class Main extends PApplet implements ApplicationConstants {
 
 	//where i draw the new body and brick
 	ball = new TestBall();
-	brick = new Brick();
+	brick = new Brick(keyFrames);
  }
 /**
  * settings will create the window in which the
@@ -95,6 +96,8 @@ public class Main extends PApplet implements ApplicationConstants {
   }
 
   public void draw() {
+	  	frame ++;
+	  	
 		background(100,0,0);
 		lights();
 		drawSurface();
