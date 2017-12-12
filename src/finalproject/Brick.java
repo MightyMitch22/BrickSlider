@@ -11,13 +11,15 @@ import processing.core.PApplet;
  * Created by Mitch on 11/29/17.
  */
 public class Brick extends PApplet implements ApplicationConstants, AnimatedObject {
+
+
 	//-----------------------------
 	//	Various status variables
 	//-----------------------------
 	private float timeIndex = 0, xIndex = 1, yIndex = 2, aIndex = 3;
 
 
-    private float bx_ = 20, by_ = 0, bz_ = 50;
+    private float bx_ = -20, by_ = 0, bz_ = 30;
     private float Vx_ = 12, Vy_ = 0, Vz_ = 0;
     private float rad_ = 5;
     private float refl_ = 0.8f;
@@ -49,7 +51,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     	timeIndex = keyFrames.get(0).getTime();//the first keyFrames in our classes array list
     	                                       //of key frames that have the get methods
     	xIndex = keyFrames.get(0).getY();
-    	yIndex = keyFrames.get(0).getX();
+    	yIndex = keyFrames.get(0).getX();  
     	aIndex = keyFrames.get(0).getAngle();
     }
 
@@ -61,9 +63,10 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         app_.pushMatrix();
 
         app_.translate(bx_, by_, bz_);
+        app_.color(0,250,0);
         app_.noStroke();
-        app_.fill(139,0,139);
-        app_.box(40,20,50);
+        app_.fill(0,0,0);
+        app_.box(40,25,20);
         app_.popMatrix();
     }
 
