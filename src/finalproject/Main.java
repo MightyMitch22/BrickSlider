@@ -3,22 +3,33 @@ package finalproject;
 import processing.core.PApplet;
 import processing.core.PImage;
 import java.math.*;
+import java.util.ArrayList;
+
 
 /**
  *3D
  * Created by Mitch Blier, Marissa Gagnier on 11/29/17.
  */
 public class Main extends PApplet implements ApplicationConstants {
-	
-	
+
+
   private static final long serialVersionUID = 1L;
-  
+
   //-----------------------------
   //	graphical objects
   //-----------------------------
+  private ArrayList<KeyFrame> keyFrames;
   private Brick brick;
   private TestBall ball;
 
+  
+  //-----------------------------
+  //	Various status variables
+  //-----------------------------
+  private long frame_ = 0L;
+  
+  
+  
 
   //-----------------------------
   //    CAMERA
@@ -48,6 +59,15 @@ public class Main extends PApplet implements ApplicationConstants {
  * (setting the eye position, the center of the scene, and which axis is facing upward)
  */
  public void setup() {
+	
+	//Here sets the rate of the framerate
+	 //amount of time it resets per second.
+	frameRate(600);
+	
+	//here I create my arrayList of keyFrames in order to add the animation
+	keyFrames =  new ArrayList<KeyFrame>();
+	keyFrames.add(new KeyFrame(1/*time*/,1/*x*/,1/*y*/,1/*angle*//* might need an arrayList*/));
+	 
 	textureMode(NORMAL);
 
 	//this camera stuff tells where the camera is looking and may need to be changed
@@ -58,6 +78,7 @@ public class Main extends PApplet implements ApplicationConstants {
 	//the last one is -1 because processing starts at negative
 	camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
 
+	//where i draw the new body and brick
 	ball = new TestBall();
 	brick = new Brick();
  }
@@ -76,7 +97,6 @@ public class Main extends PApplet implements ApplicationConstants {
   public void draw() {
 		background(100,0,0);
 		lights();
-
 		drawSurface();
 		ball.draw(this);
 
