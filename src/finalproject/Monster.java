@@ -83,20 +83,20 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
       Vz_ -= G * dt;
 
       }
-    
+
     public float getX() {
     	return bx;
     }
-    
+
     public float getY() {
     	return by;
     }
-    
-    
+
+
     public float getZ() {
     	return bz;
     }
-    
+
 
     /**
      * We need to have a method that detects when the Monster is touched
