@@ -11,7 +11,7 @@ import processing.core.PApplet;
  * Created by Mitch on 11/29/17.
  */
 public class Monster extends PApplet implements ApplicationConstants, AnimatedObject {
-    private float bx_ = -20, by_ = 0, bz_ = 30;
+    private float bx_ = 0, by_ = 0, bz_ = 10;
     private float Vx_ = 12, Vy_ = 0, Vz_ = 0;
     private float rad_ = 5;
     private float refl_ = 0.8f;
@@ -37,13 +37,12 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * instance methods and variables
      */
     public void draw(PApplet app_){
-        app_.pushMatrix();
 
+        app_.pushMatrix();
         app_.translate(bx_, by_, bz_);
         app_.noStroke();
-        app_.fill(255,0,255);
+        //app_.fill(0,255,0);
         app_.sphere(rad_);
-
         app_.popMatrix();
     }
 
