@@ -20,13 +20,15 @@ public class Main extends PApplet implements ApplicationConstants {
   //-----------------------------
   private ArrayList<KeyFrame> keyFrames;
   private Brick brick;
-  private Monster ball;
+  private Monster monster;
 
   
   //-----------------------------
   //	Various status variables
   //-----------------------------
-  private long frame_ = 0L;
+  private long frame = 0L;
+  private float lastTime;
+  private int frameIndex = 0;
   
   
   
@@ -37,15 +39,16 @@ public class Main extends PApplet implements ApplicationConstants {
   //---
   //
   //---
-   private float eyeX = 200;
-   private float eyeY = 0;
+   private float eyeX = 0;
+   private float eyeY = -200;
    private float eyeZ = 100;
    //---
    //always use negative z so it is upright
    //---
-   private float centerX = 0;
-   private float centerY = 0;
-   private float centerZ = 0;
+   //(0,0,0) updating the camera here to stay with the monster and not zero always
+   private float centerX = monster.getX();
+   private float centerY = monster.getY();
+   private float centerZ = monster.getZ();
    //---
    //always use negative z so it is upright
    //---
@@ -77,10 +80,12 @@ public class Main extends PApplet implements ApplicationConstants {
 	//the third is where the up is for the camera
 	//the last one is -1 because processing starts at negative
 	camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
-
+	
 	//where i draw the new body and brick
-	ball = new Monster();
+	monster = new Monster();
 	brick = new Brick(keyFrames);
+	
+	lastTime = millis();
  }
 /**
  * settings will create the window in which the
@@ -95,16 +100,24 @@ public class Main extends PApplet implements ApplicationConstants {
   }
 
   public void draw() {
-		background(0,200,0);
+	  frameIndex++;
+	  if(frameIndex %4 ==0) {
+		background(153,255,255);
 		lights();
-		fill(255,0,0);
+		fill(255,255,153);
 		drawSurface();
 
-		fill(0,0,255);
-		ball.draw(this);
+		//fill(0,0,255);
+		monster.draw(this);
 
-		fill(0,255,0);
+		//fill(0,255,0);
 		brick.draw(this);
+	  }
+	  int t = millis();
+	  float dt = (t - lastTime) * 0.001f;
+	  monster.update(dt);
+		
+	  lastTime = t;
   }
 
   /**

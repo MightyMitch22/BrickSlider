@@ -11,7 +11,7 @@ import processing.core.PApplet;
  * Created by Mitch on 11/29/17.
  */
 public class Monster extends PApplet implements ApplicationConstants, AnimatedObject {
-    private float bx_ = 0, by_ = 0, bz_ = 10;
+    private float bx_ = 50, by_ = 0, bz_ = 40;
     private float Vx_ = 12, Vy_ = 0, Vz_ = 0;
     private float rad_ = 5;
     private float refl_ = 0.8f;
@@ -41,7 +41,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
         app_.pushMatrix();
         app_.translate(bx_, by_, bz_);
         app_.noStroke();
-        //app_.fill(0,255,0);
+        app_.fill(255,0,255);
         app_.sphere(rad_);
         app_.popMatrix();
     }
@@ -76,6 +76,20 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
       Vz_ -= G * dt;
 
       }
+    
+    public float getX() {
+    	return bx_;
+    }
+    
+    public float getY() {
+    	return by_;
+    }
+    
+    
+    public float getZ() {
+    	return bz_;
+    }
+    
 
     /**
      * We need to have a method that detects when the Monster is touched
