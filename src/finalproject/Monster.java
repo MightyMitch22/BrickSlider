@@ -11,11 +11,17 @@ import processing.core.PApplet;
  * Created by Mitch on 11/29/17.
  */
 public class Monster extends PApplet implements ApplicationConstants, AnimatedObject {
-    private float bx_ = 50, by_ = 0, bz_ = 40;
+
+    private float bx = 50, by = 0, bz = 40;
     private float Vx_ = 12, Vy_ = 0, Vz_ = 0;
     private float rad_ = 5;
     private float refl_ = 0.8f;
     private static final float ZERO_SPEED = 0.01f;
+
+    //(0,0,0) updating the camera here to stay with the monster and not zero always
+    private float centerX = 0;
+    private float centerY = 0;
+    private float centerZ = 0;
 
     /**
      * private static PApplet app_;
@@ -39,7 +45,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     public void draw(PApplet app_){
 
         app_.pushMatrix();
-        app_.translate(bx_, by_, bz_);
+        app_.translate(bx, by, bz);
         app_.noStroke();
         app_.fill(255,0,255);
         app_.sphere(rad_);
@@ -53,7 +59,8 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      */
     public void update(float dt){
 
-      if (bz_ <= rad_) {
+
+      if (bz <= rad_) {
        Vz_ = refl_ * PApplet.abs(Vz_);
        Vx_ *= refl_;
        Vy_ *= refl_;
@@ -67,27 +74,27 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
 
          }
 
-      float halfdt2 = 0.5f * dt*dt;
+     float halfdt2 = 0.5f * dt*dt;
 
-      bx_ += Vx_ * dt;
-      by_ += Vy_ * dt;
-      bz_ += Vz_ * dt - G*halfdt2;
+      bx += Vx_ * dt;
+      by += Vy_ * dt;
+      bz += Vz_ * dt - G*halfdt2;
 
       Vz_ -= G * dt;
 
       }
 
     public float getX() {
-    	return bx_;
+    	return bx;
     }
 
     public float getY() {
-    	return by_;
+    	return by;
     }
 
 
     public float getZ() {
-    	return bz_;
+    	return bz;
     }
 
 
@@ -121,5 +128,24 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
   		return appSetCounter_;
 
   	}
+
+    public float updateCameraX(){
+
+           return centerX = getX();
+    }
+
+    public float updateCameraY(){
+
+        return centerY = getY();
+
+    }
+
+    public float updateCameraZ(){
+
+        return centerZ = getZ();
+
+    }
+
+
 
 }

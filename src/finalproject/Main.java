@@ -36,11 +36,8 @@ public class Main extends PApplet implements ApplicationConstants {
   //-----------------------------
   //    CAMERA
   //----------------------------
-  //---
-  //
-  //---
    private float eyeX = 0;
-   private float eyeY = -200;
+   private float eyeY = -100;
    private float eyeZ = 100;
    //---
    //always use negative z so it is upright
@@ -109,14 +106,20 @@ public class Main extends PApplet implements ApplicationConstants {
 
 		//fill(0,0,255);
 		monster.draw(this);
+		centerX = monster.updateCameraX();
+		System.out.println("Print cam X:" + centerX);
+        centerY = monster.updateCameraY();
+          System.out.println("Print cam Y:" + centerY);
+        centerZ = monster.updateCameraZ();
+          System.out.println("Print cam Z:" + centerZ);
 
 		//fill(0,255,0);
 		brick.draw(this);
+
 	  }
 	  int t = millis();
 	  float dt = (t - lastTime) * 0.001f;
 	  monster.update(dt);
-
 	  lastTime = t;
   }
 
@@ -135,7 +138,6 @@ public class Main extends PApplet implements ApplicationConstants {
 
     endShape(CLOSE);
   }
-
 
     public static void main(String[] argv)
     {
