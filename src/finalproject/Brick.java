@@ -12,9 +12,8 @@ import processing.core.PApplet;
  */
 public class Brick extends PApplet implements ApplicationConstants, AnimatedObject {
 
-<<<<<<< HEAD
+
     private float bx_ = -12, by_ = 0, bz_ = 30;
-=======
 	//-----------------------------
 	//	Various status variables
 	//-----------------------------
@@ -22,7 +21,6 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 
 
     private float bx_ = -20, by_ = 0, bz_ = 30;
->>>>>>> 4584cda1e6a98d06b51d3fd34884e0019b509f4d
     private float Vx_ = 12, Vy_ = 0, Vz_ = 0;
     private float rad_ = 5;
     private float refl_ = 0.8f;
