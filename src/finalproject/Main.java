@@ -22,16 +22,16 @@ public class Main extends PApplet implements ApplicationConstants {
   private Brick brick;
   private Monster monster;
 
-  
+
   //-----------------------------
   //	Various status variables
   //-----------------------------
   private long frame = 0L;
   private float lastTime;
   private int frameIndex = 0;
-  
-  
-  
+
+
+
 
   //-----------------------------
   //    CAMERA
@@ -46,9 +46,9 @@ public class Main extends PApplet implements ApplicationConstants {
    //always use negative z so it is upright
    //---
    //(0,0,0) updating the camera here to stay with the monster and not zero always
-   private float centerX = monster.getX();
-   private float centerY = monster.getY();
-   private float centerZ = monster.getZ();
+   private float centerX = 0;
+   private float centerY = 0;
+   private float centerZ = 0;
    //---
    //always use negative z so it is upright
    //---
@@ -62,15 +62,15 @@ public class Main extends PApplet implements ApplicationConstants {
  * (setting the eye position, the center of the scene, and which axis is facing upward)
  */
  public void setup() {
-	
+
 	//Here sets the rate of the framerate
 	 //amount of time it resets per second.
 	frameRate(600);
-	
+
 	//here I create my arrayList of keyFrames in order to add the animation
 	keyFrames =  new ArrayList<KeyFrame>();
 	keyFrames.add(new KeyFrame(1/*time*/,1/*x*/,1/*y*/,1/*angle*//* might need an arrayList*/));
-	 
+
 	textureMode(NORMAL);
 
 	//this camera stuff tells where the camera is looking and may need to be changed
@@ -80,11 +80,11 @@ public class Main extends PApplet implements ApplicationConstants {
 	//the third is where the up is for the camera
 	//the last one is -1 because processing starts at negative
 	camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
-	
+
 	//where i draw the new body and brick
 	monster = new Monster();
 	brick = new Brick(keyFrames);
-	
+
 	lastTime = millis();
  }
 /**
@@ -116,7 +116,7 @@ public class Main extends PApplet implements ApplicationConstants {
 	  int t = millis();
 	  float dt = (t - lastTime) * 0.001f;
 	  monster.update(dt);
-		
+
 	  lastTime = t;
   }
 
