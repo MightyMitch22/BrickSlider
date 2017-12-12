@@ -41,6 +41,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
 
         app_.translate(bx_, by_, bz_);
         app_.noStroke();
+        app_.fill(255,0,255);
         app_.sphere(rad_);
 
         app_.popMatrix();

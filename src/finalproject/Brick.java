@@ -11,6 +11,8 @@ import processing.core.PApplet;
  * Created by Mitch on 11/29/17.
  */
 public class Brick extends PApplet implements ApplicationConstants, AnimatedObject {
+
+    private float bx_ = -12, by_ = 0, bz_ = 30;
 	//-----------------------------
 	//	Various status variables
 	//-----------------------------
@@ -59,6 +61,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         app_.translate(bx_, by_, bz_);
         app_.color(0,250,0);
         app_.noStroke();
+        app_.fill(0,0,0);
         app_.box(40,20,50);
         app_.popMatrix();
     }

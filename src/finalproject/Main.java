@@ -101,6 +101,7 @@ public class Main extends PApplet implements ApplicationConstants {
 		background(100,0,0);
 		lights();
 		drawSurface();
+
 		ball.draw(this);
 
 		brick.draw(this);
@@ -113,6 +114,8 @@ public class Main extends PApplet implements ApplicationConstants {
   public void drawSurface(){
     beginShape(QUADS);
     //texture(backgroundImage_);
+
+    fill(255,0,0);
 
     vertex(XMIN, YMAX, 0, 0, 0);
     vertex(XMIN, YMIN, 0, 0, 1);
