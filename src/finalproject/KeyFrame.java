@@ -16,7 +16,7 @@ public class KeyFrame{
 
     float keyX, keyY, keyAngle;
 
-    ArrayList<ArrayList<Float>> limbProduct = new ArrayList<ArrayList<Float>>();
+    ArrayList<ArrayList<Float>> brickAnimation = new ArrayList<ArrayList<Float>>();
 
 
 
@@ -26,14 +26,14 @@ public class KeyFrame{
      * @param x the location of the keyframe x value
      * @param y the location of the keyframe y value
      * @param angle the angle of the object
-     * @param limbProducts is a float inside an array list of limbs, inside an array list
+     * @param brickAnimations is a float inside an array list of limbs, inside an array list
      */
-    public KeyFrame(int time, float x, float y, float angle, ArrayList<ArrayList<Float>> limbProducts){
+    public KeyFrame(int time, float x, float y, float angle /* might need an param ArrayList<ArrayList<Float>> brickAnimations*/){
         t = time;
         keyX = x;
         keyY = y;
         keyAngle = angle;
-        limbProduct = limbProducts;
+        //brickAnimation = brickAnimations;
     }
 
     public int getTime(){
@@ -60,9 +60,9 @@ public class KeyFrame{
 
     }
 
-    public  ArrayList<ArrayList<Float>> getLimbProduct(){
+    public  ArrayList<ArrayList<Float>> getbrickAnimation(){
 
-        return limbProduct;
+        return brickAnimation;
 
     }
 

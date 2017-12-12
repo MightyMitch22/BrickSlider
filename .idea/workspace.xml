@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="edcc7e79-dc91-422f-b51f-8ee20d4f6525" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/finalproject/Brick.java" afterPath="$PROJECT_DIR$/src/finalproject/Brick.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/finalproject/KeyFrame.java" afterPath="$PROJECT_DIR$/src/finalproject/KeyFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/finalproject/Main.java" afterPath="$PROJECT_DIR$/src/finalproject/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/finalproject/Monster.java" afterPath="$PROJECT_DIR$/src/finalproject/Monster.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -493,12 +489,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513031912228</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="ready for merge">
+      <created>1513042572125</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1513042572125</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -539,7 +541,8 @@
     <MESSAGE value="Added PApplet to some classes, Monster and Main" />
     <MESSAGE value="Added Main line in Main Class,&#10;&#10;And Sett up." />
     <MESSAGE value="Has Main" />
-    <option name="LAST_COMMIT_MESSAGE" value="Has Main" />
+    <MESSAGE value="ready for merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="ready for merge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

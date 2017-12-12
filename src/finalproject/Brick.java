@@ -1,5 +1,7 @@
 package finalproject;
 
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 
 /**
@@ -10,7 +12,17 @@ import processing.core.PApplet;
  */
 public class Brick extends PApplet implements ApplicationConstants, AnimatedObject {
 
+<<<<<<< HEAD
     private float bx_ = -12, by_ = 0, bz_ = 30;
+=======
+	//-----------------------------
+	//	Various status variables
+	//-----------------------------
+	private float timeIndex = 0, xIndex = 1, yIndex = 2, aIndex = 3;
+
+
+    private float bx_ = -20, by_ = 0, bz_ = 30;
+>>>>>>> 4584cda1e6a98d06b51d3fd34884e0019b509f4d
     private float Vx_ = 12, Vy_ = 0, Vz_ = 0;
     private float rad_ = 5;
     private float refl_ = 0.8f;
@@ -24,13 +36,26 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     private static PApplet app_;
     private static int appSetCounter_ = 0;
 
+    //-----------------------------
+    //	graphical objects
+    //-----------------------------
+    private ArrayList<KeyFrame> keyFrames;
+
+
+
+
     /**
      * The constructor for brick needs to be passed a random velocity,
      * a predetermined keyframe path (right to left), x and y start value. Y will update
      * for each new object in the Main setup();
      */
-    public Brick(){
-
+    public Brick( ArrayList<KeyFrame> keyFramesPar){
+    	keyFrames = keyFramesPar;
+    	timeIndex = keyFrames.get(0).getTime();//the first keyFrames in our classes array list
+    	                                       //of key frames that have the get methods
+    	xIndex = keyFrames.get(0).getY();
+    	yIndex = keyFrames.get(0).getX();  
+    	aIndex = keyFrames.get(0).getAngle();
     }
 
     /**
@@ -41,10 +66,10 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         app_.pushMatrix();
 
         app_.translate(bx_, by_, bz_);
+        app_.color(0,250,0);
         app_.noStroke();
         app_.fill(0,0,0);
         app_.box(40,20,50);
-
         app_.popMatrix();
     }
 
