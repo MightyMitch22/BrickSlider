@@ -10,7 +10,7 @@ import processing.core.PApplet;
  */
 public class Brick extends PApplet implements ApplicationConstants, AnimatedObject {
 
-    private float bx_ = -20, by_ = 0, bz_ = 30;
+    private float bx_ = -12, by_ = 0, bz_ = 30;
     private float Vx_ = 12, Vy_ = 0, Vz_ = 0;
     private float rad_ = 5;
     private float refl_ = 0.8f;
@@ -42,6 +42,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 
         app_.translate(bx_, by_, bz_);
         app_.noStroke();
+        app_.fill(0,0,0);
         app_.box(40,20,50);
 
         app_.popMatrix();
