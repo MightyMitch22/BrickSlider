@@ -2,15 +2,18 @@ package finalproject;
 
 public interface ApplicationConstants {
 
-	//constants used for the Monster
+	/**
+	 * constants used for the Monster
+	 */
 	float XMIN = -100;
 	float XMAX = 100;
 	float YMIN = -100;
 	float YMAX = 100;
-
 	//float G = 9.81f;
 
-	//	world that gets mapped into the window
+	/**
+	 * world that gets mapped into the window
+	 */
 	float WORLD_X_MIN = -20;
 	float WORLD_X_MAX = 40;
 	float WORLD_Y_MIN = -20;
@@ -21,17 +24,21 @@ public interface ApplicationConstants {
 
 	int WINDOW_HEIGHT = 600;
 
+	/**
+	 * algorithms for the units to world transition
+	 */
 	float WORLD_TO_PIXELS_SCALE = WINDOW_HEIGHT/WORLD_HEIGHT;
 	float PIXELS_TO_WORLD_SCALE = 1.0f/WORLD_TO_PIXELS_SCALE;
-
 	int WINDOW_WIDTH = (int) (WORLD_WIDTH*WORLD_TO_PIXELS_SCALE);
 
-	//	This gives the location of the world's origin in the window,
-	//	in pixel coordinates.  Note that this point could well be
-	//	outside of the window.
+	/**
+	 * This gives the location of the world's origin in the window,
+	 * in pixel coordinates.  Note that this point could well be
+	 * outside of the window.
+	 */
 	float ORIGIN_X = -WORLD_TO_PIXELS_SCALE*WORLD_X_MIN;
 	float ORIGIN_Y = WORLD_TO_PIXELS_SCALE*WORLD_Y_MAX;
 
-//	float PI = (float) Math.PI;
+	//float PI = (float) Math.PI;
 	float G = 32.2f; // ft/s^2
 }
