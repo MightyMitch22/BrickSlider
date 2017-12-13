@@ -7,17 +7,15 @@ import java.util.ArrayList;
  * what should be done at a KeyFrame.
  * Created by Mitch on 11/22/17.
  */
-
-
 public class KeyFrame{
 
-
-    int t; //time
-
+	//-----------------------------
+	//	Various status variables
+	//-----------------------------
+    int t; 
     float keyX, keyY, keyAngle;
-
+    
     ArrayList<ArrayList<Float>> brickAnimation = new ArrayList<ArrayList<Float>>();
-
 
 
     /**
@@ -36,34 +34,43 @@ public class KeyFrame{
         //brickAnimation = brickAnimations;
     }
 
+    /**
+     * returns current time
+     */
     public int getTime(){
 
         return t;
-
     }
 
+    /**
+     * returns current X
+     */
     public float getX(){
 
         return keyX;
-
     }
 
+    /**
+     * returns current Y
+     */
     public float getY(){
 
         return keyY;
-
     }
 
+    /**
+     * returns current angle
+     */
     public float getAngle(){
 
         return keyAngle;
-
     }
 
+    /**
+     * returns current brick animation
+     */
     public  ArrayList<ArrayList<Float>> getbrickAnimation(){
-
         return brickAnimation;
-
     }
 
 }

@@ -12,13 +12,22 @@ import processing.core.PApplet;
  */
 public class Monster extends PApplet implements ApplicationConstants, AnimatedObject {
 
+	//-----------------------------
+	//	Various status variables
+	//-----------------------------
+	
+	/**
+	 * Update class Variables
+	 */
     private float bx = 50, by = 0, bz = 40;
-    private float Vx_ = 12, Vy_ = 0, Vz_ = 0;
-    private float rad_ = 5;
-    private float refl_ = 0.8f;
+    private float Vx = 12, Vy = 0, Vz = 0;
+    private float rad = 5;
+    private float refl = 0.8f;
     private static final float ZERO_SPEED = 0.01f;
 
-    //(0,0,0) updating the camera here to stay with the monster and not zero always
+    /**
+     * (0,0,0) updating the camera here to stay with the monster and not zero always
+     */
     private float centerX = 0;
     private float centerY = 0;
     private float centerZ = 0;
@@ -28,8 +37,8 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * private static int appSetCounter_ = 0;
      * used in PApplet setup
      */
-    private static PApplet app_;
-    private static int appSetCounter_ = 0;
+    private static PApplet app;
+    private static int appSetCounter = 0;
 
     /**
      * The Monster will need to keep track of its own location which the main will update.
@@ -48,7 +57,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
         app_.translate(bx, by, bz);
         app_.noStroke();
         app_.fill(255,0,255);
-        app_.sphere(rad_);
+        app_.sphere(rad);
         app_.popMatrix();
     }
 
@@ -60,39 +69,49 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     public void update(float dt){
 
 
-      if (bz <= rad_) {
-       Vz_ = refl_ * PApplet.abs(Vz_);
-       Vx_ *= refl_;
-       Vy_ *= refl_;
+      if (bz <= rad) {
+       Vz = refl * PApplet.abs(Vz);
+       Vx *= refl;
+       Vy *= refl;
 
-       if (PApplet.abs(Vx_) < ZERO_SPEED)
-           Vx_ = 0.f;
-       if (PApplet.abs(Vy_) < ZERO_SPEED)
-           Vy_ = 0.f;
-       if (PApplet.abs(Vz_) < ZERO_SPEED)
-           Vz_ = 0.f;
+       if (PApplet.abs(Vx) < ZERO_SPEED)
+           Vx = 0.f;
+       if (PApplet.abs(Vy) < ZERO_SPEED)
+           Vy = 0.f;
+       if (PApplet.abs(Vz) < ZERO_SPEED)
+           Vz = 0.f;
 
          }
-
      float halfdt2 = 0.5f * dt*dt;
 
-      bx += Vx_ * dt;
-      by += Vy_ * dt;
-      bz += Vz_ * dt - G*halfdt2;
+      bx += Vx * dt;
+      by += Vy * dt;
+      bz += Vz * dt - G*halfdt2;
 
-      Vz_ -= G * dt;
+      Vz -= G * dt;
 
       }
 
+    /**
+     * 
+     * returns current bx
+     */
     public float getX() {
     	return bx;
     }
 
+    /**
+     * 
+     * returns current by
+     */
     public float getY() {
     	return by;
     }
 
-
+    /**
+     * 
+     * returns current bz
+     */
     public float getZ() {
     	return bz;
     }
@@ -112,34 +131,47 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
         return false;
     }
 
-    //	After telling you that protected was barely any better than public, I use it here.  Why?
-  	//	Well, the limited additional protection is better than nothing.  And I use my static counter
-  	//	to let the variable be set only once.
+    /**
+     * We use the static counter
+     * to let the variable be set only once.
+     */	
   	protected static int setup(PApplet theApp)
   	{
-  		if (appSetCounter_ == 0)
+  		if (appSetCounter == 0)
   		{
-  			app_ = theApp;
-  			appSetCounter_ = 1;
+  			app = theApp;
+  			appSetCounter = 1;
   		}
   		else
-  			appSetCounter_ = 2;
+  			appSetCounter = 2;
 
-  		return appSetCounter_;
+  		return appSetCounter;
 
   	}
 
+  	/**
+  	 * (camera)
+  	 * returns current centerX
+  	 */
     public float updateCameraX(){
 
            return centerX = getX();
     }
 
+    /**
+  	 * (camera)
+  	 * returns current centerY
+  	 */
     public float updateCameraY(){
 
         return centerY = getY();
 
     }
 
+    /**
+  	 * (camera)
+  	 * returns current centerZ
+  	 */
     public float updateCameraZ(){
 
         return centerZ = getZ();
