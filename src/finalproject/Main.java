@@ -15,6 +15,12 @@ public class Main extends PApplet implements ApplicationConstants {
 
   private static final long serialVersionUID = 1L;
 
+  /**
+   * Graphical objects
+   * Our main ones are..
+   * The keyframes, our bricks
+   * and also our monster
+   */
   //-----------------------------
   //	graphical objects
   //-----------------------------
@@ -22,22 +28,25 @@ public class Main extends PApplet implements ApplicationConstants {
   private Brick brick;
   private Monster monster;
 
-  
+  /**
+   * Various status variables
+   */
   //-----------------------------
   //	Various status variables
   //-----------------------------
   private long frame = 0L;
   private float lastTime;
   private int frameIndex = 0;
-  
-  
-  
 
+  /**
+   * Camera Functionality
+   * (setting the eye position, the center of the scene, and which axis is facing upward)
+   */
   //-----------------------------
   //    CAMERA
   //----------------------------
    private float eyeX = 0;
-   private float eyeY = -100;
+   private float eyeY = -200;
    private float eyeZ = 100;
    //---
    //always use negative z so it is upright
@@ -54,20 +63,19 @@ public class Main extends PApplet implements ApplicationConstants {
    private float upZ = -1;
 
 
-/**
- * Camera Functionality
- * (setting the eye position, the center of the scene, and which axis is facing upward)
- */
+ /**
+  * Setup includes: FrameRate, keyFrames, Camera, Textures, objects
+  */
  public void setup() {
-	
+
 	//Here sets the rate of the framerate
 	 //amount of time it resets per second.
 	frameRate(600);
-	
+
 	//here I create my arrayList of keyFrames in order to add the animation
 	keyFrames =  new ArrayList<KeyFrame>();
 	keyFrames.add(new KeyFrame(1/*time*/,1/*x*/,1/*y*/,1/*angle*//* might need an arrayList*/));
-	 
+
 	textureMode(NORMAL);
 
 	//this camera stuff tells where the camera is looking and may need to be changed
@@ -77,16 +85,17 @@ public class Main extends PApplet implements ApplicationConstants {
 	//the third is where the up is for the camera
 	//the last one is -1 because processing starts at negative
 	camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
-	
+
 	//where i draw the new body and brick
 	monster = new Monster();
 	brick = new Brick(keyFrames);
-	
+
 	lastTime = millis();
  }
+
 /**
- * settings will create the window in which the
- * app will take place
+ * Settings will create the window in which the
+ * application will take place
  * *
  */
   public void settings(){
@@ -96,6 +105,9 @@ public class Main extends PApplet implements ApplicationConstants {
 
   }
 
+  /**
+   * Draw creates our keyFrames and updates our Game
+   */
   public void draw() {
 	  frameIndex++;
 	  if(frameIndex %4 ==0) {
@@ -123,8 +135,9 @@ public class Main extends PApplet implements ApplicationConstants {
 	  lastTime = t;
   }
 
+
   /**
-   * drawSurface will create the ground where the monster will stand
+   * DrawSurface will create the stage for our game
    *
    */
   public void drawSurface(){
@@ -139,6 +152,10 @@ public class Main extends PApplet implements ApplicationConstants {
     endShape(CLOSE);
   }
 
+  /**
+   * Main creates out PApplet for our scene
+   * @param argv
+   */
     public static void main(String[] argv)
     {
         PApplet.main("finalproject.Main");

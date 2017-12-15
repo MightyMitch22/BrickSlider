@@ -18,27 +18,27 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 	//-----------------------------
 	private float timeIndex = 0, xIndex = 1, yIndex = 2, aIndex = 3;
 
-
-    private float bx_ = -20, by_ = 0, bz_ = 30;
-    private float Vx_ = 12, Vy_ = 0, Vz_ = 0;
-    private float rad_ = 5;
-    private float refl_ = 0.8f;
+	/**
+	 * Update class Variables
+	 */
+    private float bx = -20, by = 0, bz = 30;
+    private float Vx = 12, Vy = 0, Vz = 0;
+    private float rad = 5;
+    private float refl = 0.8f;
     private static final float ZERO_SPEED = 0.01f;
 
     /**
-     * private static PApplet app_;
-     * private static int appSetCounter_ = 0;
+     * private static PApplet app;
+     * private static int appSetCounter = 0;
      * used in PApplet setup
      */
-    private static PApplet app_;
-    private static int appSetCounter_ = 0;
+    private static PApplet app;
+    private static int appSetCounter = 0;
 
     //-----------------------------
     //	graphical objects
     //-----------------------------
     private ArrayList<KeyFrame> keyFrames;
-
-
 
 
     /**
@@ -62,7 +62,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     public void draw(PApplet app_){
         app_.pushMatrix();
 
-        app_.translate(bx_, by_, bz_);
+        app_.translate(bx, by, bz);
         app_.color(0,250,0);
         app_.noStroke();
         app_.fill(0,0,0);
@@ -77,27 +77,26 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      */
     public void update(float dt){
 
-        if (bz_ <= rad_) {
-            Vz_ = refl_ * PApplet.abs(Vz_);
-            Vx_ *= refl_;
-            Vy_ *= refl_;
+        if (bz <= rad) {
+            Vz = refl * PApplet.abs(Vz);
+            Vx *= refl;
+            Vy *= refl;
 
-            if (PApplet.abs(Vx_) < ZERO_SPEED)
-                Vx_ = 0.f;
-            if (PApplet.abs(Vy_) < ZERO_SPEED)
-                Vy_ = 0.f;
-            if (PApplet.abs(Vz_) < ZERO_SPEED)
-                Vz_ = 0.f;
+            if (PApplet.abs(Vx) < ZERO_SPEED)
+                Vx = 0.f;
+            if (PApplet.abs(Vy) < ZERO_SPEED)
+                Vy = 0.f;
+            if (PApplet.abs(Vz) < ZERO_SPEED)
+                Vz = 0.f;
 
         }
-
         float halfdt2 = 0.5f * dt*dt;
+        
+        bx += Vx * dt;
+        by += Vy * dt;
+        bz += Vz * dt - G*halfdt2;
 
-        bx_ += Vx_ * dt;
-        by_ += Vy_ * dt;
-        bz_ += Vz_ * dt - G*halfdt2;
-
-        Vz_ -= G * dt;
+        Vz -= G * dt;
 
     }
 
@@ -116,19 +115,21 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         return false;
     }
 
-    // And I use my static counter
-    //	to let the variable be set only once.
+    /**
+     * We use the static counter
+     * to let the variable be set only once.
+     */	
     protected static int setup(PApplet theApp)
     {
-        if (appSetCounter_ == 0)
+        if (appSetCounter == 0)
         {
-            app_ = theApp;
-            appSetCounter_ = 1;
+            app = theApp;
+            appSetCounter = 1;
         }
         else
-            appSetCounter_ = 2;
+            appSetCounter = 2;
 
-        return appSetCounter_;
+        return appSetCounter;
 
     }
 }

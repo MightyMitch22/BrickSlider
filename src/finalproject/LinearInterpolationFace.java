@@ -2,83 +2,96 @@ package finalproject;
 
 import processing.core.PApplet;
 
-/** Graphic class to draw a monster and a Brick
- *
- * @author jyh
- *
+/** 
+ * Graphic class to animate a monster and a Brick
  */
 public class LinearInterpolationFace implements ApplicationConstants
 {
 
+	//-----------------------------
+	//	Various status variables
+	//-----------------------------
 	private static final int TIME_IDX = 0, X_IDX = 1, Y_IDX = 2, A_IDX = 3, S_IDX = 4;
-
-	//   Here we store a reference to the app. in a static (aka "class") variable.
-	private static PApplet app_;
-	private static int appSetCounter_ = 0;
-
-	private float [][]keyFrame_;
+	private float [][]keyFrame;
+	
 	/**
 	 * x coordinate of the object's center
 	 */
-	private float x_;
+	private float x;
 
 	/**
 	 * y coordinate of the object's center
 	 */
-	private float y_;
+	private float y;
 
-	//  angle
-	private float angle_;
+	/**
+	 * objects angle
+	 */
+	private float angle;
 
-	//  color
-	private float r_, g_, b_;
+	/**
+	 * objects color
+	 */
+	private float r, g, b;
 
-	// scale
-	private float scale_;
+	/**
+	 * objects scale
+	 */
+	private float scale;
 
-	private float t_;
+	/**
+	 * objects time variable
+	 */
+	private float t;
 
+
+    /**
+     * private static PApplet app;
+     * private static int appSetCounter = 0;
+     * used in PApplet setup
+     */
+	private static PApplet app;
+	private static int appSetCounter = 0;
+	
+
+	/**
+	 * Constructor for linearInterpolationFace
+	 */
 	public LinearInterpolationFace(float[][] keyFrames) {
-
-		keyFrame_ = keyFrames;
-
-		t_ = 0;
+		keyFrame = keyFrames;
+		t = 0;
 		// initial state: first keyFrame
-		x_ = keyFrame_[0][X_IDX];
-		y_ = keyFrame_[0][Y_IDX];
-		angle_ = keyFrame_[0][A_IDX];
-		scale_ = keyFrame_[0][S_IDX];
+		x = keyFrame[0][X_IDX];
+		y = keyFrame[0][Y_IDX];
+		angle = keyFrame[0][A_IDX];
+		scale = keyFrame[0][S_IDX];
 	}
 
 
-	//	The Face class already has a static reference to the app.  I also pass the parameters that
-	//  I need for the rendering, namely the mode and the scale
 	/**	renders the Face object
-	 *
-	 * @param theMode	should the object be drawn with a bounding box?
+	 *The Face class already has a static reference to the app.  I also pass the parameters that
+     *I need for the rendering, namely the mode and the scale
 	 */
 	public void draw()
 	{
 		// we use this object's instance variable to access the application's instance methods and variables
-		app_.pushMatrix();
-
-
-		app_.popMatrix();
+		app.pushMatrix();
+		app.popMatrix();
 	}
 
 	/**
-	*
+	*updates each keyframe
 	*/
 	public void update(float dt)
 	{
-		t_ += dt;
+		t += dt;
 
 		int segIndex = -1;
 
 		// which keyframe interval are we within
-		for (int i=0; i<keyFrame_.length; i++)
+		for (int i=0; i<keyFrame.length; i++)
 		{
-			if (t_ < keyFrame_[i][TIME_IDX])
+			if (t < keyFrame[i][TIME_IDX])
 			{
 				segIndex = i;
 				break;
@@ -90,40 +103,42 @@ public class LinearInterpolationFace implements ApplicationConstants
 		{
 			//	interpolate between frames segIndex-1 and segIndex
 						// time since beginning of the keyframe segment
-			float s = (t_- keyFrame_[segIndex-1][TIME_IDX]) /
+			float s = (t- keyFrame[segIndex-1][TIME_IDX]) /
 						//	total duration of the keyframe segment
-					(keyFrame_[segIndex][TIME_IDX] - keyFrame_[segIndex-1][TIME_IDX]);
+					(keyFrame[segIndex][TIME_IDX] - keyFrame[segIndex-1][TIME_IDX]);
 
 												       //	x displacement over the keyframe segment
-			x_ = keyFrame_[segIndex-1][X_IDX] + s * (keyFrame_[segIndex][X_IDX] - keyFrame_[segIndex-1][X_IDX]);
-			y_ = keyFrame_[segIndex-1][Y_IDX] + s * (keyFrame_[segIndex][Y_IDX] - keyFrame_[segIndex-1][Y_IDX]);
-			angle_ = keyFrame_[segIndex-1][A_IDX] + s * (keyFrame_[segIndex][A_IDX] - keyFrame_[segIndex-1][A_IDX]);
-			scale_ = keyFrame_[segIndex-1][S_IDX] + s * (keyFrame_[segIndex][S_IDX] - keyFrame_[segIndex-1][S_IDX]);
+			x = keyFrame[segIndex-1][X_IDX] + s * (keyFrame[segIndex][X_IDX] - keyFrame[segIndex-1][X_IDX]);
+			y = keyFrame[segIndex-1][Y_IDX] + s * (keyFrame[segIndex][Y_IDX] - keyFrame[segIndex-1][Y_IDX]);
+			angle = keyFrame[segIndex-1][A_IDX] + s * (keyFrame[segIndex][A_IDX] - keyFrame[segIndex-1][A_IDX]);
+			scale = keyFrame[segIndex-1][S_IDX] + s * (keyFrame[segIndex][S_IDX] - keyFrame[segIndex-1][S_IDX]);
 		}
 		else if (segIndex == -1)
 		{
-			x_ = keyFrame_[keyFrame_.length-1][X_IDX];
-			y_ = keyFrame_[keyFrame_.length-1][Y_IDX];
-			angle_ = keyFrame_[keyFrame_.length-1][A_IDX];
-			scale_ = keyFrame_[keyFrame_.length-1][S_IDX];
+			x = keyFrame[keyFrame.length-1][X_IDX];
+			y = keyFrame[keyFrame.length-1][Y_IDX];
+			angle = keyFrame[keyFrame.length-1][A_IDX];
+			scale = keyFrame[keyFrame.length-1][S_IDX];
 		}
 
 	}
 
-	//	After telling you that protected was barely any better than public, I use it here.  Why?
-	//	Well, the limited additional protection is better than nothing.  And I use my static counter
-	//	to let the variable be set only once.
+	
+    /**
+     * We use the static counter
+     * to let the variable be set only once.
+     */	
 	protected static int setup(PApplet theApp)
 	{
-		if (appSetCounter_ == 0)
+		if (appSetCounter == 0)
 		{
-			app_ = theApp;
-			appSetCounter_ = 1;
+			app = theApp;
+			appSetCounter = 1;
 		}
 		else
-			appSetCounter_ = 2;
+			appSetCounter = 2;
 
-		return appSetCounter_;
+		return appSetCounter;
 
 	}
 }
