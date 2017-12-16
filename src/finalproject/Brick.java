@@ -21,7 +21,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 	/**
 	 * Update class Variables
 	 */
-    private float bx = -20, by = 0, bz = 30;
+    private float bx = 100, by = 0, bz = 30;
     private float Vx = 12, Vy = 0, Vz = 0;
     private float rad = 5;
     private float refl = 0.8f;
@@ -62,11 +62,11 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     public void draw(PApplet app_){
         app_.pushMatrix();
 
-        app_.translate(bx, by, bz);
-        app_.color(0,250,0);
+        app_.translate(-bx, by, bz);
         app_.noStroke();
-        app_.fill(0,0,0);
+        app_.fill(0,0,255);
         app_.box(40,25,20);
+
         app_.popMatrix();
     }
 
@@ -86,25 +86,11 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     public void update(float dt){
 
         if (bz <= rad) {
-            Vz = refl * PApplet.abs(Vz);
-            Vx *= refl;
-            Vy *= refl;
-
-            if (PApplet.abs(Vx) < ZERO_SPEED)
-                Vx = 0.f;
-            if (PApplet.abs(Vy) < ZERO_SPEED)
-                Vy = 0.f;
-            if (PApplet.abs(Vz) < ZERO_SPEED)
-                Vz = 0.f;
-
+            Vy = refl * PApplet.abs(Vy);
         }
-        float halfdt2 = 0.5f * dt*dt;
-        
-        bx += Vx * dt;
-        by += Vy * dt;
-        bz += Vz * dt - G*halfdt2;
-
-        Vz -= G * dt;
+        float halfdt2 = .50f * dt*dt;
+        bx += Vy * dt - G * halfdt2;
+        Vy -= G * dt;
 
     }
 

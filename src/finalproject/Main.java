@@ -132,8 +132,11 @@ public class Main extends PApplet implements ApplicationConstants {
 	  }
 	  int t = millis();
 	  if(animate) {
-	  float dt = (t - lastTime) * 0.001f;
-	  monster.update(dt);
+
+          float dt = (t - lastTime) * 0.001f;
+          monster.update(dt);
+          brick.update(dt);
+
 	  }
 	  lastTime = t;
   }

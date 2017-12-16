@@ -70,8 +70,6 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
 
         if (bz <= rad) {
     	     Vz = refl * PApplet.abs(Vz);
-
-
     	 }
     	 float halfdt2 = 0.30f * dt*dt;
     	 bz += Vz * dt - G*halfdt2;
