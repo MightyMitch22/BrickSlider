@@ -37,6 +37,7 @@ public class Main extends PApplet implements ApplicationConstants {
   private long frame = 0L;
   private float lastTime;
   private int frameIndex = 0;
+  private boolean animate = false;
 
   /**
    * Camera Functionality
@@ -130,8 +131,10 @@ public class Main extends PApplet implements ApplicationConstants {
 
 	  }
 	  int t = millis();
+	  if(animate) {
 	  float dt = (t - lastTime) * 0.001f;
 	  monster.update(dt);
+	  }
 	  lastTime = t;
   }
 
@@ -151,6 +154,45 @@ public class Main extends PApplet implements ApplicationConstants {
 
     endShape(CLOSE);
   }
+  
+
+	public void keyPressed() {
+		switch(key) {
+		//my animation is started here
+		case 'v':
+			animate = true;
+			break;
+		case 'c':
+			animate = false;
+			//FileInOutMachine.saveKeyFramesToFile(keyFrames);
+			break;
+		case 'k':
+			//snapCurrent();
+			break;
+		case 'u':
+			//body.moveUp;
+			break;
+		case 'l':
+			//moveLeft();
+			break;
+		case 'o':
+			//moveRight();
+			break;
+		case 'q':
+			//moveDown();
+			break;
+		case 'p':
+			//moveRight();
+			break;
+		case 'y':
+			//moveRight();
+			break;
+		case 'z':
+			//do nothing
+			break;
+		}
+
+	}
 
   /**
    * Main creates out PApplet for our scene
