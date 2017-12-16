@@ -74,6 +74,14 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * update dt, time in seconds, since the last update.
      * Hervé - we'll use the object's instance variable to access the
      * applications instance methods and variables.
+     * 
+     * what we have now:
+     * When v is pressed the animate becomes true and update occurs.
+     * ball bounces according to gravity up and down
+     * 
+     * what we want:
+     * when v is pressed we want ball to bounce up and then fall down
+     * when pressed again we want it to bounce back up and then fall
      */
     public void update(float dt){
 

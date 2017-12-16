@@ -15,7 +15,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
 	//-----------------------------
 	//	Various status variables
 	//-----------------------------
-	
+
 	/**
 	 * Update class Variables
 	 */
@@ -67,8 +67,15 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * applications instance methods and variables.
      */
     public void update(float dt){
+    	 if (bz <= rad) {
+    	     Vz = refl * PApplet.abs(Vz);
 
 
+    	 }
+    	 float halfdt2 = 0.30f * dt*dt;
+    	 bz += Vz * dt - G*halfdt2;
+    	 Vz -= G * dt;
+/*
       if (bz <= rad) {
        Vz = refl * PApplet.abs(Vz);
        Vx *= refl;
@@ -82,18 +89,18 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
            Vz = 0.f;
 
          }
-     float halfdt2 = 0.5f * dt*dt;
+     float halfdt2 = 0.30f * dt*dt;
 
       bx += Vx * dt;
       by += Vy * dt;
       bz += Vz * dt - G*halfdt2;
 
-      Vz -= G * dt;
+      Vz -= G * dt;*/
 
       }
 
     /**
-     * 
+     *
      * returns current bx
      */
     public float getX() {
@@ -101,7 +108,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     }
 
     /**
-     * 
+     *
      * returns current by
      */
     public float getY() {
@@ -109,7 +116,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     }
 
     /**
-     * 
+     *
      * returns current bz
      */
     public float getZ() {
@@ -134,7 +141,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     /**
      * We use the static counter
      * to let the variable be set only once.
-     */	
+     */
   	protected static int setup(PApplet theApp)
   	{
   		if (appSetCounter == 0)
