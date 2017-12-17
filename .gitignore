@@ -71,3 +71,4 @@ local.properties
 *.xml
 *.xml
 .idea/workspace.xml
+*.xml
