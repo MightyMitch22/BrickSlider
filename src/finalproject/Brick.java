@@ -21,7 +21,8 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 	/**
 	 * Update class Variables
 	 */
-    private float bx = -20, by = 0, bz = 30;
+    private float bx = 100, by = 0, bz = 1;
+    private float bw = 40, bh = 25, bd = 20;
     private float Vx = 12, Vy = 0, Vz = 0;
     private float rad = 5;
     private float refl = 0.8f;
@@ -36,7 +37,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     private static int appSetCounter = 0;
 
     //-----------------------------
-    //	graphical objects
+    //	graphical objects/I don't think I need this...
     //-----------------------------
     private ArrayList<KeyFrame> keyFrames;
 
@@ -46,13 +47,8 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * a predetermined keyframe path (right to left), x and y start value. Y will update
      * for each new object in the Main setup();
      */
-    public Brick( ArrayList<KeyFrame> keyFramesPar){
-    	keyFrames = keyFramesPar;
-    	timeIndex = keyFrames.get(0).getTime();//the first keyFrames in our classes array list
-    	                                       //of key frames that have the get methods
-    	xIndex = keyFrames.get(0).getY();
-    	yIndex = keyFrames.get(0).getX();  
-    	aIndex = keyFrames.get(0).getAngle();
+    public Brick(){
+
     }
 
     /**
@@ -63,10 +59,10 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         app_.pushMatrix();
 
         app_.translate(bx, by, bz);
-        app_.color(0,250,0);
         app_.noStroke();
-        app_.fill(0,0,0);
-        app_.box(40,25,20);
+        app_.fill(0,0,255);
+        app_.box(bw,bh,bd);
+
         app_.popMatrix();
     }
 
@@ -85,26 +81,16 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      */
     public void update(float dt){
 
-        if (bz <= rad) {
-            Vz = refl * PApplet.abs(Vz);
-            Vx *= refl;
-            Vy *= refl;
+        //Instead of detecting the surface lets try detecting when its at a point
+//        if (bx <= rad) {
+//            //Vy = refl * PApplet.abs(Vy);
+//            return;
+//        } current stops at rad x
 
-            if (PApplet.abs(Vx) < ZERO_SPEED)
-                Vx = 0.f;
-            if (PApplet.abs(Vy) < ZERO_SPEED)
-                Vy = 0.f;
-            if (PApplet.abs(Vz) < ZERO_SPEED)
-                Vz = 0.f;
-
-        }
-        float halfdt2 = 0.5f * dt*dt;
-        
-        bx += Vx * dt;
-        by += Vy * dt;
-        bz += Vz * dt - G*halfdt2;
-
-        Vz -= G * dt;
+        //--------------------------
+        // moves brick right to left
+        //--------------------------
+        bx -= .08f;
 
     }
 
@@ -115,12 +101,13 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * and create a new brick at an updated y value so it aligns with top of
      * previous brick and game continues. If the brick hits the monster from the side,
      * the game should stop and restart. This task will be handled by isInside()
-     * @param thY
-     * @param theX
+     * @param tRad
      * @return
      */
-    public boolean isInside(float thY, float theX){
-        return false;
+    public boolean isInside(float tRad)
+    {
+                //check w       check h        check depth
+        return ((rad >= bw) && (rad >= bh) && (rad >= bd));
     }
 
     /**

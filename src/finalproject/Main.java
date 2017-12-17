@@ -1,8 +1,7 @@
 package finalproject;
 
 import processing.core.PApplet;
-import processing.core.PImage;
-import java.math.*;
+
 import java.util.ArrayList;
 
 
@@ -87,9 +86,9 @@ public class Main extends PApplet implements ApplicationConstants {
 	//the last one is -1 because processing starts at negative
 	camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
 
-	//where i draw the new body and brick
+	//where i draw the new monster and brick
 	monster = new Monster();
-	brick = new Brick(keyFrames);
+	brick = new Brick();
 
 	lastTime = millis();
  }
@@ -110,33 +109,46 @@ public class Main extends PApplet implements ApplicationConstants {
    * Draw creates our keyFrames and updates our Game
    */
   public void draw() {
-	  frameIndex++;
-	  if(frameIndex %4 ==0) {
-		background(153,255,255);
-		lights();
-		fill(255,255,153);
-		drawSurface();
 
-		//fill(0,0,255);
-		monster.draw(this);
-		centerX = monster.updateCameraX();
-		System.out.println("Print cam X:" + centerX);
-        centerY = monster.updateCameraY();
+      frameIndex++;
+
+      if (frameIndex % 4 == 0) {
+          background(153, 255, 255);
+          lights();
+          fill(255, 255, 153);
+          drawSurface();
+
+
+          monster.draw(this);
+          centerX = monster.updateCameraX();
+          System.out.println("Print cam X:" + centerX);
+          centerY = monster.updateCameraY();
           System.out.println("Print cam Y:" + centerY);
-        centerZ = monster.updateCameraZ();
+          centerZ = monster.updateCameraZ();
           System.out.println("Print cam Z:" + centerZ);
 
-		//fill(0,255,0);
-		brick.draw(this);
 
-	  }
-	  int t = millis();
-	  if(animate) {
-	  float dt = (t - lastTime) * 0.001f;
-	  monster.update(dt);
-	  }
-	  lastTime = t;
+          brick.draw(this);
+
+      }
+
+      int t = millis();
+
+      if (animate) {
+
+          float dt = (t - lastTime) * 0.001f;
+          monster.update(dt);
+          //brick.update(dt);
+
+          //If the ball is on top of the brick stop,
+          //isTouching();
+
+          lastTime = t;
+
+      }
   }
+
+
 
 
   /**
@@ -154,7 +166,14 @@ public class Main extends PApplet implements ApplicationConstants {
 
     endShape(CLOSE);
   }
-  
+
+  public void isTouching() {
+
+      if (brick.isInside(monster.getR())) {
+          animate = false;
+      }
+
+  }
 
 	public void keyPressed() {
 		switch(key) {
