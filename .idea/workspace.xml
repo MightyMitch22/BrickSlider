@@ -4,7 +4,7 @@
     <list default="true" id="edcc7e79-dc91-422f-b51f-8ee20d4f6525" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/finalproject/Brick.java" afterPath="$PROJECT_DIR$/src/finalproject/Brick.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/finalproject/Monster.java" afterPath="$PROJECT_DIR$/src/finalproject/Monster.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/finalproject/Main.java" afterPath="$PROJECT_DIR$/src/finalproject/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,20 +19,20 @@
     <splitter split-orientation="horizontal" split-proportion="0.45779684">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/finalproject/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="25">
-                  <caret line="138" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+                <state relative-caret-position="-250">
+                  <caret line="89" column="34" lean-forward="false" selection-start-line="89" selection-start-column="34" selection-end-line="89" selection-end-column="34" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Monster.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Monster.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/finalproject/Monster.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="253">
+                <state relative-caret-position="-1845">
                   <caret line="22" column="41" lean-forward="false" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
                   <folding />
                 </state>
@@ -42,9 +42,11 @@
           <file leaf-file-name="Brick.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/finalproject/Brick.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="539">
-                  <caret line="51" column="10" lean-forward="false" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
-                  <folding />
+                <state relative-caret-position="124">
+                  <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="109" selection-end-column="5" />
+                  <folding>
+                    <marker date="1513480138973" expanded="true" signature="3157:3297" ph="//..." />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -96,8 +98,8 @@
           <file leaf-file-name="Brick.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/finalproject/Brick.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="355">
-                  <caret line="97" column="17" lean-forward="false" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
+                <state relative-caret-position="-674">
+                  <caret line="38" column="49" lean-forward="true" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -131,8 +133,8 @@
         <option value="$PROJECT_DIR$/src/finalproject/LinearInterpolationFace.java" />
         <option value="$PROJECT_DIR$/src/finalproject/ApplicationConstants.java" />
         <option value="$PROJECT_DIR$/src/finalproject/KeyFrame.java" />
-        <option value="$PROJECT_DIR$/src/finalproject/Main.java" />
         <option value="$PROJECT_DIR$/src/finalproject/Monster.java" />
+        <option value="$PROJECT_DIR$/src/finalproject/Main.java" />
         <option value="$PROJECT_DIR$/src/finalproject/Brick.java" />
       </list>
     </option>
@@ -577,7 +579,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513451542282</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Brick moving left to right, speed is just enough so ball lands on it. Will start testing to get brick to stop under ball">
+      <created>1513476168078</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1513476168078</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -647,7 +656,8 @@
     <MESSAGE value="Got a lot done :)" />
     <MESSAGE value="over road my files" />
     <MESSAGE value="Got the brick to move from right to left. But it just keeps going X)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Got the brick to move from right to left. But it just keeps going X)" />
+    <MESSAGE value="Brick moving left to right, speed is just enough so ball lands on it. Will start testing to get brick to stop under ball" />
+    <option name="LAST_COMMIT_MESSAGE" value="Brick moving left to right, speed is just enough so ball lands on it. Will start testing to get brick to stop under ball" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1035,26 +1045,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/finalproject/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/finalproject/Monster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="138" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+        <state relative-caret-position="-1845">
+          <caret line="22" column="41" lean-forward="false" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/finalproject/Monster.java">
+    <entry file="file://$PROJECT_DIR$/src/finalproject/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="22" column="41" lean-forward="false" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
+        <state relative-caret-position="-250">
+          <caret line="89" column="34" lean-forward="false" selection-start-line="89" selection-start-column="34" selection-end-line="89" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/finalproject/Brick.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="97" column="17" lean-forward="false" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
+        <state relative-caret-position="-674">
+          <caret line="38" column="49" lean-forward="true" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

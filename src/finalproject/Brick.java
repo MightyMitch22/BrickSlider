@@ -36,7 +36,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     private static int appSetCounter = 0;
 
     //-----------------------------
-    //	graphical objects
+    //	graphical objects/I don't think I need this...
     //-----------------------------
     private ArrayList<KeyFrame> keyFrames;
 
@@ -46,14 +46,8 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * a predetermined keyframe path (right to left), x and y start value. Y will update
      * for each new object in the Main setup();
      */
-    public Brick( ArrayList<KeyFrame> keyFramesPar){
+    public Brick(float w, float h, float d){
 
-    	keyFrames = keyFramesPar;
-    	timeIndex = keyFrames.get(0).getTime();//the first keyFrames in our classes array list
-    	                                       //of key frames that have the get methods
-    	xIndex = keyFrames.get(0).getY();
-    	yIndex = keyFrames.get(0).getX();  
-    	aIndex = keyFrames.get(0).getAngle();
     }
 
     /**
@@ -106,12 +100,13 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * and create a new brick at an updated y value so it aligns with top of
      * previous brick and game continues. If the brick hits the monster from the side,
      * the game should stop and restart. This task will be handled by isInside()
-     * @param thY
+     * @param theY
      * @param theX
      * @return
      */
-    public boolean isInside(float thY, float theX){
-        return false;
+    public boolean isInside(float theY, float theX)
+    {
+        return ((x >= dx) && (x <= dx + w_) && (y >= y_) && (y <= y_ + h_));
     }
 
     /**
