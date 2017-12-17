@@ -21,7 +21,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 	/**
 	 * Update class Variables
 	 */
-    private float bx = 100, by = 0, bz = 30;
+    private float bx = 100, by = 0, bz = 1;
     private float Vx = 12, Vy = 0, Vz = 0;
     private float rad = 5;
     private float refl = 0.8f;
@@ -47,6 +47,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * for each new object in the Main setup();
      */
     public Brick( ArrayList<KeyFrame> keyFramesPar){
+
     	keyFrames = keyFramesPar;
     	timeIndex = keyFrames.get(0).getTime();//the first keyFrames in our classes array list
     	                                       //of key frames that have the get methods
@@ -62,7 +63,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     public void draw(PApplet app_){
         app_.pushMatrix();
 
-        app_.translate(-bx, by, bz);
+        app_.translate(bx, by, bz);
         app_.noStroke();
         app_.fill(0,0,255);
         app_.box(40,25,20);
@@ -85,12 +86,16 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      */
     public void update(float dt){
 
-        if (bz <= rad) {
-            Vy = refl * PApplet.abs(Vy);
-        }
-        float halfdt2 = .50f * dt*dt;
-        bx += Vy * dt - G * halfdt2;
-        Vy -= G * dt;
+        //Instead of detecting the surface lets try detecting when its at a point
+//        if (bx <= rad) {
+//            //Vy = refl * PApplet.abs(Vy);
+//            return;
+//        } current stops at rad x
+
+        //--------------------------
+        // moves brick right to left
+        //--------------------------
+        bx -= .08f;
 
     }
 

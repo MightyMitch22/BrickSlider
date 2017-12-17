@@ -68,6 +68,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      */
     public void update(float dt){
 
+        //The if statement detects if the ball hits the surface
         if (bz <= rad) {
     	     Vz = refl * PApplet.abs(Vz);
     	 }
