@@ -1,8 +1,7 @@
 package finalproject;
 
 import processing.core.PApplet;
-import processing.core.PImage;
-import java.math.*;
+
 import java.util.ArrayList;
 
 
@@ -132,21 +131,18 @@ public class Main extends PApplet implements ApplicationConstants {
           brick.draw(this);
 
       }
+
       int t = millis();
 
       if (animate) {
 
           float dt = (t - lastTime) * 0.001f;
           monster.update(dt);
-          brick.update(dt);
+          //brick.update(dt);
+
           //If the ball is on top of the brick stop,
-//          if (animate && (brick.update(dt) == monster.update(dt))) {
-//
-//          }
-//          else
-//              brick.update(dt);
-//
-//          }
+          //isTouching();
+
           lastTime = t;
 
       }
@@ -170,7 +166,14 @@ public class Main extends PApplet implements ApplicationConstants {
 
     endShape(CLOSE);
   }
-  
+
+  public void isTouching() {
+
+      if (brick.isInside(monster.getR())) {
+          animate = false;
+      }
+
+  }
 
 	public void keyPressed() {
 		switch(key) {

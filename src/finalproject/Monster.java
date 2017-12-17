@@ -73,29 +73,8 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     	     Vz = refl * PApplet.abs(Vz);
     	 }
     	 float halfdt2 = 0.30f * dt*dt;
-    	 bz += Vz * dt - G*halfdt2;
+    	 bz += Vz * dt;
     	 Vz -= G * dt;
-/*
-      if (bz <= rad) {
-       Vz = refl * PApplet.abs(Vz);
-       Vx *= refl;
-       Vy *= refl;
-
-       if (PApplet.abs(Vx) < ZERO_SPEED)
-           Vx = 0.f;
-       if (PApplet.abs(Vy) < ZERO_SPEED)
-           Vy = 0.f;
-       if (PApplet.abs(Vz) < ZERO_SPEED)
-           Vz = 0.f;
-
-         }
-     float halfdt2 = 0.30f * dt*dt;
-
-      bx += Vx * dt;
-      by += Vy * dt;
-      bz += Vz * dt - G*halfdt2;
-
-      Vz -= G * dt;*/
 
       }
 
@@ -121,6 +100,13 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      */
     public float getZ() {
     	return bz;
+    }
+
+    /**
+     * getR, gets the radius from the monster sphere
+     */
+    public float getR(){
+        return rad;
     }
 
 

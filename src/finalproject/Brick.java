@@ -22,6 +22,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 	 * Update class Variables
 	 */
     private float bx = 100, by = 0, bz = 1;
+    private float bw = 40, bh = 25, bd = 20;
     private float Vx = 12, Vy = 0, Vz = 0;
     private float rad = 5;
     private float refl = 0.8f;
@@ -46,7 +47,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * a predetermined keyframe path (right to left), x and y start value. Y will update
      * for each new object in the Main setup();
      */
-    public Brick(float w, float h, float d){
+    public Brick(){
 
     }
 
@@ -60,7 +61,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         app_.translate(bx, by, bz);
         app_.noStroke();
         app_.fill(0,0,255);
-        app_.box(40,25,20);
+        app_.box(bw,bh,bd);
 
         app_.popMatrix();
     }
@@ -100,13 +101,13 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * and create a new brick at an updated y value so it aligns with top of
      * previous brick and game continues. If the brick hits the monster from the side,
      * the game should stop and restart. This task will be handled by isInside()
-     * @param theY
-     * @param theX
+     * @param tRad
      * @return
      */
-    public boolean isInside(float theY, float theX)
+    public boolean isInside(float tRad)
     {
-        return ((x >= dx) && (x <= dx + w_) && (y >= y_) && (y <= y_ + h_));
+                //check w       check h        check depth
+        return ((rad >= bw) && (rad >= bh) && (rad >= bd));
     }
 
     /**
