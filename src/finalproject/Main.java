@@ -62,14 +62,6 @@ public class Main extends PApplet implements ApplicationConstants {
     private float upY = 0;
     private float upZ = -1;
 
-    /**
-     * Main creates out PApplet for our scene
-     *
-     * @param argv
-     */
-    public static void main(String[] argv) {
-        PApplet.main("finalproject.Main");
-    }
 
     /**
      * Setup includes: FrameRate, keyFrames, Camera, Textures, objects
@@ -120,8 +112,6 @@ public class Main extends PApplet implements ApplicationConstants {
 
         frameIndex++;
 
-        //camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
-
         if (frameIndex % 4 == 0) {
             background(153, 255, 255);
             lights();
@@ -131,11 +121,11 @@ public class Main extends PApplet implements ApplicationConstants {
 
             monster.draw(this);
             centerX = monster.updateCameraX();
-            //System.out.println("Print cam X:" + centerX);
+            // System.out.println("Print cam X:" + centerX);
             centerY = monster.updateCameraY();
-            //System.out.println("Print cam Y:" + centerY);
+            // System.out.println("Print cam Y:" + centerY);
             centerZ = monster.updateCameraZ();
-            //System.out.println("Print cam Z:" + centerZ);
+            // System.out.println("Print cam Z:" + centerZ);
 
 
             brick.draw(this);
@@ -147,16 +137,17 @@ public class Main extends PApplet implements ApplicationConstants {
         if (animate) {
 
             float dt = (t - lastTime) * 0.001f;
-            monster.update(dt);
-            brick.update(dt);
+            monster.update(dt, brick.getbz(), brick.getWidth());
+            isTouching();
+            //brick.update(dt);
 
             //If the ball is on top of the brick stop,
             //isTouching();
 
             lastTime = t;
-
         }
     }
+
 
     /**
      * DrawSurface will create the stage for our game
@@ -173,6 +164,10 @@ public class Main extends PApplet implements ApplicationConstants {
         endShape(CLOSE);
     }
 
+    /**
+     *If the monster touches the brick, we want the brick to stop
+     * animating, and the ball to stay on the brick.
+     */
     public void isTouching() {
 
         if (brick.isInside(monster.getR())) {
@@ -217,119 +212,14 @@ public class Main extends PApplet implements ApplicationConstants {
                 break;
         }
 
-  /**
-   * Draw creates our keyFrames and updates our Game
-   */
-  public void draw() {
+    }
 
-      frameIndex++;
-
-      if (frameIndex % 4 == 0) {
-          background(153, 255, 255);
-          lights();
-          fill(255, 255, 153);
-          drawSurface();
-
-
-          monster.draw(this);
-          centerX = monster.updateCameraX();
-         // System.out.println("Print cam X:" + centerX);
-          centerY = monster.updateCameraY();
-         // System.out.println("Print cam Y:" + centerY);
-          centerZ = monster.updateCameraZ();
-         // System.out.println("Print cam Z:" + centerZ);
-
-
-          brick.draw(this);
-
-      }
-
-      int t = millis();
-
-      if (animate) {
-
-          float dt = (t - lastTime) * 0.001f;
-          monster.update(dt,brick.getbz(), brick.getWidth());
-          //brick.update(dt);
-
-          //If the ball is on top of the brick stop,
-          //isTouching();
-
-          lastTime = t;
-      }
-  }
-
-
-
-
-  /**
-   * DrawSurface will create the stage for our game
-   *
-   */
-  public void drawSurface(){
-    beginShape(QUADS);
-    //texture(backgroundImage_);
-
-    vertex(XMIN, YMAX, 0, 0, 0);
-    vertex(XMIN, YMIN, 0, 0, 1);
-    vertex(XMAX, YMIN, 0, 1, 0);
-    vertex(XMAX, YMAX, 0, 1, 1);
-
-    endShape(CLOSE);
-  }
-
-  public void isTouching() {
-
-      if (brick.isInside(monster.getR())) {
-          animate = false;
-      }
-
-  }
-
-	public void keyPressed() {
-		switch(key) {
-		//my animation is started here
-		case 'v':
-			animate = true;
-			break;
-		case 'c':
-			animate = false;
-			//FileInOutMachine.saveKeyFramesToFile(keyFrames);
-			break;
-		case 'k':
-			//snapCurrent();
-			break;
-		case 'u':
-			//body.moveUp;
-			break;
-		case 'l':
-			//moveLeft();
-			break;
-		case 'o':
-			//moveRight();
-			break;
-		case 'q':
-			//moveDown();
-			break;
-		case 'p':
-			//moveRight();
-			break;
-		case 'y':
-			//moveRight();
-			break;
-		case 'z':
-			//do nothing
-			break;
-		}
-
-	}
-
-  /**
-   * Main creates out PApplet for our scene
-   * @param argv
-   */
-    public static void main(String[] argv)
-    {
+    /**
+     * Main creates out PApplet for our scene
+     *
+     * @param argv ummm
+     */
+    public static void main(String[] argv) {
         PApplet.main("finalproject.Main");
     }
 

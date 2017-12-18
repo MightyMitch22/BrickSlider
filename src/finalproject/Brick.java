@@ -12,15 +12,14 @@ import processing.core.PApplet;
  */
 public class Brick extends PApplet implements ApplicationConstants, AnimatedObject {
 
-	//-----------------------------
-	//	Various status variables
-	//-----------------------------
-	private float timeIndex = 0, xIndex = 1, yIndex = 2, aIndex = 3;
 
-	/**
-	 * Update class Variables
-	 */
-	//translation of brick
+    //-----------------------------
+    //	Various status variables
+    //-----------------------------
+    /**
+     * Update class Variables
+     */
+    //translation of brick
     private float bx = 50, by = 0, bz = 30;
     //actual brick
     private float bw = 40, bh = 25, bd = 6;
@@ -28,6 +27,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     private float rad = 5;
     private float refl = 0.8f;
     private static final float ZERO_SPEED = 0.01f;
+
     /**
      * private static PApplet app;
      * private static int appSetCounter = 0;
@@ -35,18 +35,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      */
     private static PApplet app;
     private static int appSetCounter = 0;
-    //-----------------------------
-    //	Various status variables
-    //-----------------------------
-    private float timeIndex = 0, xIndex = 1, yIndex = 2, aIndex = 3;
-    /**
-     * Update class Variables
-     */
-    private float bx = 50, by = 0, bz = 1;
-    private float bw = 40, bh = 25, bd = 20;
-    private float Vx = 12, Vy = 0, Vz = 0;
-    private float rad = 5;
-    private float refl = 0.8f;
+
     //-----------------------------
     //	graphical objects/I don't think I need this...
     //-----------------------------
@@ -63,21 +52,6 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     }
 
     /**
-     * We use the static counter
-     * to let the variable be set only once.
-     */
-    protected static int setup(PApplet theApp) {
-        if (appSetCounter == 0) {
-            app = theApp;
-            appSetCounter = 1;
-        } else
-            appSetCounter = 2;
-
-        return appSetCounter;
-
-    }
-
-    /**
      * Hervé week07, use objects instance variable to access the application's
      * instance methods and variables
      */
@@ -88,7 +62,6 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         app_.noStroke();
         app_.fill(0, 0, 255);
         app_.box(bw, bh, bd);
-        System.out.println(bx);
 
         app_.popMatrix();
     }
@@ -115,6 +88,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 
     }
 
+
     /**
      * We need to have a method that detects when the brick is touched
      * by the monster. If the monster lands on top we should stop the brick
@@ -122,70 +96,61 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * previous brick and game continues. If the brick hits the monster from the side,
      * the game should stop and restart. This task will be handled by isInside()
      *
-     * @param tRad
-     * @return
+     * @param tRad is the Radius of the ball
+     * @return returns true if monster is inside the brick
      */
     public boolean isInside(float tRad) {
         //check w       check h        check depth
-        return ((rad >= bw) && (rad >= bh) && (rad >= bd));
+        return ((tRad >= bw) && (tRad >= bh) && (tRad >= bd));
+    }
+
+
+    /**
+     * returns current width
+     */
+    public float getWidth() {
+        return bd;
     }
 
     /**
-    *
-    * returns current width
-    */
-   public float getWidth() {
-   	return bd;
-   }
+     * returns current height
+     */
+    public float getHeight() {
+        return bh;
+    }
 
-   /**
-   *
-   * returns current height
-   */
-  public float getHeight() {
-  	return bh;
-  }
 
-  
-  /**
-  *
-  * returns current  x translate
-  */
- public float getbx() {
- 	return bx;
- }
- 
- /**
- *
- * returns current  y translate
- */
-public float getby() {
-	return bx;
-}
+    /**
+     * returns current  x translate
+     */
+    public float getbx() {
+        return bx;
+    }
 
-/**
-*
-* returns current  y translate
-*/
-public float getbz() {
-	return bz;
-}
-    
-    
-    
-    
+    /**
+     * returns current  y translate
+     */
+    public float getby() {
+        return bx;
+    }
+
+    /**
+     * returns current  y translate
+     */
+    public float getbz() {
+        return bz;
+    }
+
+
     /**
      * We use the static counter
      * to let the variable be set only once.
-     */	
-    protected static int setup(PApplet theApp)
-    {
-        if (appSetCounter == 0)
-        {
+     */
+    protected static int setup(PApplet theApp) {
+        if (appSetCounter == 0) {
             app = theApp;
             appSetCounter = 1;
-        }
-        else
+        } else
             appSetCounter = 2;
 
         return appSetCounter;
