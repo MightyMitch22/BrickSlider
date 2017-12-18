@@ -1,7 +1,5 @@
 package finalproject;
 
-import java.util.ArrayList;
-
 import processing.core.PApplet;
 
 /**
@@ -23,10 +21,8 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     private float bx = 50, by = 0, bz = 30;
     //actual brick
     private float bw = 40, bh = 25, bd = 6;
-    private float Vx = 12, Vy = 0, Vz = 0;
-    private float rad = 5;
-    private float refl = 0.8f;
-    private static final float ZERO_SPEED = 0.01f;
+    //private float Vx = 12, Vy = 0, Vz = 0;
+
 
     /**
      * private static PApplet app;
@@ -36,10 +32,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     private static PApplet app;
     private static int appSetCounter = 0;
 
-    //-----------------------------
-    //	graphical objects/I don't think I need this...
-    //-----------------------------
-    private ArrayList<KeyFrame> keyFrames;
+    private boolean isTrue = false;
 
 
     /**
@@ -68,8 +61,8 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 
     /**
      * update dt, time in seconds, since the last update.
-     * Hervé - we'll use the object's instance variable to access the
-     * applications instance methods and variables.
+     * Hervé - "we'll use the object's instance variable to access the
+     * applications instance methods and variables."
      * <p>
      * what we have now:
      * When v is pressed the animate becomes true and update occurs.
@@ -77,14 +70,41 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * <p>
      * what we want:
      * when v is pressed we want ball to bounce up and then fall down
+     * onto the brick
      * when pressed again we want it to bounce back up and then fall
+     * onto the brick
      */
     public void update(float dt) {
 
-        //--------------------------
+        //-----------------------------
         // moves brick right to left
-        //--------------------------
-        bx -= .08f;
+        // when animate is true in main
+        // brick stops moving when center of
+        // monster touches top of brick
+        //-----------------------------
+
+//        float monZ = monster.getX(),  monX = monster.getX(),  monY = monster.getZ();
+//        float bhw = getWidth()/2, bhh = getHeight()/2, bhd = getDepth()/2;
+//        float monRad = monster.getR();
+        if (!isTrue) {
+        bx -= .03f;//brick moves
+//        if (    bx >= monX - bhw && bx <= monX + bhw &&
+//                by >= monY - bhh && by <= monY + bhh &&
+//                bz <= monZ + bhd + monRad) {
+//
+//            brickTouched = true;
+//
+//            System.out.println("brick should stop");
+//            bx = 0;//brick stops
+//
+       }
+//        System.out.print(" |isTrue "+isTrue+"|");
+        else{
+            //System.out.print("isTrue"+isTrue);
+      //      bx -= 0;
+        }
+
+
 
     }
 
@@ -94,22 +114,40 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * by the monster. If the monster lands on top we should stop the brick
      * and create a new brick at an updated y value so it aligns with top of
      * previous brick and game continues. If the brick hits the monster from the side,
-     * the game should stop and restart. This task will be handled by isInside()
+     * the game should stop and restart. This task will be handled by isOnTop()
      *
-     * @param tRad is the Radius of the ball
+     * @param tRad is the translated Radius of the ball
      * @return returns true if monster is inside the brick
      */
-    public boolean isInside(float tRad) {
+    public boolean isOnTop(float tRad) {
         //check w       check h        check depth
         return ((tRad >= bw) && (tRad >= bh) && (tRad >= bd));
+
     }
 
+    /**
+     *If the monster touches the brick, we want the brick to stop
+     * animating, and the ball to stay on the brick.
+     */
+    public void isTouching(boolean isTrue) {
+
+
+        this.isTrue =  isTrue;
+
+    }
+
+    /**
+     * returns current depth
+     */
+    public float getDepth() {
+        return bd;
+    }
 
     /**
      * returns current width
      */
     public float getWidth() {
-        return bd;
+        return bw;
     }
 
     /**
@@ -131,7 +169,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * returns current  y translate
      */
     public float getby() {
-        return bx;
+        return by;
     }
 
     /**
