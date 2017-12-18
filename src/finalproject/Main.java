@@ -145,9 +145,7 @@ public class Main extends PApplet implements ApplicationConstants {
             float dt = (t - lastTime) * 0.001f;
             monster.update(dt, brick);
             //If the brick is touched, stop moving brick
-            if (brickTouched == false){
-                brick.update(dt);
-            }
+            brick.update(dt);
 
             //If the ball is on top of the brick stop,
             //isTouching();
@@ -172,15 +170,7 @@ public class Main extends PApplet implements ApplicationConstants {
         endShape(CLOSE);
     }
 
-    /**
-     *If the monster touches the brick, we want the brick to stop
-     * animating, and the ball to stay on the brick.
-     */
-    public boolean isTouching() {
 
-        return brickTouched = true;
-
-    }
 
     public void keyPressed() {
         switch (key) {

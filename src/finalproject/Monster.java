@@ -80,9 +80,11 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
         bz += Vz * dt;
         Vz -= G * dt;
 
-        if (    bz <= brickZ + bhd + rad &&
-                bx >= brickX  - bhw && bx <= brickX + bhw &&
-                by >= brickY - bhh && by <= brickY + bhh) {
+        if (    bx >= brickX  - bhw && bx <= brickX + bhw &&
+                by >= brickY - bhh && by <= brickY + bhh &&
+                bz <= brickZ + bhd + rad) {
+
+            brick.isTouching(true);
 
             System.out.println("inside if statement");
             //velocity for the z plain multiplied by the velocity for the z

@@ -32,6 +32,8 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     private static PApplet app;
     private static int appSetCounter = 0;
 
+    private boolean isTrue = false;
+
 
     /**
      * The constructor for brick needs to be passed a random velocity,
@@ -77,8 +79,32 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         //-----------------------------
         // moves brick right to left
         // when animate is true in main
+        // brick stops moving when center of
+        // monster touches top of brick
         //-----------------------------
-        bx -= .03f;
+
+//        float monZ = monster.getX(),  monX = monster.getX(),  monY = monster.getZ();
+//        float bhw = getWidth()/2, bhh = getHeight()/2, bhd = getDepth()/2;
+//        float monRad = monster.getR();
+        if (!isTrue) {
+        bx -= .03f;//brick moves
+//        if (    bx >= monX - bhw && bx <= monX + bhw &&
+//                by >= monY - bhh && by <= monY + bhh &&
+//                bz <= monZ + bhd + monRad) {
+//
+//            brickTouched = true;
+//
+//            System.out.println("brick should stop");
+//            bx = 0;//brick stops
+//
+       }
+//        System.out.print(" |isTrue "+isTrue+"|");
+        else{
+            //System.out.print("isTrue"+isTrue);
+      //      bx -= 0;
+        }
+
+
 
     }
 
@@ -99,6 +125,16 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 
     }
 
+    /**
+     *If the monster touches the brick, we want the brick to stop
+     * animating, and the ball to stay on the brick.
+     */
+    public void isTouching(boolean isTrue) {
+
+
+        this.isTrue =  isTrue;
+
+    }
 
     /**
      * returns current depth
