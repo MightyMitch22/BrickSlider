@@ -12,31 +12,19 @@ import processing.core.PApplet;
  */
 public class Monster extends PApplet implements ApplicationConstants, AnimatedObject {
 
-    //-----------------------------
-    //	Various status variables
-    //-----------------------------
-
+	//-----------------------------
+	//	Various status variables
+	//-----------------------------
 
 	/**
 	 * Update class Variables
 	 */
     private float bx = 50, by = 0, bz = 65;
-
-    private static final float ZERO_SPEED = 0.01f;
-    /**
-     * private static PApplet app_;
-     * private static int appSetCounter_ = 0;
-     * used in PApplet setup
-     */
-    private static PApplet app;
-    private static int appSetCounter = 0;
-    /**
-     * Update class Variables
-     */
-    private float bx = 50, by = 0, bz = 40;
     private float Vx = 12, Vy = 0, Vz = 0;
     private float rad = 5;
     private float refl = 0.8f;
+    private static final float ZERO_SPEED = 0.01f;
+
     /**
      * (0,0,0) updating the camera here to stay with the monster and not zero always
      */
@@ -45,24 +33,17 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     private float centerZ = 0;
 
     /**
-     * The Monster will need to keep track of its own location which the main will update.
+     * private static PApplet app_;
+     * private static int appSetCounter_ = 0;
+     * used in PApplet setup
      */
-    public Monster() {
-
-    }
+    private static PApplet app;
+    private static int appSetCounter = 0;
 
     /**
-     * We use the static counter
-     * to let the variable be set only once.
+     * The Monster will need to keep track of its own location which the main will update.
      */
-    protected static int setup(PApplet theApp) {
-        if (appSetCounter == 0) {
-            app = theApp;
-            appSetCounter = 1;
-        } else
-            appSetCounter = 2;
-
-        return appSetCounter;
+    public Monster(){
 
     }
 
@@ -70,16 +51,13 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * Hervé week07, use objects instance variable to access the application's
      * instance methods and variables
      */
-    public void draw(PApplet app_) {
+    public void draw(PApplet app_){
 
         app_.pushMatrix();
-
         app_.translate(bx, by, bz);
-        System.out.println(bz);
         app_.noStroke();
-        app_.fill(255, 0, 255);
+        app_.fill(255,0,255);
         app_.sphere(rad);
-
         app_.popMatrix();
     }
 
@@ -88,7 +66,6 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * Hervé - we'll use the object's instance variable to access the
      * applications instance methods and variables.
      */
-
     public void update(float dt, float brickZ, float brickWidth){
 
         //The if statement detects if the ball hits the surface
@@ -114,86 +91,96 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     	 //float halfdt2 = 0.30f * dt*dt;
     	 Vz -= G * dt;
 
-    public void update(float dt) {
-
-        //The if statement detects if the ball hits the surface
-        if (bz <= rad) {
-            Vz = refl ;//* PApplet.abs(Vz);
-        }
-        float halfdt2 = 0.30f * dt * dt;
-        bz += Vz * dt;
-        Vz -= G * dt;
-
-    }
+      }
 
     /**
+     *
      * returns current bx
      */
     public float getX() {
-        return bx;
+    	return bx;
     }
 
     /**
+     *
      * returns current by
      */
     public float getY() {
-        return by;
+    	return by;
     }
 
     /**
+     *
      * returns current bz
      */
     public float getZ() {
-        return bz;
+    	return bz;
     }
 
     /**
      * getR, gets the radius from the monster sphere
      */
-    public float getR() {
+    public float getR(){
         return rad;
     }
+
 
     /**
      * We need to have a method that detects when the Monster is touched
      * by the brick. If the monster lands on top we should stop the brick
      * and create and game continues. If the brick hits the monster from the side,
      * the game should stop.
-     *
      * @param thY
      * @param theX
-     * @return (Do we need this method in Monster or Brick, or both)
+     * @return
+     * (Do we need this method in Monster or Brick, or both)
      */
-    public boolean isInside(float thY, float theX) {
-
+    public boolean isInside(float thY, float theX){
         return false;
-
     }
 
     /**
-     * (camera)
-     * returns current centerX
+     * We use the static counter
+     * to let the variable be set only once.
      */
-    public float updateCameraX() {
+  	protected static int setup(PApplet theApp)
+  	{
+  		if (appSetCounter == 0)
+  		{
+  			app = theApp;
+  			appSetCounter = 1;
+  		}
+  		else
+  			appSetCounter = 2;
 
-        return centerX = getX();
+  		return appSetCounter;
+
+  	}
+
+  	/**
+  	 * (camera)
+  	 * returns current centerX
+  	 */
+    public float updateCameraX(){
+
+           return centerX = getX();
     }
 
     /**
-     * (camera)
-     * returns current centerY
-     */
-    public float updateCameraY() {
+  	 * (camera)
+  	 * returns current centerY
+  	 */
+    public float updateCameraY(){
 
         return centerY = getY();
 
     }
 
     /**
-     * (camera)
-     * returns current centerZ
-     */
-    public float updateCameraZ() {
+  	 * (camera)
+  	 * returns current centerZ
+  	 */
+    public float updateCameraZ(){
 
         return centerZ = getZ();
 
@@ -204,6 +191,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
 		// TODO Auto-generated method stub
 		
 	}
+
 
 
 
