@@ -140,10 +140,10 @@ public class Main extends PApplet implements ApplicationConstants {
         int t = millis();
 
         if (animate) {
-            isTouching();
+            //isTouching();
 
             float dt = (t - lastTime) * 0.001f;
-            monster.update(dt, brick.getbz(), brick.getWidth());
+            monster.update(dt, brick);
             //If the brick is touched, stop moving brick
             if (brickTouched == false){
                 brick.update(dt);
@@ -176,12 +176,9 @@ public class Main extends PApplet implements ApplicationConstants {
      *If the monster touches the brick, we want the brick to stop
      * animating, and the ball to stay on the brick.
      */
-    public void isTouching() {
+    public boolean isTouching() {
 
-        if (brick.isOnTop(monster.getR())) {
-            brickTouched = true;
-            System.out.println("isTouching");
-        }
+        return brickTouched = true;
 
     }
 
@@ -196,9 +193,11 @@ public class Main extends PApplet implements ApplicationConstants {
                 //FileInOutMachine.saveKeyFramesToFile(keyFrames);
                 break;
             case 'k':
+                //brickTouched = true;
                 //snapCurrent();
                 break;
             case 'u':
+                //brickTouched = false;
                 //body.moveUp;
                 break;
             case 'l':

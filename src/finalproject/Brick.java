@@ -101,10 +101,17 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 
 
     /**
+     * returns current depth
+     */
+    public float getDepth() {
+        return bd;
+    }
+
+    /**
      * returns current width
      */
     public float getWidth() {
-        return bd;
+        return bw;
     }
 
     /**
@@ -126,7 +133,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * returns current  y translate
      */
     public float getby() {
-        return bx;
+        return by;
     }
 
     /**

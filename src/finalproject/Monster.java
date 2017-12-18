@@ -71,32 +71,24 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * brick width is the width of brick to see if monster is
      * actually ontop of brick at Z
      */
-    public void update(float dt, float brickZ, float brickWidth) {
+    public void update(float dt, Brick brick) {
 
-        //The if statement detects if the ball hits the surface
-        //compare rad to brick(is inside)
-        //compare bricks width and depth
-       /* if (bz <= rad) {
-             //velocity for the z plain multiplied by the velocity for the z
-    	     Vz = refl * PApplet.abs(Vz);
-    	 }*/
-        //System.out.println(rad);
-        //System.out.println(bw);
-        //System.out.println(bz);
-        //System.out.println(brickZ);
+
+        float brickZ=brick.getbz(),  brickX=brick.getbx(),  brickY=brick.getby();
+        float bhw = brick.getWidth()/2, bhh = brick.getHeight()/2, bhd = brick.getDepth()/2;
+
         bz += Vz * dt;
-        if (bz <= brickZ + brickWidth + rad) {
-            //System.out.println(rad);
-            //System.out.println(bw);
+        Vz -= G * dt;
+
+        if (    bz <= brickZ + bhd + rad &&
+                bx >= brickX  - bhw && bx <= brickX + bhw &&
+                by >= brickY - bhh && by <= brickY + bhh) {
+
             System.out.println("inside if statement");
             //velocity for the z plain multiplied by the velocity for the z
             Vz = refl * PApplet.abs(Vz);
 
         }
-        //
-        //float halfdt2 = 0.30f * dt*dt;
-        Vz -= G * dt;
-
     }
 
     /**
