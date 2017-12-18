@@ -21,8 +21,10 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 	/**
 	 * Update class Variables
 	 */
-    private float bx = 100, by = 0, bz = 1;
-    private float bw = 40, bh = 25, bd = 20;
+	//translation of brick
+    private float bx = 50, by = 0, bz = 30;
+    //actual brick
+    private float bw = 40, bh = 25, bd = 6;
     private float Vx = 12, Vy = 0, Vz = 0;
     private float rad = 5;
     private float refl = 0.8f;
@@ -110,6 +112,51 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         return ((rad >= bw) && (rad >= bh) && (rad >= bd));
     }
 
+    
+    /**
+    *
+    * returns current width
+    */
+   public float getWidth() {
+   	return bd;
+   }
+
+   /**
+   *
+   * returns current height
+   */
+  public float getHeight() {
+  	return bh;
+  }
+
+  
+  /**
+  *
+  * returns current  x translate
+  */
+ public float getbx() {
+ 	return bx;
+ }
+ 
+ /**
+ *
+ * returns current  y translate
+ */
+public float getby() {
+	return bx;
+}
+
+/**
+*
+* returns current  y translate
+*/
+public float getbz() {
+	return bz;
+}
+    
+    
+    
+    
     /**
      * We use the static counter
      * to let the variable be set only once.
