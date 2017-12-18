@@ -16,6 +16,12 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     //	Various status variables
     //-----------------------------
 
+
+	/**
+	 * Update class Variables
+	 */
+    private float bx = 50, by = 0, bz = 65;
+
     private static final float ZERO_SPEED = 0.01f;
     /**
      * private static PApplet app_;
@@ -82,6 +88,32 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * Hervé - we'll use the object's instance variable to access the
      * applications instance methods and variables.
      */
+
+    public void update(float dt, float brickZ, float brickWidth){
+
+        //The if statement detects if the ball hits the surface
+    	//compare rad to brick(is inside) 
+    	//compare bricks width and depth
+       /* if (bz <= rad) {
+        	 //velocity for the z plain multiplied by the velocity for the z 
+    	     Vz = refl * PApplet.abs(Vz);
+    	 }*/
+    	//System.out.println(rad);
+    	//System.out.println(bw);
+    	System.out.println(bz);
+    	System.out.println(brickZ);
+    	bz += Vz * dt;
+        if (bz  <= brickZ + brickWidth + 2 ) {
+        	//System.out.println(rad);
+        	//System.out.println(bw);
+        	System.out.println("inside if statement");
+       	 //velocity for the z plain multiplied by the velocity for the z 
+        	 Vz = refl * PApplet.abs(Vz);;
+   	 	 }
+         // 
+    	 //float halfdt2 = 0.30f * dt*dt;
+    	 Vz -= G * dt;
+
     public void update(float dt) {
 
         //The if statement detects if the ball hits the surface
@@ -166,6 +198,14 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
         return centerZ = getZ();
 
     }
+
+	@Override
+	public void update(float dt) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 
 }

@@ -12,7 +12,21 @@ import processing.core.PApplet;
  */
 public class Brick extends PApplet implements ApplicationConstants, AnimatedObject {
 
+	//-----------------------------
+	//	Various status variables
+	//-----------------------------
+	private float timeIndex = 0, xIndex = 1, yIndex = 2, aIndex = 3;
 
+	/**
+	 * Update class Variables
+	 */
+	//translation of brick
+    private float bx = 50, by = 0, bz = 30;
+    //actual brick
+    private float bw = 40, bh = 25, bd = 6;
+    private float Vx = 12, Vy = 0, Vz = 0;
+    private float rad = 5;
+    private float refl = 0.8f;
     private static final float ZERO_SPEED = 0.01f;
     /**
      * private static PApplet app;
@@ -114,5 +128,67 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     public boolean isInside(float tRad) {
         //check w       check h        check depth
         return ((rad >= bw) && (rad >= bh) && (rad >= bd));
+    }
+
+    /**
+    *
+    * returns current width
+    */
+   public float getWidth() {
+   	return bd;
+   }
+
+   /**
+   *
+   * returns current height
+   */
+  public float getHeight() {
+  	return bh;
+  }
+
+  
+  /**
+  *
+  * returns current  x translate
+  */
+ public float getbx() {
+ 	return bx;
+ }
+ 
+ /**
+ *
+ * returns current  y translate
+ */
+public float getby() {
+	return bx;
+}
+
+/**
+*
+* returns current  y translate
+*/
+public float getbz() {
+	return bz;
+}
+    
+    
+    
+    
+    /**
+     * We use the static counter
+     * to let the variable be set only once.
+     */	
+    protected static int setup(PApplet theApp)
+    {
+        if (appSetCounter == 0)
+        {
+            app = theApp;
+            appSetCounter = 1;
+        }
+        else
+            appSetCounter = 2;
+
+        return appSetCounter;
+
     }
 }
