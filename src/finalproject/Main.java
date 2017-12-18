@@ -33,18 +33,19 @@ public class Main extends PApplet implements ApplicationConstants {
     //-----------------------------
     //	Various status variables
     //-----------------------------
-    private long frame = 0L;
     private float lastTime;
     private int frameIndex = 0;
     private boolean animate = false;
+    private boolean brickTouched = false;
 
     /**
      * Camera Functionality
-     * (setting the eye position, the center of the scene, and which axis is facing upward)
+     * (setting the eye position, the center of the scene,
+     * and which axis is facing upward)
      */
-    //-----------------------------
+    //-----------------------
     //    CAMERA
-    //----------------------------
+    //-----------------------
     private float eyeX = 0;
     private float eyeY = -200;
     private float eyeZ = 100;
@@ -68,7 +69,7 @@ public class Main extends PApplet implements ApplicationConstants {
      */
     public void setup() {
 
-        //Here sets the rate of the framerate
+        //Here sets the frame rate
         //amount of time it resets per second.
         frameRate(600);
 
@@ -86,7 +87,7 @@ public class Main extends PApplet implements ApplicationConstants {
         //the last one is -1 because processing starts at negative
         camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
 
-        //where i draw the new monster and brick
+        //draw the new monster and brick
         monster = new Monster();
         brick = new Brick();
 
@@ -118,15 +119,19 @@ public class Main extends PApplet implements ApplicationConstants {
             fill(255, 255, 153);
             drawSurface();
 
+            //Enable camera so it follows the ball
+            //camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
+
 
             monster.draw(this);
+            //update where the camera should be depending on location
+            //of the ball
             centerX = monster.updateCameraX();
             // System.out.println("Print cam X:" + centerX);
             centerY = monster.updateCameraY();
             // System.out.println("Print cam Y:" + centerY);
             centerZ = monster.updateCameraZ();
             // System.out.println("Print cam Z:" + centerZ);
-
 
             brick.draw(this);
 
@@ -135,11 +140,14 @@ public class Main extends PApplet implements ApplicationConstants {
         int t = millis();
 
         if (animate) {
+            isTouching();
 
             float dt = (t - lastTime) * 0.001f;
             monster.update(dt, brick.getbz(), brick.getWidth());
-            isTouching();
-            //brick.update(dt);
+            //If the brick is touched, stop moving brick
+            if (brickTouched == false){
+                brick.update(dt);
+            }
 
             //If the ball is on top of the brick stop,
             //isTouching();
@@ -170,8 +178,9 @@ public class Main extends PApplet implements ApplicationConstants {
      */
     public void isTouching() {
 
-        if (brick.isInside(monster.getR())) {
-            animate = false;
+        if (brick.isOnTop(monster.getR())) {
+            brickTouched = true;
+            System.out.println("isTouching");
         }
 
     }

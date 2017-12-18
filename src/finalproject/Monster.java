@@ -54,17 +54,22 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     public void draw(PApplet app_) {
 
         app_.pushMatrix();
+
         app_.translate(bx, by, bz);
         app_.noStroke();
         app_.fill(255, 0, 255);
         app_.sphere(rad);
+
         app_.popMatrix();
     }
 
     /**
      * update dt, time in seconds, since the last update.
-     * Hervé - we'll use the object's instance variable to access the
-     * applications instance methods and variables.
+     * Hervé -"we'll use the object's instance variable to access the
+     * applications instance methods and variables."
+     * brickZ is suppose to be location Z
+     * brick width is the width of brick to see if monster is
+     * actually ontop of brick at Z
      */
     public void update(float dt, float brickZ, float brickWidth) {
 
@@ -77,10 +82,10 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     	 }*/
         //System.out.println(rad);
         //System.out.println(bw);
-        System.out.println(bz);
-        System.out.println(brickZ);
+        //System.out.println(bz);
+        //System.out.println(brickZ);
         bz += Vz * dt;
-        if (bz <= brickZ + brickWidth + 2) {
+        if (bz <= brickZ + brickWidth + rad) {
             //System.out.println(rad);
             //System.out.println(bw);
             System.out.println("inside if statement");
@@ -126,11 +131,11 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     /**
      * We need to have a method that detects when the Monster is touched
      * by the brick. If the monster lands on top we should stop the brick
-     * and create and game continues. If the brick hits the monster from the side,
+     * game continues. If the brick hits the monster from the side,
      * the game should stop.
      *
-     * @param thY y for isInside
-     * @param theX x for isInside
+     * @param thY y for isOnTop
+     * @param theX x for isOnTop
      * @return (Do we need this method in Monster or Brick, or both)
      */
     public boolean isInside(float thY, float theX) {
