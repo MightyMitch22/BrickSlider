@@ -121,11 +121,11 @@ public class Main extends PApplet implements ApplicationConstants {
 
           monster.draw(this);
           centerX = monster.updateCameraX();
-          System.out.println("Print cam X:" + centerX);
+         // System.out.println("Print cam X:" + centerX);
           centerY = monster.updateCameraY();
-          System.out.println("Print cam Y:" + centerY);
+         // System.out.println("Print cam Y:" + centerY);
           centerZ = monster.updateCameraZ();
-          System.out.println("Print cam Z:" + centerZ);
+         // System.out.println("Print cam Z:" + centerZ);
 
 
           brick.draw(this);
@@ -137,14 +137,13 @@ public class Main extends PApplet implements ApplicationConstants {
       if (animate) {
 
           float dt = (t - lastTime) * 0.001f;
-          monster.update(dt);
+          monster.update(dt,brick.getbz(), brick.getWidth());
           //brick.update(dt);
 
           //If the ball is on top of the brick stop,
           //isTouching();
 
           lastTime = t;
-
       }
   }
 
