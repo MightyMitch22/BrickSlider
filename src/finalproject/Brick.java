@@ -18,7 +18,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * Update class Variables
      */
     //translation of brick
-    private float bx = 50, by = 0, bz = 30;
+    private float bx = 0, by = 0, bz = 0;
     //actual brick
     private float bw = 40, bh = 25, bd = 6;
     //private float Vx = 12, Vy = 0, Vz = 0;
@@ -83,28 +83,12 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         // monster touches top of brick
         //-----------------------------
 
-//        float monZ = monster.getX(),  monX = monster.getX(),  monY = monster.getZ();
-//        float bhw = getWidth()/2, bhh = getHeight()/2, bhd = getDepth()/2;
-//        float monRad = monster.getR();
         if (!isTrue) {
         bx -= .03f;//brick moves
-//        if (    bx >= monX - bhw && bx <= monX + bhw &&
-//                by >= monY - bhh && by <= monY + bhh &&
-//                bz <= monZ + bhd + monRad) {
-//
-//            brickTouched = true;
-//
-//            System.out.println("brick should stop");
-//            bx = 0;//brick stops
-//
        }
-//        System.out.print(" |isTrue "+isTrue+"|");
         else{
-            //System.out.print("isTrue"+isTrue);
-      //      bx -= 0;
+            //don't do anything
         }
-
-
 
     }
 

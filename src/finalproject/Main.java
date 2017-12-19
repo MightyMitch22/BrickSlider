@@ -1,7 +1,6 @@
 package finalproject;
 
 import processing.core.PApplet;
-
 import java.util.ArrayList;
 
 
@@ -26,6 +25,7 @@ public class Main extends PApplet implements ApplicationConstants {
     private ArrayList<KeyFrame> keyFrames;
     private Brick brick;
     private Monster monster;
+    //private PFont font; //font for score
 
     /**
      * Various status variables
@@ -36,7 +36,8 @@ public class Main extends PApplet implements ApplicationConstants {
     private float lastTime;
     private int frameIndex = 0;
     private boolean animate = false;
-    private boolean brickTouched = false;
+    private boolean jump = false;
+    private int jumpSwitch = 1;//used to switch jump on and off
 
     /**
      * Camera Functionality
@@ -47,7 +48,7 @@ public class Main extends PApplet implements ApplicationConstants {
     //    CAMERA
     //-----------------------
     private float eyeX = 0;
-    private float eyeY = -200;
+    private float eyeY = 200;
     private float eyeZ = 100;
     //---
     //always use negative z so it is upright
@@ -91,6 +92,9 @@ public class Main extends PApplet implements ApplicationConstants {
         monster = new Monster();
         brick = new Brick();
 
+//        font = createFont("LetterGothicStd.ttf", 32);
+//        textFont(font);
+
         lastTime = millis();
     }
 
@@ -119,6 +123,12 @@ public class Main extends PApplet implements ApplicationConstants {
             fill(255, 255, 153);
             drawSurface();
 
+            textSize(15);
+            fill(0, 102, 153);
+            text(monster.getScore(), 5, 70, 5);
+            fill(0, 102, 153);
+            text("Jump Score", 1, 85, 5);
+
             //Enable camera so it follows the ball
             //camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
 
@@ -127,13 +137,12 @@ public class Main extends PApplet implements ApplicationConstants {
             //update where the camera should be depending on location
             //of the ball
             centerX = monster.updateCameraX();
-            // System.out.println("Print cam X:" + centerX);
             centerY = monster.updateCameraY();
-            // System.out.println("Print cam Y:" + centerY);
             centerZ = monster.updateCameraZ();
-            // System.out.println("Print cam Z:" + centerZ);
 
             brick.draw(this);
+
+
 
         }
 
@@ -143,7 +152,8 @@ public class Main extends PApplet implements ApplicationConstants {
             //isTouching();
 
             float dt = (t - lastTime) * 0.001f;
-            monster.update(dt, brick);
+            monster.update(brick, jump);
+            jump = false;
             //If the brick is touched, stop moving brick
             brick.update(dt);
 
@@ -174,16 +184,25 @@ public class Main extends PApplet implements ApplicationConstants {
 
     public void keyPressed() {
         switch (key) {
-            //my animation is started here
-            case 'v':
+            case 'p': //'p' for play
                 animate = true;
                 break;
             case 'c':
                 animate = false;
                 //FileInOutMachine.saveKeyFramesToFile(keyFrames);
                 break;
-            case 'k':
-                //brickTouched = true;
+            case 'j':
+                jumpSwitch++;
+                if(jumpSwitch%2 == 0){
+                    jump = true;
+                    System.out.println("Jump is now True");
+                    jumpSwitch++;
+                }
+                else if (jumpSwitch%2 != 0){
+                    jump = false;
+                    System.out.println("Jump is now false");
+                }
+
                 //snapCurrent();
                 break;
             case 'u':
@@ -199,7 +218,7 @@ public class Main extends PApplet implements ApplicationConstants {
             case 'q':
                 //moveDown();
                 break;
-            case 'p':
+            case 'v':
                 //moveRight();
                 break;
             case 'y':
