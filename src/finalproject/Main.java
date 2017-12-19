@@ -13,6 +13,7 @@ public class Main extends PApplet implements ApplicationConstants {
 
     private static final long serialVersionUID = 1L;
 
+
     /**
      * Graphical objects
      * Our main ones are..
@@ -37,7 +38,6 @@ public class Main extends PApplet implements ApplicationConstants {
     private float lastTime;
     private int frameIndex = 0;
     private boolean animate = false;
-
 
     /**
      * Camera Functionality
@@ -77,6 +77,7 @@ public class Main extends PApplet implements ApplicationConstants {
 
         textureMode(NORMAL);
 
+
         //this camera stuff tells where the camera is looking and may need to be changed
         //the up vector for example.
         //where is the camera in the world are the first three
@@ -97,6 +98,8 @@ public class Main extends PApplet implements ApplicationConstants {
 //        textFont(font);
 
         lastTime = millis();
+
+
     }
 
     /**
@@ -135,6 +138,7 @@ public class Main extends PApplet implements ApplicationConstants {
             text(monster.getScore(), 5, 70, 5);
             fill(0, 102, 153);
             text("Jump Score", 1, 85, 5);
+
 
             //Enable camera so it follows the ball
             camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
@@ -204,9 +208,11 @@ public class Main extends PApplet implements ApplicationConstants {
 
     public void keyPressed() {
         switch (key) {
+
             case 'p': //'p' for play
                 animate = true;
                 lastTime = millis();
+
                 break;
             case 'c':
                 animate = false;
@@ -241,6 +247,23 @@ public class Main extends PApplet implements ApplicationConstants {
         }
 
     }
+
+    /**
+     * Helps allign the text on the screen
+     * @param x
+     */
+    void drawType(float x) {
+    	  line(x, 0, x, 65);
+    	  line(x, 220, x, height);
+    	  fill(0);
+    	  text("ichi", x, 95);
+    	  fill(51);
+    	  text("ni", x, 130);
+    	  fill(204);
+    	  text("san", x, 165);
+    	  fill(255);
+    	  text("shi", x, 210);
+    	}
 
     /**
      * Main creates out PApplet for our scene
