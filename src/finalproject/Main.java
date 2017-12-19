@@ -1,7 +1,6 @@
 package finalproject;
 
 import processing.core.PApplet;
-
 import java.util.ArrayList;
 
 
@@ -26,6 +25,7 @@ public class Main extends PApplet implements ApplicationConstants {
     private ArrayList<KeyFrame> keyFrames;
     private Brick brick;
     private Monster monster;
+    //private PFont font; //font for score
 
     /**
      * Various status variables
@@ -92,6 +92,9 @@ public class Main extends PApplet implements ApplicationConstants {
         monster = new Monster();
         brick = new Brick();
 
+//        font = createFont("LetterGothicStd.ttf", 32);
+//        textFont(font);
+
         lastTime = millis();
     }
 
@@ -133,6 +136,8 @@ public class Main extends PApplet implements ApplicationConstants {
 
             brick.draw(this);
 
+
+
         }
 
         int t = millis();
@@ -142,6 +147,7 @@ public class Main extends PApplet implements ApplicationConstants {
 
             float dt = (t - lastTime) * 0.001f;
             monster.update(brick, jump);
+            jump = false;
             //If the brick is touched, stop moving brick
             brick.update(dt);
 
@@ -180,13 +186,13 @@ public class Main extends PApplet implements ApplicationConstants {
                 //FileInOutMachine.saveKeyFramesToFile(keyFrames);
                 break;
             case 'j':
-                //jumpSwitch ++;
+                jumpSwitch++;
                 if(jumpSwitch%2 == 0){
                     jump = true;
                     System.out.println("Jump is now True");
                     jumpSwitch++;
                 }
-                else{
+                else if (jumpSwitch%2 != 0){
                     jump = false;
                     System.out.println("Jump is now false");
                 }
