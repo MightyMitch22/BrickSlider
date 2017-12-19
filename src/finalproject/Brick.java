@@ -44,6 +44,12 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 
     }
 
+    public Brick(float x, float y, float z) {
+        bx = x;
+        by = y;
+        bz = z;
+    }
+
     /**
      * Hervé week07, use objects instance variable to access the application's
      * instance methods and variables
@@ -121,13 +127,6 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     }
 
     /**
-     * returns current depth
-     */
-    public float getDepth() {
-        return bd;
-    }
-
-    /**
      * returns current width
      */
     public float getWidth() {
@@ -141,6 +140,12 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         return bh;
     }
 
+    /**
+     * returns current depth
+     */
+    public float getDepth() {
+        return bd;
+    }
 
     /**
      * returns current  x translate
@@ -161,6 +166,27 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      */
     public float getbz() {
         return bz;
+    }
+
+    /**
+     * returns current  x translate
+     */
+    public float getbw() {
+        return bw;
+    }
+
+    /**
+     * returns current  y translate
+     */
+    public float getbh() {
+        return bh;
+    }
+
+    /**
+     * returns current  y translate
+     */
+    public float getbd() {
+        return bd;
     }
 
 

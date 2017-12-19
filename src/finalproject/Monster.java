@@ -19,11 +19,12 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     /**
      * Update class Variables
      */
-    private float bx = 0, by = 0, bz = 30;
-    private float Vx = 12, Vy = 0, Vz = 0;
+    private float bx = 0, by = 0, bz = 50;
+    private float Vzo = 5;
+    private float Vx = 12, Vy = 0, Vz = 50;
     private float rad = 5;
     private float refl = 0.8f;
-    private float constAcc = .08f; //ball falls down
+    private float constAcc = 1.08f; //ball falls down
     private static final float ZERO_SPEED = 0.01f;
     private int score = 0;
 
@@ -73,7 +74,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * brick width is the width of brick to see if monster is
      * actually ontop of brick at Z
      */
-    public void update(Brick brick, boolean jump) {
+    public void update(float dt, Brick brick, boolean jump) {
 
 
         float brickZ = brick.getbz(),  brickX=brick.getbx(),  brickY=brick.getby();
@@ -83,13 +84,14 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
         //ball is currently on the brick
         if (    bx >= brickX - bhw && bx <= brickX + bhw &&
                 by >= brickY - bhh && by <= brickY + bhh &&
-                bz <= brickZ + bhd + rad && !jump) {
+                bz <= brickZ + bhd + rad) {
 
             //bz += -2 * constAcc;
 
             brick.isTouching(true);
             score++; //increment score, you landed on a brick
-            System.out.println("if: "+jump);
+            //System.out.println("if: "+jump);
+            //jump = false; //change jump to false here because ball has detected brick
 
             //System.out.println("inside if statement");
             //velocity for the z plain multiplied by the velocity for the z
@@ -102,18 +104,23 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
 
 
         }
-        //the ball should jump here
-        else if(jump){
-            //bz = bz + 1;
-            int i = 0;
-            while(i < 10){
 
-                bz += Vz * constAcc;
-                Vz -= G * constAcc;
-                i++;
+        //the ball should jump here
+        if(jump){
+            //bz = bz + 1;
+            // we use this object's instance variable to access the application's instance methods and variables
+
+//                bz += Vz * dt;
+//                System.out.println(bz);
+//                Vz += G * dt;
+            //bz += Vz;
+            //Vz = -(0.5f) * G * (dt * dt) + dt * Vz * (float) Math.sin(PI/2);
+            System.out.println("The balls' velocity is: " + Vz);
+//            Vz += Vz - G * dt;
+//                System.out.println(Vz);
+//                i++;
 //                Vz -= G * constAcc;
 //                bz = brickZ + bhd + rad;
-            }
 
         }
     }

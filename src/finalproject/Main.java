@@ -24,6 +24,7 @@ public class Main extends PApplet implements ApplicationConstants {
     //-----------------------------
     private ArrayList<KeyFrame> keyFrames;
     private Brick brick;
+    private Brick nextBrick;
     private Monster monster;
     //private PFont font; //font for score
 
@@ -152,8 +153,8 @@ public class Main extends PApplet implements ApplicationConstants {
             //isTouching();
 
             float dt = (t - lastTime) * 0.001f;
-            monster.update(brick, jump);
-            jump = false;
+            println(dt);
+            monster.update(dt, brick, jump);
             //If the brick is touched, stop moving brick
             brick.update(dt);
 
@@ -161,6 +162,13 @@ public class Main extends PApplet implements ApplicationConstants {
             //isTouching();
 
             lastTime = t;
+        }
+
+        if (brick.getbx() < -50) {
+            float pZ = brick.getbz();
+            float pX = brick.getbx();
+            nextBrick = new Brick(px + brick.getbw(),0,pZ + brick.getbh());
+            brick = nextBrick;
         }
     }
 

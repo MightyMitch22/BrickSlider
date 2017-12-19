@@ -40,5 +40,5 @@ public interface ApplicationConstants {
 	float ORIGIN_Y = WORLD_TO_PIXELS_SCALE*WORLD_Y_MAX;
 
 	//float PI = (float) Math.PI;
-	float G = 32.2f; // ft/s^2
+	float G = 32.19f; // ft/s^2
 }
