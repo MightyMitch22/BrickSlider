@@ -12,14 +12,16 @@ import processing.core.PApplet;
  */
 public class Monster extends PApplet implements ApplicationConstants, AnimatedObject {
 
-	//-----------------------------
-	//	Various status variables
-	//-----------------------------
+    //-----------------------------
+    //	Various status variables
+    //-----------------------------
+
 
 	/**
 	 * Update class Variables
 	 */
 	//tranlations variables for the monster
+
     private float bx = 50, by = 0, bz = 65;
     private float Vx = 12, Vy = 0, Vz = 0;
     private float rad = 5;
@@ -44,7 +46,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     /**
      * The Monster will need to keep track of its own location which the main will update.
      */
-    public Monster(){
+    public Monster() {
 
     }
 
@@ -52,76 +54,73 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * Hervé week07, use objects instance variable to access the application's
      * instance methods and variables
      */
-    public void draw(PApplet app_){
+    public void draw(PApplet app_) {
 
         app_.pushMatrix();
+
         app_.translate(bx, by, bz);
         app_.noStroke();
-        app_.fill(255,0,255);
+        app_.fill(255, 0, 255);
         app_.sphere(rad);
+
         app_.popMatrix();
     }
 
     /**
      * update dt, time in seconds, since the last update.
-     * Hervé - we'll use the object's instance variable to access the
-     * applications instance methods and variables.
+     * Hervé -"we'll use the object's instance variable to access the
+     * applications instance methods and variables."
+     * brickZ is suppose to be location Z
+     * brick width is the width of brick to see if monster is
+     * actually ontop of brick at Z
      */
-    public void update(float dt, float brickZ, float brickWidth){
+    public void update(float dt, Brick brick) {
 
-        //The if statement detects if the ball hits the surface
-    	//compare rad to brick(is inside) 
-    	//compare bricks width and depth
-       /* if (bz <= rad) {
-        	 //velocity for the z plain multiplied by the velocity for the z 
-    	     Vz = refl * PApplet.abs(Vz);
-    	 }*/
-    	//System.out.println(rad);
-    	//System.out.println(bw);
-    	System.out.println(bz);
-    	System.out.println(brickZ);
-    	bz += Vz * dt;
-        if (bz  <= brickZ + brickWidth + 2 ) {
-        	//System.out.println(rad);
-        	//System.out.println(bw);
-        	System.out.println("inside if statement");
-       	 //velocity for the z plain multiplied by the velocity for the z 
-        	 Vz = refl * PApplet.abs(Vz);;
-   	 	 }
-         // 
-    	 //float halfdt2 = 0.30f * dt*dt;
-    	 Vz -= G * dt;
 
-      }
+        float brickZ=brick.getbz(),  brickX=brick.getbx(),  brickY=brick.getby();
+        float bhw = brick.getWidth()/2, bhh = brick.getHeight()/2, bhd = brick.getDepth()/2;
+
+        bz += Vz * dt;
+        Vz -= G * dt;
+
+        if (    bx >= brickX  - bhw && bx <= brickX + bhw &&
+                by >= brickY - bhh && by <= brickY + bhh &&
+                bz <= brickZ + bhd + rad) {
+
+            brick.isTouching(true);
+
+            System.out.println("inside if statement");
+            //velocity for the z plain multiplied by the velocity for the z
+            Vz = refl * PApplet.abs(Vz);
+
+        }
+    }
 
     /**
-     *
      * returns current bx
      */
     public float getX() {
-    	return bx;
+        return bx;
     }
 
     /**
-     *
      * returns current by
      */
     public float getY() {
-    	return by;
+        return by;
     }
 
     /**
-     *
      * returns current bz
      */
     public float getZ() {
-    	return bz;
+        return bz;
     }
 
     /**
      * getR, gets the radius from the monster sphere
      */
-    public float getR(){
+    public float getR() {
         return rad;
     }
 
@@ -129,14 +128,14 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     /**
      * We need to have a method that detects when the Monster is touched
      * by the brick. If the monster lands on top we should stop the brick
-     * and create and game continues. If the brick hits the monster from the side,
+     * game continues. If the brick hits the monster from the side,
      * the game should stop.
-     * @param thY
-     * @param theX
-     * @return
-     * (Do we need this method in Monster or Brick, or both)
+     *
+     * @param thY y for isOnTop
+     * @param theX x for isOnTop
+     * @return (Do we need this method in Monster or Brick, or both)
      */
-    public boolean isInside(float thY, float theX){
+    public boolean isInside(float thY, float theX) {
         return false;
     }
 
@@ -144,57 +143,51 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * We use the static counter
      * to let the variable be set only once.
      */
-  	protected static int setup(PApplet theApp)
-  	{
-  		if (appSetCounter == 0)
-  		{
-  			app = theApp;
-  			appSetCounter = 1;
-  		}
-  		else
-  			appSetCounter = 2;
+    protected static int setup(PApplet theApp) {
+        if (appSetCounter == 0) {
+            app = theApp;
+            appSetCounter = 1;
+        } else
+            appSetCounter = 2;
 
-  		return appSetCounter;
+        return appSetCounter;
 
-  	}
-
-  	/**
-  	 * (camera)
-  	 * returns current centerX
-  	 */
-    public float updateCameraX(){
-
-           return centerX = getX();
     }
 
     /**
-  	 * (camera)
-  	 * returns current centerY
-  	 */
-    public float updateCameraY(){
+     * (camera)
+     * returns current centerX
+     */
+    public float updateCameraX() {
+
+        return centerX = getX();
+    }
+
+    /**
+     * (camera)
+     * returns current centerY
+     */
+    public float updateCameraY() {
 
         return centerY = getY();
 
     }
 
     /**
-  	 * (camera)
-  	 * returns current centerZ
-  	 */
-    public float updateCameraZ(){
+     * (camera)
+     * returns current centerZ
+     */
+    public float updateCameraZ() {
 
         return centerZ = getZ();
 
     }
 
-	@Override
-	public void update(float dt) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void update(float dt) {
+        // TODO Auto-generated method stub
 
-
-
+    }
 
 
 }
