@@ -11,9 +11,9 @@ import java.util.ArrayList;
  */
 public class Main extends PApplet implements ApplicationConstants {
 
-	
+
     private static final long serialVersionUID = 1L;
-    
+
 
     /**
      * Graphical objects
@@ -94,8 +94,8 @@ public class Main extends PApplet implements ApplicationConstants {
         brick = new Brick();
 
         lastTime = millis();
-        
-   
+
+
     }
 
     /**
@@ -122,7 +122,7 @@ public class Main extends PApplet implements ApplicationConstants {
             lights();
             fill(255, 255, 153);
             drawSurface();
-          
+
 
             //Enable camera so it follows the ball
             //camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
@@ -180,15 +180,15 @@ public class Main extends PApplet implements ApplicationConstants {
     public void keyPressed() {
         switch (key) {
         //start with key press, and then when touches
-        //the brick it stops, 
+        //the brick it stops,
         //when key pressed start bouncing again
-        
+
             //my animation is started here
             case 'v':
-            	
+
             	numPressed ++;
                 if(monster.bounceOnce(brick,animate) == false) {
-                //odd number animate on 
+                //odd number animate on
                 	animate = false;
                 }
                 if(numPressed%2 == 0) {
@@ -246,7 +246,7 @@ public class Main extends PApplet implements ApplicationConstants {
     	  fill(255);
     	  text("shi", x, 210);
     	}
-    
+
     /**
      * Main creates out PApplet for our scene
      *
