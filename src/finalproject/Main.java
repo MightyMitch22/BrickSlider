@@ -38,6 +38,7 @@ public class Main extends PApplet implements ApplicationConstants {
     private float lastTime;
     private int frameIndex = 0;
     private boolean animate = false;
+    private int score = 0;
 
     /**
      * Camera Functionality
@@ -135,7 +136,7 @@ public class Main extends PApplet implements ApplicationConstants {
 
             textSize(15);
             fill(0, 102, 153);
-            text(monster.getScore(), 5, 70, 5);
+            text(score, 5, 70, 5);
             fill(0, 102, 153);
             text("Jump Score", 1, 85, 5);
 
@@ -182,6 +183,7 @@ public class Main extends PApplet implements ApplicationConstants {
                 System.out.println("Created new brick at " + brick.getbx() + "  z = " + brick.getbz());
                 System.out.println("        Old brick at " + prevBrick.getbx() + "  z = " + prevBrick.getbz());
                 brickList.add(brick);
+                score++;
             }
 
             lastTime = t;

@@ -28,7 +28,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     private float rad = 5;
     private float refl = 0.8f;
 
-    private int score = 0;
+   
     private boolean jumping = true;
 
 
@@ -161,11 +161,12 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
             landed = true;
             bz = brickZ + bhd + rad;
             theBrick.isTouching();
-            score++; //increment score, you landed on a brick
+            //score++; //increment score, you landed on a brick
         }
-
+        
         return landed;
     }
+   
 
 
     public void jump() {
@@ -189,14 +190,14 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     	
     }
 
-    /**
+   /* *//**
      * getScore returns the number
      * of bricks successfully jumped onto.
-     */
+     *//*
     public float getScore() {
         return score;
     }
-
+*/
     /**
      * returns current bx
      */
