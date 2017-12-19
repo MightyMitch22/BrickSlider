@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edcc7e79-dc91-422f-b51f-8ee20d4f6525" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/finalproject/GraphicObject.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/finalproject/AnimatedObject.java" afterPath="$PROJECT_DIR$/src/finalproject/AnimatedObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/finalproject/ApplicationConstants.java" afterPath="$PROJECT_DIR$/src/finalproject/ApplicationConstants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/finalproject/Brick.java" afterPath="$PROJECT_DIR$/src/finalproject/Brick.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/finalproject/Main.java" afterPath="$PROJECT_DIR$/src/finalproject/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/finalproject/Monster.java" afterPath="$PROJECT_DIR$/src/finalproject/Monster.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +26,8 @@
           <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/finalproject/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-576">
-                  <caret line="94" column="28" lean-forward="false" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
+                <state relative-caret-position="247">
+                  <caret line="191" column="7" lean-forward="false" selection-start-line="191" selection-start-column="7" selection-end-line="191" selection-end-column="7" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -36,9 +42,22 @@
           <file leaf-file-name="Monster.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/finalproject/Monster.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="273">
-                  <caret line="94" column="28" lean-forward="false" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
-                  <folding />
+                <state relative-caret-position="76">
+                  <caret line="23" column="42" lean-forward="false" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+                  <folding>
+                    <element signature="e#4306#4307#0" expanded="true" />
+                    <element signature="e#4334#4335#0" expanded="true" />
+                    <marker date="1513716642893" expanded="false" signature="3402:3412" ph=" { " />
+                    <marker date="1513716642893" expanded="false" signature="3425:3431" ph=" }" />
+                    <marker date="1513716642893" expanded="false" signature="3498:3509" ph=" { " />
+                    <marker date="1513716642893" expanded="false" signature="3519:3525" ph=" }" />
+                    <marker date="1513716642893" expanded="false" signature="3592:3603" ph=" { " />
+                    <marker date="1513716642893" expanded="false" signature="3613:3619" ph=" }" />
+                    <marker date="1513716642893" expanded="false" signature="3686:3697" ph=" { " />
+                    <marker date="1513716642893" expanded="false" signature="3707:3713" ph=" }" />
+                    <marker date="1513716642893" expanded="false" signature="3807:3818" ph=" { " />
+                    <marker date="1513716642893" expanded="false" signature="3829:3835" ph=" }" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -46,8 +65,28 @@
           <file leaf-file-name="Brick.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/finalproject/Brick.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="335">
-                  <caret line="102" column="24" lean-forward="false" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="24" />
+                <state relative-caret-position="753">
+                  <caret line="64" column="8" lean-forward="false" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ApplicationConstants.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/finalproject/ApplicationConstants.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="180">
+                  <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="AnimatedObject.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/finalproject/AnimatedObject.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="120">
+                  <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -75,13 +114,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/finalproject/AnimatedObject.java" />
         <option value="$PROJECT_DIR$/src/finalproject/LinearInterpolationFace.java" />
         <option value="$PROJECT_DIR$/src/finalproject/KeyFrame.java" />
         <option value="$PROJECT_DIR$/src/finalproject/ApplicationConstants.java" />
+        <option value="$PROJECT_DIR$/src/finalproject/AnimatedObject.java" />
         <option value="$PROJECT_DIR$/src/finalproject/Brick.java" />
-        <option value="$PROJECT_DIR$/src/finalproject/Monster.java" />
         <option value="$PROJECT_DIR$/src/finalproject/Main.java" />
+        <option value="$PROJECT_DIR$/src/finalproject/Monster.java" />
       </list>
     </option>
   </component>
@@ -106,7 +145,6 @@
     <panes>
       <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -153,6 +191,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -744,7 +783,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="46" column="59" lean-forward="false" selection-start-line="46" selection-start-column="59" selection-end-line="46" selection-end-column="59" />
-          <folding />
+          <folding>
+            <element signature="e#4306#4307#0" expanded="true" />
+            <element signature="e#4334#4335#0" expanded="true" />
+            <marker date="1513716642893" expanded="false" signature="3402:3412" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3425:3431" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3498:3509" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3519:3525" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3592:3603" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3613:3619" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3686:3697" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3707:3713" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3807:3818" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3829:3835" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -810,7 +862,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="46" column="59" lean-forward="false" selection-start-line="46" selection-start-column="59" selection-end-line="46" selection-end-column="59" />
-          <folding />
+          <folding>
+            <element signature="e#4306#4307#0" expanded="true" />
+            <element signature="e#4334#4335#0" expanded="true" />
+            <marker date="1513716642893" expanded="false" signature="3402:3412" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3425:3431" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3498:3509" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3519:3525" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3592:3603" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3613:3619" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3686:3697" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3707:3713" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3807:3818" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3829:3835" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -868,7 +933,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-          <folding />
+          <folding>
+            <element signature="e#4306#4307#0" expanded="true" />
+            <element signature="e#4334#4335#0" expanded="true" />
+            <marker date="1513716642893" expanded="false" signature="3402:3412" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3425:3431" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3498:3509" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3519:3525" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3592:3603" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3613:3619" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3686:3697" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3707:3713" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3807:3818" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3829:3835" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -908,7 +986,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="46" column="59" lean-forward="false" selection-start-line="46" selection-start-column="59" selection-end-line="46" selection-end-column="59" />
-          <folding />
+          <folding>
+            <element signature="e#4306#4307#0" expanded="true" />
+            <element signature="e#4334#4335#0" expanded="true" />
+            <marker date="1513716642893" expanded="false" signature="3402:3412" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3425:3431" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3498:3509" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3519:3525" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3592:3603" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3613:3619" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3686:3697" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3707:3713" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3807:3818" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3829:3835" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -968,7 +1059,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="46" column="59" lean-forward="false" selection-start-line="46" selection-start-column="59" selection-end-line="46" selection-end-column="59" />
-          <folding />
+          <folding>
+            <element signature="e#4306#4307#0" expanded="true" />
+            <element signature="e#4334#4335#0" expanded="true" />
+            <marker date="1513716642893" expanded="false" signature="3402:3412" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3425:3431" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3498:3509" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3519:3525" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3592:3603" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3613:3619" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3686:3697" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3707:3713" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3807:3818" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3829:3835" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1018,7 +1122,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-          <folding />
+          <folding>
+            <element signature="e#4306#4307#0" expanded="true" />
+            <element signature="e#4334#4335#0" expanded="true" />
+            <marker date="1513716642893" expanded="false" signature="3402:3412" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3425:3431" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3498:3509" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3519:3525" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3592:3603" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3613:3619" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3686:3697" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3707:3713" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3807:3818" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3829:3835" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1046,14 +1163,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/finalproject/GraphicObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2400">
-          <caret line="180" column="7" lean-forward="false" selection-start-line="180" selection-start-column="7" selection-end-line="180" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/finalproject/TestBall.java" />
     <entry file="jar:///Applications/Processing.app/Contents/Java/core.jar!/processing/core/PApplet.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -1066,14 +1175,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="751">
           <caret line="108" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/finalproject/AnimatedObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="45" lean-forward="false" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -1093,36 +1194,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/finalproject/GraphicObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/finalproject/ApplicationConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="42" column="19" lean-forward="false" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
+        <state relative-caret-position="180">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/finalproject/AnimatedObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/finalproject/Brick.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="102" column="24" lean-forward="false" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/finalproject/Monster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="94" column="28" lean-forward="false" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
+        <state relative-caret-position="753">
+          <caret line="64" column="8" lean-forward="false" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/finalproject/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-576">
-          <caret line="94" column="28" lean-forward="false" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
+        <state relative-caret-position="247">
+          <caret line="191" column="7" lean-forward="false" selection-start-line="191" selection-start-column="7" selection-end-line="191" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/finalproject/Monster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="23" column="42" lean-forward="false" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+          <folding>
+            <element signature="e#4306#4307#0" expanded="true" />
+            <element signature="e#4334#4335#0" expanded="true" />
+            <marker date="1513716642893" expanded="false" signature="3402:3412" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3425:3431" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3498:3509" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3519:3525" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3592:3603" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3613:3619" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3686:3697" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3707:3713" ph=" }" />
+            <marker date="1513716642893" expanded="false" signature="3807:3818" ph=" { " />
+            <marker date="1513716642893" expanded="false" signature="3829:3835" ph=" }" />
           </folding>
         </state>
       </provider>

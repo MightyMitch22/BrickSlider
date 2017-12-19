@@ -15,24 +15,19 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     //-----------------------------
     //	Various status variables
     //-----------------------------
-  
+
+    private static final float IMPULSE_SPEED = 50f;
+
     /**
      * Update class Variables
      */
-<<<<<<< HEAD
     private float bx = 0, by = 0, bz = 10;
-    private float Vzo = 5;
-    private float Vx = 12, Vy = 0, Vz = 50;
-=======
-    private float bx = 0, by = 0, bz = 30;
-
-    private float Vx = 12, Vy = 0, Vz = 0;
->>>>>>> 6566be942306d983f9d8e33310af6a93229cbc1f
+    private float Vz = 0;
     private float rad = 5;
     private float refl = 0.8f;
     private float constAcc = 1.08f; //ball falls down
-    private static final float ZERO_SPEED = 0.01f;
     private int score = 0;
+    private boolean jumping=true;
 
     /**
      * (0,0,0) updating the camera here to stay with the monster and not zero always
@@ -41,15 +36,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     private float centerY = 0;
     private float centerZ = 0;
 
-    /**
-     * private static PApplet app_;
-     * private static int appSetCounter_ = 0;
-     * used in PApplet setup
-     */
-    private static PApplet app;
-    private static int appSetCounter = 0;
-
-    /**
+     /**
      * The Monster will need to keep track of its own location which the main will update.
      */
     public Monster() {
@@ -60,16 +47,16 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * Hervé week07, use objects instance variable to access the application's
      * instance methods and variables
      */
-    public void draw(PApplet app_) {
+    public void draw(PApplet app) {
 
-        app_.pushMatrix();
+        app.pushMatrix();
 
-        app_.translate(bx, by, bz);
-        app_.noStroke();
-        app_.fill(255, 0, 255);
-        app_.sphere(rad);
+        app.translate(bx, by, bz);
+        app.noStroke();
+        app.fill(255, 0, 255);
+        app.sphere(rad);
 
-        app_.popMatrix();
+        app.popMatrix();
     }
 
     /**
@@ -80,11 +67,19 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * brick width is the width of brick to see if monster is
      * actually ontop of brick at Z
      */
-    public void update(float dt, Brick brick, boolean jump) {
+    public boolean update(float dt, Brick brick) {
 
+        boolean landed = false;
 
         float brickZ = brick.getbz(),  brickX = brick.getbx(),  brickY = brick.getby();
         float bhw = brick.getWidth()/2, bhh = brick.getHeight()/2, bhd = brick.getDepth()/2;
+
+        //the ball should jump here
+        if(jumping){
+            bz += Vz*dt - 8f*G*dt*dt;
+            Vz -= G*dt;
+             System.out.println("The balls' velocity is: " + Vz);
+        }
 
         //Vz -= G * constAcc;
         //ball is currently on the brick
@@ -93,11 +88,12 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
                 bz <= brickZ + bhd + rad) {
 
             //bz += brickZ;
-
+            jumping = false;
+            landed = true;
+            bz = brickZ + bhd + rad;
             brick.isTouching(true);
             score++; //increment score, you landed on a brick
             //System.out.println("if: "+jump);
-            jump = false; //change jump to false here because ball has detected brick
             println("STOP");
 
             //System.out.println("inside if statement");
@@ -107,29 +103,16 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
             //bz = brickZ + (bhh*2) + rad;
 
         }
-
-        //the ball should jump here
-        if(jump){
-            bz = bz - 5*dt;
-            // we use this object's instance variable to access the application's instance methods and variables
-
-//                bz += Vz * dt;
-//                System.out.println(bz);
-//                Vz += G * dt;
-            //bz += Vz;
-            //Vz = -(0.5f) * G * (dt * dt) + dt * Vz * (float) Math.sin(PI/2);
-            System.out.println("The balls' velocity is: " + Vz);
-//            Vz += Vz - G * dt;
-//                System.out.println(Vz);
-//                i++;
-//                Vz -= G * constAcc;
-//                bz = brickZ + bhd + rad;
-
-            //brick.isTouching(false);
-
-        }
+        return landed;
     }
 
+
+    public void jump() {
+        if (!jumping) {
+            jumping = true;
+            Vz = IMPULSE_SPEED;
+        }
+    }
     /**
      * getScore returns the number
      * of bricks successfully jumped onto.
@@ -167,21 +150,6 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     }
 
     /**
-     * We use the static counter
-     * to let the variable be set only once.
-     */
-    protected static int setup(PApplet theApp) {
-        if (appSetCounter == 0) {
-            app = theApp;
-            appSetCounter = 1;
-        } else
-            appSetCounter = 2;
-
-        return appSetCounter;
-
-    }
-
-    /**
      * (camera)
      * returns current centerX
      */
@@ -211,10 +179,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     }
 
     @Override
-    public void update(float dt) {
-        // TODO Auto-generated method stub
-
+    public boolean update(float dt) {
+        return false;
     }
-
-
 }

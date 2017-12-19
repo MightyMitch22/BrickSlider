@@ -23,8 +23,8 @@ public class Main extends PApplet implements ApplicationConstants {
     //	graphical objects
     //-----------------------------
     private ArrayList<KeyFrame> keyFrames;
-    private Brick brick, brick2;
-    private Brick nextBrick;
+    private ArrayList<Brick> brickList;
+    private Brick brick;
     private Monster monster;
     //private PFont font; //font for score
 
@@ -91,8 +91,10 @@ public class Main extends PApplet implements ApplicationConstants {
 
         //draw the new monster and brick
         monster = new Monster();
-        brick = new Brick();
-        brick2 = new Brick();
+
+        brickList = new ArrayList<Brick>();
+        brick = new Brick(0);
+        brickList.add(brick);
 
 //        font = createFont("LetterGothicStd.ttf", 32);
 //        textFont(font);
@@ -145,13 +147,6 @@ public class Main extends PApplet implements ApplicationConstants {
             brick.draw(this);
             //brick2.draw(this);
 
-            if (brick.getIsTouching()) {
-                float pZ = brick.getbz();
-                float enterX = 50;
-                nextBrick = new Brick(enterX,0,pZ + brick.getHeight()/2);
-                brick2 = nextBrick;
-            }
-
 
 
         }
@@ -163,11 +158,19 @@ public class Main extends PApplet implements ApplicationConstants {
 
             float dt = (t - lastTime) * 0.001f;
             println(dt);
-            monster.update(dt, brick, jump);
+            boolean monsterLanded = monster.update(dt, brick);
             //If the brick is touched, stop moving brick
 
             //brick movement
-            brick.update(dt);
+            boolean brickOut = brick.update(dt);
+            if (brickOut) {
+                brickList.remove(brick);
+            }
+
+            if (monsterLanded || brickOut) {
+                brick = new Brick(brickList.size());
+                brickList.add(brick);
+            }
 
             lastTime = t;
         }
@@ -185,8 +188,8 @@ public class Main extends PApplet implements ApplicationConstants {
      * DrawSurface will create the stage for our game
      */
     public void drawSurface() {
+
         beginShape(QUADS);
-        //texture(backgroundImage_);
 
         vertex(XMIN, YMAX, 0, 0, 0);
         vertex(XMIN, YMIN, 0, 0, 1);
@@ -202,23 +205,14 @@ public class Main extends PApplet implements ApplicationConstants {
         switch (key) {
             case 'p': //'p' for play
                 animate = true;
+                lastTime = millis();
                 break;
             case 'c':
                 animate = false;
                 //FileInOutMachine.saveKeyFramesToFile(keyFrames);
                 break;
             case 'j':
-                jumpSwitch++;
-                if(jumpSwitch%2 == 0){
-                    jump = true;
-                    System.out.println("Jump is now True");
-                    jumpSwitch++;
-                }
-                else if (jumpSwitch%2 != 0){
-                    jump = false;
-                    System.out.println("Jump is now false");
-                }
-
+                monster.jump();
                 //snapCurrent();
                 break;
             case 'u':

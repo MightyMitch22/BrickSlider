@@ -10,6 +10,17 @@ import processing.core.PApplet;
  */
 public class Brick extends PApplet implements ApplicationConstants, AnimatedObject {
 
+    /**
+     * private static PApplet app;
+     * private static int appSetCounter = 0;
+     * used in PApplet setup
+     */
+    private static final float bw = 40, bh = 25, bd = 6;
+
+    private static final float BASE_SPEED = 20;
+    private static final float SPEED_INCR = 1.1f;
+    private static int brickCounter = 0;
+    private static float speedFactor = 1.f;
 
     //-----------------------------
     //	Various status variables
@@ -18,21 +29,9 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * Update class Variables
      */
     //translation of brick
-    private float bx = 0, by = 0, bz = 0;
-    //actual brick
-    private float bw = 40, bh = 25, bd = 6;
-    //private float Vx = 12, Vy = 0, Vz = 0;
-
-
-    /**
-     * private static PApplet app;
-     * private static int appSetCounter = 0;
-     * used in PApplet setup
-     */
-    private static PApplet app;
-    private static int appSetCounter = 0;
-
-    private boolean isTrue = false;
+    private float bx, by, bz;
+    private float Vx;
+    private boolean isTrue;
 
 
     /**
@@ -40,14 +39,21 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * a predetermined keyframe path (right to left), x and y start value. Y will update
      * for each new object in the Main setup();
      */
-    public Brick() {
+    public Brick(int n) {
 
-    }
+        //  create the brick outside of the window, at the proper level (based on n)
+        if (n != 0)
+            bx = XMAX + (6 + (int)(5*Math.random())*bw);
+        else
+            bx = XMAX;// hard code the first brick
+        by = 0;
+        bz = n*bd;
 
-    public Brick(float x, float y, float z) {
-        bx = x;
-        by = y;
-        bz = z;
+        Vx = speedFactor*BASE_SPEED;
+
+        isTrue = false;
+        brickCounter++;
+        speedFactor *= SPEED_INCR;
     }
 
     /**
@@ -55,6 +61,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * instance methods and variables
      */
     public void draw(PApplet app_) {
+
         app_.pushMatrix();
 
         app_.translate(bx, by, bz);
@@ -80,7 +87,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * when pressed again we want it to bounce back up and then fall
      * onto the brick
      */
-    public void update(float dt) {
+    public boolean update(float dt) {
 
         //-----------------------------
         // moves brick right to left
@@ -89,12 +96,16 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         // monster touches top of brick
         //-----------------------------
 
+        boolean brickOut = false;
         if (!isTrue) {
-        bx -= .03f;//brick moves
+        bx -= Vx*dt;//brick moves
+            if (bx < XMIN*1.1f)
+                brickOut = true;
        }
         else{
             //don't do anything
         }
+        return brickOut;
     }
 
     /**
@@ -157,18 +168,4 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         return bz;
     }
 
-    /**
-     * We use the static counter
-     * to let the variable be set only once.
-     */
-    protected static int setup(PApplet theApp) {
-        if (appSetCounter == 0) {
-            app = theApp;
-            appSetCounter = 1;
-        } else
-            appSetCounter = 2;
-
-        return appSetCounter;
-
-    }
-}
+  }
