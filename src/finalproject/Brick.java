@@ -10,6 +10,17 @@ import processing.core.PApplet;
  */
 public class Brick extends PApplet implements ApplicationConstants, AnimatedObject {
 
+    /**
+     * private static PApplet app;
+     * private static int appSetCounter = 0;
+     * used in PApplet setup
+     */
+    public static final float bw = 40, bh = 25, bd = 6;
+
+    private static final float BASE_SPEED = 20;
+    private static final float SPEED_INCR = 1.1f;
+    private static int brickCounter = 0;
+    private static float speedFactor = 1.f;
 
     //-----------------------------
     //	Various status variables
@@ -18,21 +29,8 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * Update class Variables
      */
     //translation of brick
-    private float bx = 50, by = 0, bz = 30;
-    //actual brick
-    private float bw = 40, bh = 25, bd = 6;
-    //private float Vx = 12, Vy = 0, Vz = 0;
-
-
-    /**
-     * private static PApplet app;
-     * private static int appSetCounter = 0;
-     * used in PApplet setup
-     */
-    private static PApplet app;
-    private static int appSetCounter = 0;
-
-    private boolean isTrue = false;
+    private float bx, by, bz;
+    private float Vx;
 
 
     /**
@@ -40,8 +38,20 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * a predetermined keyframe path (right to left), x and y start value. Y will update
      * for each new object in the Main setup();
      */
-    public Brick() {
+    public Brick(int n) {
 
+        //  create the brick outside of the window, at the proper level (based on n)
+        if (n != 0)
+            bx = XMAX + (6 + (int)(5*Math.random())*bw);
+        else
+            bx = 10;// hard code the first brick
+        by = 0;
+        bz = (n)*bd;
+
+        Vx = speedFactor*BASE_SPEED;
+
+        brickCounter++;
+        speedFactor *= SPEED_INCR;
     }
 
     /**
@@ -49,6 +59,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * instance methods and variables
      */
     public void draw(PApplet app_) {
+
         app_.pushMatrix();
 
         app_.translate(bx, by, bz);
@@ -74,7 +85,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * when pressed again we want it to bounce back up and then fall
      * onto the brick
      */
-    public void update(float dt) {
+    public boolean update(float dt) {
 
         //-----------------------------
         // moves brick right to left
@@ -83,115 +94,65 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         // monster touches top of brick
         //-----------------------------
 
-//        float monZ = monster.getX(),  monX = monster.getX(),  monY = monster.getZ();
-//        float bhw = getWidth()/2, bhh = getHeight()/2, bhd = getDepth()/2;
-//        float monRad = monster.getR();
-        if (!isTrue) {
-        bx -= .03f;//brick moves
-//        if (    bx >= monX - bhw && bx <= monX + bhw &&
-//                by >= monY - bhh && by <= monY + bhh &&
-//                bz <= monZ + bhd + monRad) {
-//
-//            brickTouched = true;
-//
-//            System.out.println("brick should stop");
-//            bx = 0;//brick stops
-//
-       }
-//        System.out.print(" |isTrue "+isTrue+"|");
-        else{
-            //System.out.print("isTrue"+isTrue);
-      //      bx -= 0;
-        }
+        boolean brickOut = false;
+        bx -= Vx*dt;//brick moves
+            if (bx < XMIN*1.1f)
+                brickOut = true;
 
-
-
+        return brickOut;
     }
 
-
     /**
-     * We need to have a method that detects when the brick is touched
-     * by the monster. If the monster lands on top we should stop the brick
-     * and create a new brick at an updated y value so it aligns with top of
-     * previous brick and game continues. If the brick hits the monster from the side,
-     * the game should stop and restart. This task will be handled by isOnTop()
-     *
-     * @param tRad is the translated Radius of the ball
-     * @return returns true if monster is inside the brick
+     *  If the ball touches the brick, isTouching is
+     *  called from monster and changes the boolean isTrue
+     *  to true or false
      */
-    public boolean isOnTop(float tRad) {
-        //check w       check h        check depth
-        return ((tRad >= bw) && (tRad >= bh) && (tRad >= bd));
+    public void isTouching() {
+
+        Vx = 0;
 
     }
 
     /**
-     *If the monster touches the brick, we want the brick to stop
-     * animating, and the ball to stay on the brick.
-     */
-    public void isTouching(boolean isTrue) {
-
-
-        this.isTrue =  isTrue;
-
-    }
-
-    /**
-     * returns current depth
-     */
-    public float getDepth() {
-        return bd;
-    }
-
-    /**
-     * returns current width
+     * returns brick width
      */
     public float getWidth() {
         return bw;
     }
 
     /**
-     * returns current height
+     * returns brick height
      */
     public float getHeight() {
         return bh;
     }
 
+    /**
+     * returns brick depth
+     */
+    public float getDepth() {
+        return bd;
+    }
 
     /**
-     * returns current  x translate
+     * returns current x translate
      */
     public float getbx() {
         return bx;
     }
 
     /**
-     * returns current  y translate
+     * returns current y translate
      */
     public float getby() {
         return by;
     }
 
     /**
-     * returns current  y translate
+     * returns current z translate
      */
     public float getbz() {
         return bz;
     }
 
-
-    /**
-     * We use the static counter
-     * to let the variable be set only once.
-     */
-    protected static int setup(PApplet theApp) {
-        if (appSetCounter == 0) {
-            app = theApp;
-            appSetCounter = 1;
-        } else
-            appSetCounter = 2;
-
-        return appSetCounter;
-
-    }
-}
+  }
