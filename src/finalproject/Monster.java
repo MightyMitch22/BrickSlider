@@ -15,11 +15,12 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     //-----------------------------
     //	Various status variables
     //-----------------------------
-
+  
     /**
      * Update class Variables
      */
     private float bx = 0, by = 0, bz = 30;
+
     private float Vx = 12, Vy = 0, Vz = 0;
     private float rad = 5;
     private float refl = 0.8f;
