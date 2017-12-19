@@ -15,7 +15,7 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      * private static int appSetCounter = 0;
      * used in PApplet setup
      */
-    private static final float bw = 40, bh = 25, bd = 6;
+    public static final float bw = 40, bh = 25, bd = 6;
 
     private static final float BASE_SPEED = 20;
     private static final float SPEED_INCR = 1.1f;
@@ -45,9 +45,9 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         if (n != 0)
             bx = XMAX + (6 + (int)(5*Math.random())*bw);
         else
-            bx = XMAX;// hard code the first brick
+            bx = 10;// hard code the first brick
         by = 0;
-        bz = n*bd;
+        bz = (n)*bd;
 
         Vx = speedFactor*BASE_SPEED;
 
@@ -117,13 +117,6 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 
         this.isTrue =  isTrue;
 
-    }
-
-    /**
-     * returns current isTouching status
-     */
-    public boolean getIsTouching(){
-        return isTrue;
     }
 
     /**
