@@ -19,10 +19,11 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     /**
      * Update class Variables
      */
-    private float bx = 50, by = 0, bz = 65;
+    private float bx = 0, by = 0, bz = 8;
     private float Vx = 12, Vy = 0, Vz = 0;
     private float rad = 5;
     private float refl = 0.8f;
+    private float constAcc = .08f; //ball falls down
     private static final float ZERO_SPEED = 0.01f;
 
     /**
@@ -71,25 +72,36 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * brick width is the width of brick to see if monster is
      * actually ontop of brick at Z
      */
-    public void update(float dt, Brick brick) {
+    public void update(Brick brick, boolean jump) {
 
 
-        float brickZ=brick.getbz(),  brickX=brick.getbx(),  brickY=brick.getby();
+        float brickZ = brick.getbz(),  brickX=brick.getbx(),  brickY=brick.getby();
         float bhw = brick.getWidth()/2, bhh = brick.getHeight()/2, bhd = brick.getDepth()/2;
 
-        bz += Vz * dt;
-        Vz -= G * dt;
-
-        if (    bx >= brickX  - bhw && bx <= brickX + bhw &&
+        //Vz -= G * constAcc;
+        if (    bx >= brickX - bhw && bx <= brickX + bhw &&
                 by >= brickY - bhh && by <= brickY + bhh &&
-                bz <= brickZ + bhd + rad) {
+                bz <= brickZ + bhd + rad && !jump) {
+
+            bz += -2 * constAcc;
 
             brick.isTouching(true);
+            //System.out.println("if: "+jump);
 
-            System.out.println("inside if statement");
+            //System.out.println("inside if statement");
             //velocity for the z plain multiplied by the velocity for the z
-            Vz = refl * PApplet.abs(Vz);
+            //Vz = refl * PApplet.abs(Vz);
 
+            bz = brickZ + bhd + rad;
+
+            /// if statement that waits for ball fell
+            //boolean that says ball falling vs ball fell
+
+
+        }
+        else if(jump){
+            //System.out.println("else if: "+jump);
+            jump = false;
         }
     }
 

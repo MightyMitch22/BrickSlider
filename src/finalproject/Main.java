@@ -36,7 +36,8 @@ public class Main extends PApplet implements ApplicationConstants {
     private float lastTime;
     private int frameIndex = 0;
     private boolean animate = false;
-    private boolean brickTouched = false;
+    private boolean jump = false;
+    private float jumpSwitch = 1;//used to switch jump on and off
 
     /**
      * Camera Functionality
@@ -127,11 +128,8 @@ public class Main extends PApplet implements ApplicationConstants {
             //update where the camera should be depending on location
             //of the ball
             centerX = monster.updateCameraX();
-            // System.out.println("Print cam X:" + centerX);
             centerY = monster.updateCameraY();
-            // System.out.println("Print cam Y:" + centerY);
             centerZ = monster.updateCameraZ();
-            // System.out.println("Print cam Z:" + centerZ);
 
             brick.draw(this);
 
@@ -143,7 +141,7 @@ public class Main extends PApplet implements ApplicationConstants {
             //isTouching();
 
             float dt = (t - lastTime) * 0.001f;
-            monster.update(dt, brick);
+            monster.update(brick, jump);
             //If the brick is touched, stop moving brick
             brick.update(dt);
 
@@ -174,16 +172,25 @@ public class Main extends PApplet implements ApplicationConstants {
 
     public void keyPressed() {
         switch (key) {
-            //my animation is started here
-            case 'v':
+            case 'p': //'p' for play
                 animate = true;
                 break;
             case 'c':
                 animate = false;
                 //FileInOutMachine.saveKeyFramesToFile(keyFrames);
                 break;
-            case 'k':
-                //brickTouched = true;
+            case 'j':
+                //jumpSwitch ++;
+                if(jumpSwitch%2 == 0){
+                    jump = true;
+                    System.out.println("Jump is now True");
+                    jumpSwitch++;
+                }
+                else{
+                    jump = false;
+                    System.out.println("Jump is now false");
+                }
+
                 //snapCurrent();
                 break;
             case 'u':
@@ -199,7 +206,7 @@ public class Main extends PApplet implements ApplicationConstants {
             case 'q':
                 //moveDown();
                 break;
-            case 'p':
+            case 'v':
                 //moveRight();
                 break;
             case 'y':
