@@ -15,18 +15,20 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     //-----------------------------
     //	Various status variables
     //-----------------------------
-  
+
+    private static final float IMPULSE_SPEED = 50f;
+    private static final float BUMP_SPEED = 50f;
+
     /**
      * Update class Variables
      */
-    private float bx = 0, by = 0, bz = 30;
-
-    private float Vx = 12, Vy = 0, Vz = 0;
+    private float bx = 0, by = 0, bz = Brick.bd * 8;
+    private float Vz = 0;
+    private float Vx = 0;
     private float rad = 5;
     private float refl = 0.8f;
-    private float constAcc = .08f; //ball falls down
-    private static final float ZERO_SPEED = 0.01f;
     private int score = 0;
+    private boolean jumping = true;
 
     /**
      * (0,0,0) updating the camera here to stay with the monster and not zero always
@@ -34,14 +36,6 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     private float centerX = 0;
     private float centerY = 0;
     private float centerZ = 0;
-
-    /**
-     * private static PApplet app_;
-     * private static int appSetCounter_ = 0;
-     * used in PApplet setup
-     */
-    private static PApplet app;
-    private static int appSetCounter = 0;
 
     /**
      * The Monster will need to keep track of its own location which the main will update.
@@ -54,16 +48,16 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * Hervé week07, use objects instance variable to access the application's
      * instance methods and variables
      */
-    public void draw(PApplet app_) {
+    public void draw(PApplet app) {
 
-        app_.pushMatrix();
+        app.pushMatrix();
 
-        app_.translate(bx, by, bz);
-        app_.noStroke();
-        app_.fill(255, 0, 255);
-        app_.sphere(rad);
+        app.translate(bx, by, bz);
+        app.noStroke();
+        app.fill(255, 0, 255);
+        app.sphere(rad);
 
-        app_.popMatrix();
+        app.popMatrix();
     }
 
     /**
@@ -74,48 +68,105 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * brick width is the width of brick to see if monster is
      * actually ontop of brick at Z
      */
-    public void update(Brick brick, boolean jump) {
+    public int update(float dt, Main app, Brick brick1, Brick brick2) {
 
+        int status = 0;
+        boolean landed = false;
+        boolean gameOver = false;
 
-        float brickZ = brick.getbz(),  brickX=brick.getbx(),  brickY=brick.getby();
-        float bhw = brick.getWidth()/2, bhh = brick.getHeight()/2, bhd = brick.getDepth()/2;
-
-        //Vz -= G * constAcc;
-        //ball is currently on the brick
-        if (    bx >= brickX - bhw && bx <= brickX + bhw &&
-                by >= brickY - bhh && by <= brickY + bhh &&
-                bz <= brickZ + bhd + rad && !jump) {
-
-            //bz += -2 * constAcc;
-
-            brick.isTouching(true);
-            score++; //increment score, you landed on a brick
-            System.out.println("if: "+jump);
-
-            //System.out.println("inside if statement");
-            //velocity for the z plain multiplied by the velocity for the z
-            //Vz = refl * PApplet.abs(Vz);
-
-            //bz = brickZ + bhd + rad;
-
-            /// if statement that waits for ball fell
-            //boolean that says ball falling vs ball fell
-
-
-        }
         //the ball should jump here
-        else if(jump){
-            //bz = bz + 1;
-            int i = 0;
-            while(i < 10){
+        if (jumping) {
+            bz += Vz * dt - 8f * G * dt * dt;
+            Vz -= G * dt;
 
-                bz += Vz * constAcc;
-                Vz -= G * constAcc;
-                i++;
-//                Vz -= G * constAcc;
-//                bz = brickZ + bhd + rad;
+            // test against the ground
+            if (bz < rad) {
+                app.setGameOver();
+                System.out.println("Game Over");
             }
+        }
 
+        if (!gameOver) {
+            landed = testBrick(brick1);
+            if (landed) {
+                status = 1;
+                System.out.println("landed on brick1");
+            }
+            if (!landed && brick2 != null) {
+                landed = testBrick(brick2);
+                if (landed) {
+                    System.out.println("landed on brick2");
+                    status = 2;
+                }
+            }
+        }
+
+        if (!landed && testBump(brick1)) {
+            Vx = BUMP_SPEED;
+            jumping = true;
+            System.out.println("side bump");
+        }
+
+        return status;
+    }
+
+    /**
+     * testBump is checking if the ball is hit by the side
+     * of the brick
+     *
+     * @param theBrick the current brick moving towards
+     *                 the monster
+     * @return
+     */
+    private boolean testBump(Brick theBrick) {
+        float brickZ = theBrick.getbz(), brickX = theBrick.getbx(), brickY = theBrick.getby();
+        float bhw = theBrick.getWidth() / 2, bhh = theBrick.getHeight() / 2, bhd = theBrick.getDepth() / 2;
+
+        boolean bump = false;
+
+        //tests for ball hiting side of brick
+        if (bx > brickX && bx < brickX + bhw + rad &&
+                bz > brickZ - bhd && bz <= brickZ + bhd) {
+            System.out.println("x = " + bx + "   z = " + bz);
+            System.out.println("brick x = " + brickX + "   z = " + brickZ);
+            System.out.println("" + brickX + " < " + bx + " < " + brickX + bhw + rad);
+            System.out.println("" + (brickZ - bhd) + " < " + bz + " < " + brickZ + bhd);
+            println("Test Bump");
+
+//                bx >= brickX - bhw && bx <= brickX + bhw + rad &&
+//                by >= brickY - bhh && by <= brickY + bhh &&
+//                bz >= brickZ - bhd && bz <= brickZ - bhd)
+
+            bump = true;
+        }
+        return bump;
+    }
+
+    private boolean testBrick(Brick theBrick) {
+        boolean landed = false;
+
+        float brickZ = theBrick.getbz(), brickX = theBrick.getbx(), brickY = theBrick.getby();
+        float bhw = theBrick.getWidth() / 2, bhh = theBrick.getHeight() / 2, bhd = theBrick.getDepth() / 2;
+
+        //ball is currently on the brick
+        if (bx >= brickX - bhw && bx <= brickX + bhw &&
+                bz <= brickZ + bhd + rad) {
+
+            //bz += brickZ;
+            jumping = false;
+            landed = true;
+            bz = brickZ + bhd + rad;
+            theBrick.isTouching();
+            score++; //increment score, you landed on a brick
+        }
+
+        return landed;
+    }
+
+    public void jump() {
+        if (!jumping) {
+            jumping = true;
+            Vz = IMPULSE_SPEED;
         }
     }
 
@@ -123,7 +174,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * getScore returns the number
      * of bricks successfully jumped onto.
      */
-    public float getScore(){
+    public float getScore() {
         return score;
     }
 
@@ -153,36 +204,6 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      */
     public float getR() {
         return rad;
-    }
-
-
-    /**
-     * We need to have a method that detects when the Monster is touched
-     * by the brick. If the monster lands on top we should stop the brick
-     * game continues. If the brick hits the monster from the side,
-     * the game should stop.
-     *
-     * @param thY y for isOnTop
-     * @param theX x for isOnTop
-     * @return (Do we need this method in Monster or Brick, or both)
-     */
-    public boolean isInside(float thY, float theX) {
-        return false;
-    }
-
-    /**
-     * We use the static counter
-     * to let the variable be set only once.
-     */
-    protected static int setup(PApplet theApp) {
-        if (appSetCounter == 0) {
-            app = theApp;
-            appSetCounter = 1;
-        } else
-            appSetCounter = 2;
-
-        return appSetCounter;
-
     }
 
     /**
@@ -215,10 +236,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     }
 
     @Override
-    public void update(float dt) {
-        // TODO Auto-generated method stub
-
+    public boolean update(float dt) {
+        return false;
     }
-
-
 }

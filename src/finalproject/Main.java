@@ -22,8 +22,9 @@ public class Main extends PApplet implements ApplicationConstants {
     //-----------------------------
     //	graphical objects
     //-----------------------------
-    private ArrayList<KeyFrame> keyFrames;
+    private ArrayList<Brick> brickList;
     private Brick brick;
+    private Brick prevBrick;
     private Monster monster;
     //private PFont font; //font for score
 
@@ -36,8 +37,7 @@ public class Main extends PApplet implements ApplicationConstants {
     private float lastTime;
     private int frameIndex = 0;
     private boolean animate = false;
-    private boolean jump = false;
-    private int jumpSwitch = 1;//used to switch jump on and off
+
 
     /**
      * Camera Functionality
@@ -64,6 +64,7 @@ public class Main extends PApplet implements ApplicationConstants {
     private float upY = 0;
     private float upZ = -1;
 
+    private boolean gameOver = false;
 
     /**
      * Setup includes: FrameRate, keyFrames, Camera, Textures, objects
@@ -73,10 +74,6 @@ public class Main extends PApplet implements ApplicationConstants {
         //Here sets the frame rate
         //amount of time it resets per second.
         frameRate(600);
-
-        //here I create my arrayList of keyFrames in order to add the animation
-        keyFrames = new ArrayList<KeyFrame>();
-        keyFrames.add(new KeyFrame(1/*time*/, 1/*x*/, 1/*y*/, 1/*angle*//* might need an arrayList*/));
 
         textureMode(NORMAL);
 
@@ -90,7 +87,11 @@ public class Main extends PApplet implements ApplicationConstants {
 
         //draw the new monster and brick
         monster = new Monster();
-        brick = new Brick();
+
+        brickList = new ArrayList<Brick>();
+        brick = new Brick(0);
+        brickList.add(brick);
+        prevBrick = null;
 
 //        font = createFont("LetterGothicStd.ttf", 32);
 //        textFont(font);
@@ -108,6 +109,12 @@ public class Main extends PApplet implements ApplicationConstants {
         //Initial Scene configuration
         size(WINDOW_WIDTH, WINDOW_HEIGHT, P3D); //Eventually add P3D
 
+    }
+
+    public void setGameOver() {
+        gameOver = true;
+
+        System.exit(0);
     }
 
     /**
@@ -130,7 +137,7 @@ public class Main extends PApplet implements ApplicationConstants {
             text("Jump Score", 1, 85, 5);
 
             //Enable camera so it follows the ball
-            //camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
+            camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
 
 
             monster.draw(this);
@@ -140,9 +147,9 @@ public class Main extends PApplet implements ApplicationConstants {
             centerY = monster.updateCameraY();
             centerZ = monster.updateCameraZ();
 
-            brick.draw(this);
-
-
+            //draw the next brick in the array list
+            for (Brick b: brickList)
+                b.draw(this);
 
         }
 
@@ -152,13 +159,26 @@ public class Main extends PApplet implements ApplicationConstants {
             //isTouching();
 
             float dt = (t - lastTime) * 0.001f;
-            monster.update(brick, jump);
-            jump = false;
-            //If the brick is touched, stop moving brick
-            brick.update(dt);
 
-            //If the ball is on top of the brick stop,
-            //isTouching();
+            int monsterLanded = monster.update(dt, this, brick, prevBrick);
+            //If the brick is touched, stop moving brick
+
+            //brick movement, list management
+            boolean brickOut = brick.update(dt);
+            if (brickOut) {
+                brickList.remove(brick);
+                brick = new Brick(brickList.size());
+                brickList.add(brick);
+
+            }
+
+            if (monsterLanded == 1) {
+                prevBrick = brick;
+                brick = new Brick(brickList.size());
+                System.out.println("Created new brick at " + brick.getbx() + "  z = " + brick.getbz());
+                System.out.println("        Old brick at " + prevBrick.getbx() + "  z = " + prevBrick.getbz());
+                brickList.add(brick);
+            }
 
             lastTime = t;
         }
@@ -169,8 +189,8 @@ public class Main extends PApplet implements ApplicationConstants {
      * DrawSurface will create the stage for our game
      */
     public void drawSurface() {
+
         beginShape(QUADS);
-        //texture(backgroundImage_);
 
         vertex(XMIN, YMAX, 0, 0, 0);
         vertex(XMIN, YMIN, 0, 0, 1);
@@ -186,23 +206,14 @@ public class Main extends PApplet implements ApplicationConstants {
         switch (key) {
             case 'p': //'p' for play
                 animate = true;
+                lastTime = millis();
                 break;
             case 'c':
                 animate = false;
                 //FileInOutMachine.saveKeyFramesToFile(keyFrames);
                 break;
             case 'j':
-                jumpSwitch++;
-                if(jumpSwitch%2 == 0){
-                    jump = true;
-                    System.out.println("Jump is now True");
-                    jumpSwitch++;
-                }
-                else if (jumpSwitch%2 != 0){
-                    jump = false;
-                    System.out.println("Jump is now false");
-                }
-
+                monster.jump();
                 //snapCurrent();
                 break;
             case 'u':
