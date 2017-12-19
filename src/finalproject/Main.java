@@ -11,8 +11,9 @@ import java.util.ArrayList;
  */
 public class Main extends PApplet implements ApplicationConstants {
 
-
+	
     private static final long serialVersionUID = 1L;
+    
 
     /**
      * Graphical objects
@@ -37,7 +38,7 @@ public class Main extends PApplet implements ApplicationConstants {
     private int frameIndex = 0;
     private boolean animate = false;
     private boolean brickTouched = false;
-
+    private int numPressed = 0;
     /**
      * Camera Functionality
      * (setting the eye position, the center of the scene,
@@ -47,7 +48,7 @@ public class Main extends PApplet implements ApplicationConstants {
     //    CAMERA
     //-----------------------
     private float eyeX = 0;
-    private float eyeY = -200;
+    private float eyeY = 200;
     private float eyeZ = 100;
     //---
     //always use negative z so it is upright
@@ -79,6 +80,7 @@ public class Main extends PApplet implements ApplicationConstants {
 
         textureMode(NORMAL);
 
+
         //this camera stuff tells where the camera is looking and may need to be changed
         //the up vector for example.
         //where is the camera in the world are the first three
@@ -92,6 +94,8 @@ public class Main extends PApplet implements ApplicationConstants {
         brick = new Brick();
 
         lastTime = millis();
+        
+   
     }
 
     /**
@@ -118,6 +122,7 @@ public class Main extends PApplet implements ApplicationConstants {
             lights();
             fill(255, 255, 153);
             drawSurface();
+          
 
             //Enable camera so it follows the ball
             //camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
@@ -174,9 +179,22 @@ public class Main extends PApplet implements ApplicationConstants {
 
     public void keyPressed() {
         switch (key) {
+        //start with key press, and then when touches
+        //the brick it stops, 
+        //when key pressed start bouncing again
+        
             //my animation is started here
             case 'v':
-                animate = true;
+            	
+            	numPressed ++;
+                if(monster.bounceOnce(brick,animate) == false) {
+                //odd number animate on 
+                	animate = false;
+                }
+                if(numPressed%2 == 0) {
+                	animate = true;
+                //even number animate off
+                }
                 break;
             case 'c':
                 animate = false;
@@ -212,6 +230,23 @@ public class Main extends PApplet implements ApplicationConstants {
 
     }
 
+    /**
+     * Helps allign the text on the screen
+     * @param x
+     */
+    void drawType(float x) {
+    	  line(x, 0, x, 65);
+    	  line(x, 220, x, height);
+    	  fill(0);
+    	  text("ichi", x, 95);
+    	  fill(51);
+    	  text("ni", x, 130);
+    	  fill(204);
+    	  text("san", x, 165);
+    	  fill(255);
+    	  text("shi", x, 210);
+    	}
+    
     /**
      * Main creates out PApplet for our scene
      *

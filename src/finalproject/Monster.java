@@ -27,6 +27,8 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     private float rad = 5;
     private float refl = 0.8f;
     private static final float ZERO_SPEED = 0.01f;
+    
+    
 
     /**
      * (0,0,0) updating the camera here to stay with the monster and not zero always
@@ -76,7 +78,6 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      */
     public void update(float dt, Brick brick) {
 
-
         float brickZ=brick.getbz(),  brickX=brick.getbx(),  brickY=brick.getby();
         float bhw = brick.getWidth()/2, bhh = brick.getHeight()/2, bhd = brick.getDepth()/2;
 
@@ -92,8 +93,23 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
             System.out.println("inside if statement");
             //velocity for the z plain multiplied by the velocity for the z
             Vz = refl * PApplet.abs(Vz);
+            //animate to stop when hits the brick
 
         }
+    }
+    
+    public boolean bounceOnce (Brick brick, boolean animate) {
+    	 float brickZ=brick.getbz(),  brickX=brick.getbx(),  brickY=brick.getby();
+         float bhw = brick.getWidth()/2, bhh = brick.getHeight()/2, bhd = brick.getDepth()/2;
+         
+         if (    bx >= brickX  - bhw && bx <= brickX + bhw &&
+                 by >= brickY - bhh && by <= brickY + bhh &&
+                 bz <= brickZ + bhd + rad) {
+        	 animate = false;
+         }
+         
+         return animate;
+    	
     }
 
     /**
