@@ -23,7 +23,7 @@ public class Main extends PApplet implements ApplicationConstants {
     //	graphical objects
     //-----------------------------
     private ArrayList<KeyFrame> keyFrames;
-    private Brick brick;
+    private Brick brick, brick2;
     private Brick nextBrick;
     private Monster monster;
     //private PFont font; //font for score
@@ -92,6 +92,7 @@ public class Main extends PApplet implements ApplicationConstants {
         //draw the new monster and brick
         monster = new Monster();
         brick = new Brick();
+        brick2 = new Brick();
 
 //        font = createFont("LetterGothicStd.ttf", 32);
 //        textFont(font);
@@ -142,6 +143,14 @@ public class Main extends PApplet implements ApplicationConstants {
             centerZ = monster.updateCameraZ();
 
             brick.draw(this);
+            //brick2.draw(this);
+
+            if (brick.getIsTouching()) {
+                float pZ = brick.getbz();
+                float enterX = 50;
+                nextBrick = new Brick(enterX,0,pZ + brick.getHeight()/2);
+                brick2 = nextBrick;
+            }
 
 
 
@@ -156,20 +165,19 @@ public class Main extends PApplet implements ApplicationConstants {
             println(dt);
             monster.update(dt, brick, jump);
             //If the brick is touched, stop moving brick
-            brick.update(dt);
 
-            //If the ball is on top of the brick stop,
-            //isTouching();
+            //brick movement
+            brick.update(dt);
 
             lastTime = t;
         }
 
-        if (brick.getbx() < -50) {
-            float pZ = brick.getbz();
-            float pX = brick.getbx();
-            nextBrick = new Brick(px + brick.getbw(),0,pZ + brick.getbh());
-            brick = nextBrick;
-        }
+//        if (brick.getIsTouching()) {
+//            float pZ = brick.getbz();
+//            float enterX = 50;
+//            nextBrick = new Brick(enterX,0,pZ + brick.getHeight()/2);
+//            brick = nextBrick;
+//        }
     }
 
 

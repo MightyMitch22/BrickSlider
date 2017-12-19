@@ -95,100 +95,67 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         else{
             //don't do anything
         }
-
-    }
-
-
-    /**
-     * We need to have a method that detects when the brick is touched
-     * by the monster. If the monster lands on top we should stop the brick
-     * and create a new brick at an updated y value so it aligns with top of
-     * previous brick and game continues. If the brick hits the monster from the side,
-     * the game should stop and restart. This task will be handled by isOnTop()
-     *
-     * @param tRad is the translated Radius of the ball
-     * @return returns true if monster is inside the brick
-     */
-    public boolean isOnTop(float tRad) {
-        //check w       check h        check depth
-        return ((tRad >= bw) && (tRad >= bh) && (tRad >= bd));
-
     }
 
     /**
-     *If the monster touches the brick, we want the brick to stop
-     * animating, and the ball to stay on the brick.
+     *  If the ball touches the brick, isTouching is
+     *  called from monster and changes the boolean isTrue
+     *  to true or false
      */
     public void isTouching(boolean isTrue) {
-
 
         this.isTrue =  isTrue;
 
     }
 
     /**
-     * returns current width
+     * returns current isTouching status
+     */
+    public boolean getIsTouching(){
+        return isTrue;
+    }
+
+    /**
+     * returns brick width
      */
     public float getWidth() {
         return bw;
     }
 
     /**
-     * returns current height
+     * returns brick height
      */
     public float getHeight() {
         return bh;
     }
 
     /**
-     * returns current depth
+     * returns brick depth
      */
     public float getDepth() {
         return bd;
     }
 
     /**
-     * returns current  x translate
+     * returns current x translate
      */
     public float getbx() {
         return bx;
     }
 
     /**
-     * returns current  y translate
+     * returns current y translate
      */
     public float getby() {
         return by;
     }
 
     /**
-     * returns current  y translate
+     * returns current z translate
      */
     public float getbz() {
         return bz;
     }
-
-    /**
-     * returns current  x translate
-     */
-    public float getbw() {
-        return bw;
-    }
-
-    /**
-     * returns current  y translate
-     */
-    public float getbh() {
-        return bh;
-    }
-
-    /**
-     * returns current  y translate
-     */
-    public float getbd() {
-        return bd;
-    }
-
 
     /**
      * We use the static counter

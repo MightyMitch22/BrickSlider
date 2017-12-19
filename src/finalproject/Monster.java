@@ -19,7 +19,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     /**
      * Update class Variables
      */
-    private float bx = 0, by = 0, bz = 50;
+    private float bx = 0, by = 0, bz = 10;
     private float Vzo = 5;
     private float Vx = 12, Vy = 0, Vz = 50;
     private float rad = 5;
@@ -77,7 +77,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     public void update(float dt, Brick brick, boolean jump) {
 
 
-        float brickZ = brick.getbz(),  brickX=brick.getbx(),  brickY=brick.getby();
+        float brickZ = brick.getbz(),  brickX = brick.getbx(),  brickY = brick.getby();
         float bhw = brick.getWidth()/2, bhh = brick.getHeight()/2, bhd = brick.getDepth()/2;
 
         //Vz -= G * constAcc;
@@ -86,28 +86,25 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
                 by >= brickY - bhh && by <= brickY + bhh &&
                 bz <= brickZ + bhd + rad) {
 
-            //bz += -2 * constAcc;
+            //bz += brickZ;
 
             brick.isTouching(true);
             score++; //increment score, you landed on a brick
             //System.out.println("if: "+jump);
-            //jump = false; //change jump to false here because ball has detected brick
+            jump = false; //change jump to false here because ball has detected brick
+            println("STOP");
 
             //System.out.println("inside if statement");
             //velocity for the z plain multiplied by the velocity for the z
             //Vz = refl * PApplet.abs(Vz);
 
-            //bz = brickZ + bhd + rad;
-
-            /// if statement that waits for ball fell
-            //boolean that says ball falling vs ball fell
-
+            //bz = brickZ + (bhh*2) + rad;
 
         }
 
         //the ball should jump here
         if(jump){
-            //bz = bz + 1;
+            bz = bz - 5*dt;
             // we use this object's instance variable to access the application's instance methods and variables
 
 //                bz += Vz * dt;
@@ -121,6 +118,8 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
 //                i++;
 //                Vz -= G * constAcc;
 //                bz = brickZ + bhd + rad;
+
+            //brick.isTouching(false);
 
         }
     }
@@ -159,21 +158,6 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      */
     public float getR() {
         return rad;
-    }
-
-
-    /**
-     * We need to have a method that detects when the Monster is touched
-     * by the brick. If the monster lands on top we should stop the brick
-     * game continues. If the brick hits the monster from the side,
-     * the game should stop.
-     *
-     * @param thY y for isOnTop
-     * @param theX x for isOnTop
-     * @return (Do we need this method in Monster or Brick, or both)
-     */
-    public boolean isInside(float thY, float theX) {
-        return false;
     }
 
     /**
