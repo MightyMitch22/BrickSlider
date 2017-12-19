@@ -37,7 +37,7 @@ public class Main extends PApplet implements ApplicationConstants {
     private int frameIndex = 0;
     private boolean animate = false;
     private boolean jump = false;
-    private float jumpSwitch = 1;//used to switch jump on and off
+    private int jumpSwitch = 1;//used to switch jump on and off
 
     /**
      * Camera Functionality
@@ -48,7 +48,7 @@ public class Main extends PApplet implements ApplicationConstants {
     //    CAMERA
     //-----------------------
     private float eyeX = 0;
-    private float eyeY = -200;
+    private float eyeY = 200;
     private float eyeZ = 100;
     //---
     //always use negative z so it is upright
@@ -122,6 +122,12 @@ public class Main extends PApplet implements ApplicationConstants {
             lights();
             fill(255, 255, 153);
             drawSurface();
+
+            textSize(15);
+            fill(0, 102, 153);
+            text(monster.getScore(), 5, 70, 5);
+            fill(0, 102, 153);
+            text("Jump Score", 1, 85, 5);
 
             //Enable camera so it follows the ball
             //camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);

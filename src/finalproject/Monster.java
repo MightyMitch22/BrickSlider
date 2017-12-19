@@ -75,6 +75,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      */
     public void update(Brick brick, boolean jump) {
 
+
         float brickZ = brick.getbz(),  brickX=brick.getbx(),  brickY=brick.getby();
         float bhw = brick.getWidth()/2, bhh = brick.getHeight()/2, bhd = brick.getDepth()/2;
 
@@ -115,6 +116,14 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
             }
 
         }
+    }
+
+    /**
+     * getScore returns the number
+     * of bricks successfully jumped onto.
+     */
+    public float getScore(){
+        return score;
     }
 
     /**
