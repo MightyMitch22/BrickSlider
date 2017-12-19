@@ -27,8 +27,10 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     private float Vx = 0;
     private float rad = 5;
     private float refl = 0.8f;
-    private int score = 0;
+
+   
     private boolean jumping = true;
+
 
     /**
      * (0,0,0) updating the camera here to stay with the monster and not zero always
@@ -86,6 +88,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
             }
         }
 
+
         if (!gameOver) {
             landed = testBrick(brick1);
             if (landed) {
@@ -106,6 +109,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
             jumping = true;
             System.out.println("side bump");
         }
+
 
         return status;
     }
@@ -157,11 +161,13 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
             landed = true;
             bz = brickZ + bhd + rad;
             theBrick.isTouching();
-            score++; //increment score, you landed on a brick
+            //score++; //increment score, you landed on a brick
         }
-
+        
         return landed;
     }
+   
+
 
     public void jump() {
         if (!jumping) {
@@ -169,15 +175,29 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
             Vz = IMPULSE_SPEED;
         }
     }
+    
+    public boolean bounceOnce (Brick brick, boolean animate) {
+    	 float brickZ=brick.getbz(),  brickX=brick.getbx(),  brickY=brick.getby();
+         float bhw = brick.getWidth()/2, bhh = brick.getHeight()/2, bhd = brick.getDepth()/2;
+         
+         if (    bx >= brickX  - bhw && bx <= brickX + bhw &&
+                 by >= brickY - bhh && by <= brickY + bhh &&
+                 bz <= brickZ + bhd + rad) {
+        	 animate = false;
+         }
+         
+         return animate;
+    	
+    }
 
-    /**
+   /* *//**
      * getScore returns the number
      * of bricks successfully jumped onto.
-     */
+     *//*
     public float getScore() {
         return score;
     }
-
+*/
     /**
      * returns current bx
      */
