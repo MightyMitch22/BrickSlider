@@ -31,7 +31,6 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
     //translation of brick
     private float bx, by, bz;
     private float Vx;
-    private boolean isTrue;
 
 
     /**
@@ -51,7 +50,6 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 
         Vx = speedFactor*BASE_SPEED;
 
-        isTrue = false;
         brickCounter++;
         speedFactor *= SPEED_INCR;
     }
@@ -97,14 +95,10 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         //-----------------------------
 
         boolean brickOut = false;
-        if (!isTrue) {
         bx -= Vx*dt;//brick moves
             if (bx < XMIN*1.1f)
                 brickOut = true;
-       }
-        else{
-            //don't do anything
-        }
+
         return brickOut;
     }
 
@@ -113,9 +107,9 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
      *  called from monster and changes the boolean isTrue
      *  to true or false
      */
-    public void isTouching(boolean isTrue) {
+    public void isTouching() {
 
-        this.isTrue =  isTrue;
+        Vx = 0;
 
     }
 

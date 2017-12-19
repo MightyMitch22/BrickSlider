@@ -160,7 +160,7 @@ public class Main extends PApplet implements ApplicationConstants {
 
             float dt = (t - lastTime) * 0.001f;
 
-            boolean monsterLanded = monster.update(dt, this, brick, prevBrick);
+            int monsterLanded = monster.update(dt, this, brick, prevBrick);
             //If the brick is touched, stop moving brick
 
             //brick movement, list management
@@ -172,9 +172,11 @@ public class Main extends PApplet implements ApplicationConstants {
 
             }
 
-            if (monsterLanded) {
+            if (monsterLanded == 1) {
                 prevBrick = brick;
                 brick = new Brick(brickList.size());
+                System.out.println("Created new brick at " + brick.getbx() + "  z = " + brick.getbz());
+                System.out.println("        Old brick at " + prevBrick.getbx() + "  z = " + prevBrick.getbz());
                 brickList.add(brick);
             }
 

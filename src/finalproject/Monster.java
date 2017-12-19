@@ -28,7 +28,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     private float rad = 5;
     private float refl = 0.8f;
     private int score = 0;
-    private boolean jumping=true;
+    private boolean jumping = true;
 
     /**
      * (0,0,0) updating the camera here to stay with the monster and not zero always
@@ -37,7 +37,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     private float centerY = 0;
     private float centerZ = 0;
 
-     /**
+    /**
      * The Monster will need to keep track of its own location which the main will update.
      */
     public Monster() {
@@ -68,65 +68,95 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      * brick width is the width of brick to see if monster is
      * actually ontop of brick at Z
      */
-    public boolean update(float dt, Main app, Brick brick1, Brick brick2) {
+    public int update(float dt, Main app, Brick brick1, Brick brick2) {
 
+        int status = 0;
         boolean landed = false;
         boolean gameOver = false;
 
-         //the ball should jump here
-        if(jumping){
-            bz += Vz*dt - 8f*G*dt*dt;
-            Vz -= G*dt;
+        //the ball should jump here
+        if (jumping) {
+            bz += Vz * dt - 8f * G * dt * dt;
+            Vz -= G * dt;
 
             // test against the ground
             if (bz < rad) {
                 app.setGameOver();
+                System.out.println("Game Over");
             }
         }
 
         if (!gameOver) {
             landed = testBrick(brick1);
-            if (!landed && brick2 != null)
+            if (landed) {
+                status = 1;
+                System.out.println("landed on brick1");
+            }
+            if (!landed && brick2 != null) {
                 landed = testBrick(brick2);
+                if (landed) {
+                    System.out.println("landed on brick2");
+                    status = 2;
+                }
+            }
         }
 
-//        if (testBump(brick1)) {
-//            Vx = BUMP_SPEED;
-//            jumping = true;
-//        }
+        if (!landed && testBump(brick1)) {
+            Vx = BUMP_SPEED;
+            jumping = true;
+            System.out.println("side bump");
+        }
 
-        return landed;
+        return status;
     }
 
-    private boolean testBump(Brick theBrick){
-        float brickZ = theBrick.getbz(),  brickX = theBrick.getbx(),  brickY = theBrick.getby();
-        float bhw = theBrick.getWidth()/2, bhh = theBrick.getHeight()/2, bhd = theBrick.getDepth()/2;
+    /**
+     * testBump is checking if the ball is hit by the side
+     * of the brick
+     *
+     * @param theBrick the current brick moving towards
+     *                 the monster
+     * @return
+     */
+    private boolean testBump(Brick theBrick) {
+        float brickZ = theBrick.getbz(), brickX = theBrick.getbx(), brickY = theBrick.getby();
+        float bhw = theBrick.getWidth() / 2, bhh = theBrick.getHeight() / 2, bhd = theBrick.getDepth() / 2;
+
+        boolean bump = false;
 
         //tests for ball hiting side of brick
-//        if (    bx >= brickX - bhw &&
+        if (bx > brickX && bx < brickX + bhw + rad &&
+                bz > brickZ - bhd && bz <= brickZ + bhd) {
+            System.out.println("x = " + bx + "   z = " + bz);
+            System.out.println("brick x = " + brickX + "   z = " + brickZ);
+            System.out.println("" + brickX + " < " + bx + " < " + brickX + bhw + rad);
+            System.out.println("" + (brickZ - bhd) + " < " + bz + " < " + brickZ + bhd);
+            println("Test Bump");
+
+//                bx >= brickX - bhw && bx <= brickX + bhw + rad &&
 //                by >= brickY - bhh && by <= brickY + bhh &&
-//                bz >= brickZ + bhd && bz <= brickZ - bhd){
-//
-//        }
-        return true;
+//                bz >= brickZ - bhd && bz <= brickZ - bhd)
+
+            bump = true;
+        }
+        return bump;
     }
 
     private boolean testBrick(Brick theBrick) {
         boolean landed = false;
 
-        float brickZ = theBrick.getbz(),  brickX = theBrick.getbx(),  brickY = theBrick.getby();
-        float bhw = theBrick.getWidth()/2, bhh = theBrick.getHeight()/2, bhd = theBrick.getDepth()/2;
+        float brickZ = theBrick.getbz(), brickX = theBrick.getbx(), brickY = theBrick.getby();
+        float bhw = theBrick.getWidth() / 2, bhh = theBrick.getHeight() / 2, bhd = theBrick.getDepth() / 2;
 
         //ball is currently on the brick
-        if (    bx >= brickX - bhw && bx <= brickX + bhw &&
-                by >= brickY - bhh && by <= brickY + bhh &&
+        if (bx >= brickX - bhw && bx <= brickX + bhw &&
                 bz <= brickZ + bhd + rad) {
 
             //bz += brickZ;
             jumping = false;
             landed = true;
             bz = brickZ + bhd + rad;
-            theBrick.isTouching(true);
+            theBrick.isTouching();
             score++; //increment score, you landed on a brick
         }
 
@@ -139,11 +169,12 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
             Vz = IMPULSE_SPEED;
         }
     }
+
     /**
      * getScore returns the number
      * of bricks successfully jumped onto.
      */
-    public float getScore(){
+    public float getScore() {
         return score;
     }
 
