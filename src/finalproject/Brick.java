@@ -42,13 +42,13 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
 
         //  create the brick outside of the window, at the proper level (based on n)
         if (n != 0)
-            bx = XMAX + (6 + (int)(5*Math.random())*bw);
+            bx = XMAX + (6 + (int) (5 * Math.random()) * bw);
         else
             bx = 10;// hard code the first brick
         by = 0;
-        bz = (n)*bd;
+        bz = (n) * bd;
 
-        Vx = speedFactor*BASE_SPEED;
+        Vx = speedFactor * BASE_SPEED;
 
         brickCounter++;
         speedFactor *= SPEED_INCR;
@@ -95,17 +95,17 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         //-----------------------------
 
         boolean brickOut = false;
-        bx -= Vx*dt;//brick moves
-            if (bx < XMIN*1.1f)
-                brickOut = true;
+        bx -= Vx * dt;//brick moves
+        if (bx < XMIN * 1.1f)
+            brickOut = true;
 
         return brickOut;
     }
 
     /**
-     *  If the ball touches the brick, isTouching is
-     *  called from monster and changes the boolean isTrue
-     *  to true or false
+     * If the ball touches the brick, isTouching is
+     * called from monster and changes the boolean isTrue
+     * to true or false
      */
     public void isTouching() {
 
@@ -155,4 +155,4 @@ public class Brick extends PApplet implements ApplicationConstants, AnimatedObje
         return bz;
     }
 
-  }
+}

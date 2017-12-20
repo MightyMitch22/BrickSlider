@@ -3,12 +3,9 @@ package finalproject;
 import processing.core.PApplet;
 
 /**
- * The Monster jumps, dies, updates animation.
- * Physics Image processing will be used to move the monster.
- * When the Monster hits the block, the block stops. If the
- * block was hit on the side the monster dies, if the monster lands
- * on top the
- * Created by Mitch on 11/29/17.
+ * The Monster class checks to see if the ball (monster) is touching the brick.
+ * If the ball detects the brick, it changes landed to true which then causes the brick
+ * to stop moving, and a new brick to be drawn and animated.
  */
 public class Monster extends PApplet implements ApplicationConstants, AnimatedObject {
 
@@ -28,7 +25,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
     private float rad = 5;
     private float refl = 0.8f;
 
-   
+
     private boolean jumping = true;
 
 
@@ -120,7 +117,8 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
      *
      * @param theBrick the current brick moving towards
      *                 the monster
-     * @return
+     * @return status of true if the ball detects side of
+     * brick
      */
     private boolean testBump(Brick theBrick) {
         float brickZ = theBrick.getbz(), brickX = theBrick.getbx(), brickY = theBrick.getby();
@@ -163,10 +161,9 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
             theBrick.isTouching();
             //score++; //increment score, you landed on a brick
         }
-        
+
         return landed;
     }
-   
 
 
     public void jump() {
@@ -175,19 +172,19 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
             Vz = IMPULSE_SPEED;
         }
     }
-    
-    public boolean bounceOnce (Brick brick, boolean animate) {
-    	 float brickZ=brick.getbz(),  brickX=brick.getbx(),  brickY=brick.getby();
-         float bhw = brick.getWidth()/2, bhh = brick.getHeight()/2, bhd = brick.getDepth()/2;
-         
-         if (    bx >= brickX  - bhw && bx <= brickX + bhw &&
-                 by >= brickY - bhh && by <= brickY + bhh &&
-                 bz <= brickZ + bhd + rad) {
-        	 animate = false;
-         }
-         
-         return animate;
-    	
+
+    public boolean bounceOnce(Brick brick, boolean animate) {
+        float brickZ = brick.getbz(), brickX = brick.getbx(), brickY = brick.getby();
+        float bhw = brick.getWidth() / 2, bhh = brick.getHeight() / 2, bhd = brick.getDepth() / 2;
+
+        if (bx >= brickX - bhw && bx <= brickX + bhw &&
+                by >= brickY - bhh && by <= brickY + bhh &&
+                bz <= brickZ + bhd + rad) {
+            animate = false;
+        }
+
+        return animate;
+
     }
 
    /* *//**
@@ -198,6 +195,7 @@ public class Monster extends PApplet implements ApplicationConstants, AnimatedOb
         return score;
     }
 */
+
     /**
      * returns current bx
      */

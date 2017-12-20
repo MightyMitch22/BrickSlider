@@ -1,6 +1,7 @@
 package finalproject;
 
 import processing.core.PApplet;
+
 import java.util.ArrayList;
 
 
@@ -115,6 +116,10 @@ public class Main extends PApplet implements ApplicationConstants {
 
     }
 
+    /**
+     * setGameOver exits the game when the ball
+     * hits the surface (not a brick surface)
+     */
     public void setGameOver() {
         gameOver = true;
 
@@ -122,7 +127,9 @@ public class Main extends PApplet implements ApplicationConstants {
     }
 
     /**
-     * Draw creates our keyFrames and updates our Game
+     * Draw handles pretty much anything that moves. It will draw an
+     * updated ball, or brick. In addition it draws the background
+     * and text for the jump score.
      */
     public void draw() {
 
@@ -134,6 +141,7 @@ public class Main extends PApplet implements ApplicationConstants {
             fill(255, 255, 153);
             drawSurface();
 
+            //Text for score
             textSize(15);
             fill(0, 102, 153);
             text(score, 5, 70, 5);
@@ -141,19 +149,19 @@ public class Main extends PApplet implements ApplicationConstants {
             text("Jump Score", 1, 85, 5);
 
 
-            //Enable camera so it follows the ball
+            //Enable camera so it follows the ball, or comment out to disable
             camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
 
-
-            monster.draw(this);
             //update where the camera should be depending on location
             //of the ball
             centerX = monster.updateCameraX();
             centerY = monster.updateCameraY();
             centerZ = monster.updateCameraZ();
 
+            monster.draw(this);
+
             //draw the next brick in the array list
-            for (Brick b: brickList)
+            for (Brick b : brickList)
                 b.draw(this);
 
         }
@@ -168,7 +176,7 @@ public class Main extends PApplet implements ApplicationConstants {
             int monsterLanded = monster.update(dt, this, brick, prevBrick);
             //If the brick is touched, stop moving brick
 
-            //brick movement, list management
+            //if ball misses the brick and brick exits screen
             boolean brickOut = brick.update(dt);
             if (brickOut) {
                 brickList.remove(brick);
@@ -177,6 +185,7 @@ public class Main extends PApplet implements ApplicationConstants {
 
             }
 
+            //when the ball lands on the brick
             if (monsterLanded == 1) {
                 prevBrick = brick;
                 brick = new Brick(brickList.size());
@@ -207,70 +216,32 @@ public class Main extends PApplet implements ApplicationConstants {
     }
 
 
-
+    /**
+     * keyPressed() will be used to start and pause the
+     * game. J will be used to make the ball jump
+     */
     public void keyPressed() {
         switch (key) {
 
             case 'p': //'p' for play
                 animate = true;
                 lastTime = millis();
-
                 break;
-            case 'c':
+            case 'c': //pause
                 animate = false;
                 //FileInOutMachine.saveKeyFramesToFile(keyFrames);
                 break;
-            case 'j':
+            case 'j': //jump
                 monster.jump();
                 //snapCurrent();
                 break;
-            case 'u':
-                //brickTouched = false;
-                //body.moveUp;
-                break;
-            case 'l':
-                //moveLeft();
-                break;
-            case 'o':
-                //moveRight();
-                break;
-            case 'q':
-                //moveDown();
-                break;
-            case 'v':
-                //moveRight();
-                break;
-            case 'y':
-                //moveRight();
-                break;
-            case 'z':
-                //do nothing
-                break;
+
         }
 
     }
 
     /**
-     * Helps allign the text on the screen
-     * @param x
-     */
-    void drawType(float x) {
-    	  line(x, 0, x, 65);
-    	  line(x, 220, x, height);
-    	  fill(0);
-    	  text("ichi", x, 95);
-    	  fill(51);
-    	  text("ni", x, 130);
-    	  fill(204);
-    	  text("san", x, 165);
-    	  fill(255);
-    	  text("shi", x, 210);
-    	}
-
-    /**
-     * Main creates out PApplet for our scene
-     *
-     * @param argv ummm
+     * Main creates our PApplet for our scene
      */
     public static void main(String[] argv) {
         PApplet.main("finalproject.Main");
