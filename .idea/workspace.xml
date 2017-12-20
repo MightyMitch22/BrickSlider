@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edcc7e79-dc91-422f-b51f-8ee20d4f6525" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/finalproject/KeyFrame.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/finalproject/LinearInterpolationFace.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/finalproject/Brick.java" afterPath="$PROJECT_DIR$/src/finalproject/Brick.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/finalproject/Main.java" afterPath="$PROJECT_DIR$/src/finalproject/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/finalproject/Monster.java" afterPath="$PROJECT_DIR$/src/finalproject/Monster.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -32,21 +29,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Monster.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Monster.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/finalproject/Monster.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="137" column="0" lean-forward="false" selection-start-line="137" selection-start-column="0" selection-end-line="139" selection-end-column="59" />
-              <folding />
+            <state relative-caret-position="255">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding>
+                <element signature="method#testBrick#0;class#Monster#0" expanded="false" />
+                <element signature="method#jump#0;class#Monster#0" expanded="false" />
+                <element signature="method#updateCameraY#0;class#Monster#0" expanded="false" />
+                <element signature="method#updateCameraZ#0;class#Monster#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Brick.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Brick.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/finalproject/Brick.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+            <state relative-caret-position="1800">
+              <caret line="130" column="43" lean-forward="false" selection-start-line="130" selection-start-column="43" selection-end-line="130" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -77,8 +79,8 @@
         <option value="$PROJECT_DIR$/src/finalproject/ApplicationConstants.java" />
         <option value="$PROJECT_DIR$/src/finalproject/AnimatedObject.java" />
         <option value="$PROJECT_DIR$/src/finalproject/Main.java" />
-        <option value="$PROJECT_DIR$/src/finalproject/Brick.java" />
         <option value="$PROJECT_DIR$/src/finalproject/Monster.java" />
+        <option value="$PROJECT_DIR$/src/finalproject/Brick.java" />
       </list>
     </option>
   </component>
@@ -636,7 +638,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513725929410</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="First commit of cleaned up code.">
+      <created>1513741339562</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1513741339562</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -725,7 +734,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added PApplet to some classes, Monster and Main" />
     <MESSAGE value="Added Main line in Main Class,&#10;&#10;And Sett up." />
     <MESSAGE value="Has Main" />
     <MESSAGE value="ready for merge" />
@@ -750,11 +758,12 @@
     <MESSAGE value="Major updates after working with Hervé" />
     <MESSAGE value="Major updates" />
     <MESSAGE value="Major updates!!!!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Major updates!!!!!" />
+    <MESSAGE value="First commit of cleaned up code." />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit of cleaned up code." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -786,7 +795,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="46" column="59" lean-forward="false" selection-start-line="46" selection-start-column="59" selection-end-line="46" selection-end-column="59" />
-          <folding />
+          <folding>
+            <element signature="method#testBrick#0;class#Monster#0" expanded="false" />
+            <element signature="method#jump#0;class#Monster#0" expanded="false" />
+            <element signature="method#updateCameraY#0;class#Monster#0" expanded="false" />
+            <element signature="method#updateCameraZ#0;class#Monster#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -831,7 +845,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="46" column="59" lean-forward="false" selection-start-line="46" selection-start-column="59" selection-end-line="46" selection-end-column="59" />
-          <folding />
+          <folding>
+            <element signature="method#testBrick#0;class#Monster#0" expanded="false" />
+            <element signature="method#jump#0;class#Monster#0" expanded="false" />
+            <element signature="method#updateCameraY#0;class#Monster#0" expanded="false" />
+            <element signature="method#updateCameraZ#0;class#Monster#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -875,7 +894,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-          <folding />
+          <folding>
+            <element signature="method#testBrick#0;class#Monster#0" expanded="false" />
+            <element signature="method#jump#0;class#Monster#0" expanded="false" />
+            <element signature="method#updateCameraY#0;class#Monster#0" expanded="false" />
+            <element signature="method#updateCameraZ#0;class#Monster#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -901,7 +925,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="46" column="59" lean-forward="false" selection-start-line="46" selection-start-column="59" selection-end-line="46" selection-end-column="59" />
-          <folding />
+          <folding>
+            <element signature="method#testBrick#0;class#Monster#0" expanded="false" />
+            <element signature="method#jump#0;class#Monster#0" expanded="false" />
+            <element signature="method#updateCameraY#0;class#Monster#0" expanded="false" />
+            <element signature="method#updateCameraZ#0;class#Monster#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -947,7 +976,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="46" column="59" lean-forward="false" selection-start-line="46" selection-start-column="59" selection-end-line="46" selection-end-column="59" />
-          <folding />
+          <folding>
+            <element signature="method#testBrick#0;class#Monster#0" expanded="false" />
+            <element signature="method#jump#0;class#Monster#0" expanded="false" />
+            <element signature="method#updateCameraY#0;class#Monster#0" expanded="false" />
+            <element signature="method#updateCameraZ#0;class#Monster#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -983,7 +1017,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-          <folding />
+          <folding>
+            <element signature="method#testBrick#0;class#Monster#0" expanded="false" />
+            <element signature="method#jump#0;class#Monster#0" expanded="false" />
+            <element signature="method#updateCameraY#0;class#Monster#0" expanded="false" />
+            <element signature="method#updateCameraZ#0;class#Monster#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1048,18 +1087,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/finalproject/Brick.java">
+    <entry file="file://$PROJECT_DIR$/src/finalproject/Monster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="255">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="method#testBrick#0;class#Monster#0" expanded="false" />
+            <element signature="method#jump#0;class#Monster#0" expanded="false" />
+            <element signature="method#updateCameraY#0;class#Monster#0" expanded="false" />
+            <element signature="method#updateCameraZ#0;class#Monster#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/finalproject/Monster.java">
+    <entry file="file://$PROJECT_DIR$/src/finalproject/Brick.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="137" column="0" lean-forward="false" selection-start-line="137" selection-start-column="0" selection-end-line="139" selection-end-column="59" />
+        <state relative-caret-position="1800">
+          <caret line="130" column="43" lean-forward="false" selection-start-line="130" selection-start-column="43" selection-end-line="130" selection-end-column="43" />
           <folding />
         </state>
       </provider>
